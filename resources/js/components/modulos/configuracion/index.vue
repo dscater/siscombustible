@@ -61,6 +61,20 @@
                                         </el-descriptions-item>
                                         <el-descriptions-item>
                                             <template slot="label">
+                                                <i class="el-icon-document"></i>
+                                                Razón Social
+                                            </template>
+                                            {{ oConfiguracion.razon_social }}
+                                        </el-descriptions-item>
+                                        <el-descriptions-item>
+                                            <template slot="label">
+                                                <i class="el-icon-document"></i>
+                                                Ciudad
+                                            </template>
+                                            {{ oConfiguracion.ciudad }}
+                                        </el-descriptions-item>
+                                        <el-descriptions-item>
+                                            <template slot="label">
                                                 <i
                                                     class="el-icon-map-location"
                                                 ></i>
@@ -71,9 +85,30 @@
                                         <el-descriptions-item>
                                             <template slot="label">
                                                 <i class="el-icon-document"></i>
+                                                Teléfono
+                                            </template>
+                                            {{ oConfiguracion.fono }}
+                                        </el-descriptions-item>
+                                        <el-descriptions-item>
+                                            <template slot="label">
+                                                <i class="el-icon-document"></i>
+                                                Web
+                                            </template>
+                                            {{ oConfiguracion.web }}
+                                        </el-descriptions-item>
+                                        <el-descriptions-item>
+                                            <template slot="label">
+                                                <i class="el-icon-document"></i>
                                                 Actividad
                                             </template>
                                             {{ oConfiguracion.actividad }}
+                                        </el-descriptions-item>
+                                        <el-descriptions-item>
+                                            <template slot="label">
+                                                <i class="el-icon-document"></i>
+                                                Correo
+                                            </template>
+                                            {{ oConfiguracion.correo }}
                                         </el-descriptions-item>
                                         <el-descriptions-item>
                                             <template slot="label">
@@ -88,119 +123,6 @@
                                             />
                                         </el-descriptions-item>
                                     </el-descriptions>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4>Envío de correos</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <!-- <div class="col-md-12 form-group">
-                                        <label>Driver*:</label>
-                                        <input
-                                            type="text"
-                                            class="form-control"
-                                            v-model="oEnvioCorreo.driver"
-                                        />
-                                        <span
-                                            class="error invalid-feedback d-block"
-                                            v-if="errors.driver"
-                                            v-text="errors.driver[0]"
-                                        ></span>
-                                    </div> -->
-                                    <div class="col-md-12 form-group">
-                                        <label>Host*:</label>
-                                        <input
-                                            type="text"
-                                            class="form-control"
-                                            v-model="oEnvioCorreo.host"
-                                        />
-                                        <span
-                                            class="error invalid-feedback d-block"
-                                            v-if="errors.host"
-                                            v-text="errors.host[0]"
-                                        ></span>
-                                    </div>
-                                    <div class="col-md-12 form-group">
-                                        <label>Puerto*:</label>
-                                        <input
-                                            type="text"
-                                            class="form-control"
-                                            v-model="oEnvioCorreo.puerto"
-                                        />
-                                        <span
-                                            class="error invalid-feedback d-block"
-                                            v-if="errors.puerto"
-                                            v-text="errors.puerto[0]"
-                                        ></span>
-                                    </div>
-                                    <div class="col-md-12 form-group">
-                                        <label>Encriptado*:</label>
-                                        <input
-                                            type="text"
-                                            class="form-control"
-                                            v-model="oEnvioCorreo.encryptado"
-                                        />
-                                        <span
-                                            class="error invalid-feedback d-block"
-                                            v-if="errors.encryptado"
-                                            v-text="errors.encryptado[0]"
-                                        ></span>
-                                    </div>
-                                    <div class="col-md-12 form-group">
-                                        <label>Correo*:</label>
-                                        <input
-                                            type="email"
-                                            class="form-control"
-                                            v-model="oEnvioCorreo.correo"
-                                        />
-                                        <span
-                                            class="error invalid-feedback d-block"
-                                            v-if="errors.correo"
-                                            v-text="errors.correo[0]"
-                                        ></span>
-                                    </div>
-                                    <div class="col-md-12 form-group">
-                                        <label>Nombre*:</label>
-                                        <input
-                                            type="text"
-                                            class="form-control"
-                                            v-model="oEnvioCorreo.nombre"
-                                        />
-                                        <span
-                                            class="error invalid-feedback d-block"
-                                            v-if="errors.nombre"
-                                            v-text="errors.nombre[0]"
-                                        ></span>
-                                    </div>
-                                    <div class="col-md-12 form-group">
-                                        <label>Contraseña*:</label>
-                                        <input
-                                            type="text"
-                                            class="form-control"
-                                            v-model="oEnvioCorreo.password"
-                                        />
-                                        <span
-                                            class="error invalid-feedback d-block"
-                                            v-if="errors.password"
-                                            v-text="errors.password[0]"
-                                        ></span>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <button
-                                            class="btn btn-success btn-flat btn-block"
-                                            @click="actualizarEnvioCorreo"
-                                        >
-                                            <i class="fa fa-edit"></i>
-                                            Actualizar información
-                                        </button>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -280,9 +202,53 @@
                                 <div class="form-group col-md-6">
                                     <label
                                         :class="{
+                                            'text-danger': errors.razon_social,
+                                        }"
+                                        >Razón Social*</label
+                                    >
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        :class="{
+                                            'is-invalid': errors.razon_social,
+                                        }"
+                                        placeholder="Razón Social"
+                                        v-model="oConfiguracion.razon_social"
+                                    />
+                                    <span
+                                        class="error invalid-feedback"
+                                        v-if="errors.razon_social"
+                                        v-text="errors.razon_social[0]"
+                                    ></span>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label
+                                        :class="{
+                                            'text-danger': errors.ciudad,
+                                        }"
+                                        >Ciudad*</label
+                                    >
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        :class="{
+                                            'is-invalid': errors.ciudad,
+                                        }"
+                                        placeholder="Ciudad"
+                                        v-model="oConfiguracion.ciudad"
+                                    />
+                                    <span
+                                        class="error invalid-feedback"
+                                        v-if="errors.ciudad"
+                                        v-text="errors.ciudad[0]"
+                                    ></span>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label
+                                        :class="{
                                             'text-danger': errors.dir,
                                         }"
-                                        >Dirección</label
+                                        >Dirección*</label
                                     >
                                     <input
                                         type="text"
@@ -297,7 +263,46 @@
                                         v-text="errors.dir[0]"
                                     ></span>
                                 </div>
-
+                                <div class="form-group col-md-6">
+                                    <label
+                                        :class="{ 'text-danger': errors.fono }"
+                                        >Teléfono*</label
+                                    >
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        :class="{
+                                            'is-invalid': errors.fono,
+                                        }"
+                                        placeholder="Teléfono"
+                                        v-model="oConfiguracion.fono"
+                                    />
+                                    <span
+                                        class="error invalid-feedback"
+                                        v-if="errors.fono"
+                                        v-text="errors.fono[0]"
+                                    ></span>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label
+                                        :class="{ 'text-danger': errors.web }"
+                                        >Web</label
+                                    >
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        :class="{
+                                            'is-invalid': errors.web,
+                                        }"
+                                        placeholder="Web"
+                                        v-model="oConfiguracion.web"
+                                    />
+                                    <span
+                                        class="error invalid-feedback"
+                                        v-if="errors.web"
+                                        v-text="errors.web[0]"
+                                    ></span>
+                                </div>
                                 <div class="form-group col-md-6">
                                     <label
                                         :class="{
@@ -311,13 +316,35 @@
                                         :class="{
                                             'is-invalid': errors.actividad,
                                         }"
-                                        placeholder="Alias"
+                                        placeholder="Actividad"
                                         v-model="oConfiguracion.actividad"
                                     />
                                     <span
                                         class="error invalid-feedback"
                                         v-if="errors.actividad"
                                         v-text="errors.actividad[0]"
+                                    ></span>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label
+                                        :class="{
+                                            'text-danger': errors.correo,
+                                        }"
+                                        >Correo</label
+                                    >
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        :class="{
+                                            'is-invalid': errors.correo,
+                                        }"
+                                        placeholder="Correo"
+                                        v-model="oConfiguracion.correo"
+                                    />
+                                    <span
+                                        class="error invalid-feedback"
+                                        v-if="errors.correo"
+                                        v-text="errors.correo[0]"
                                     ></span>
                                 </div>
                                 <div class="form-group col-md-6">
@@ -389,18 +416,14 @@ export default {
                 id: 0,
                 nombre_sistema: "",
                 alias: "",
+                razon_social: "",
+                ciudad: "",
                 dir: "",
+                fono: "",
+                web: "",
                 actividad: "",
-                logo: "",
-            },
-            oEnvioCorreo: {
-                host: "",
-                puerto: "",
-                encryptado: "",
                 correo: "",
-                nombre: "",
-                password: "",
-                driver: "",
+                logo: null,
             },
             errors: [],
         };
@@ -408,52 +431,8 @@ export default {
     mounted() {
         this.loadingWindow.close();
         this.getConfiguracion();
-        this.getEnvioCorreo();
     },
     methods: {
-        getEnvioCorreo() {
-            axios.get(main_url + "/admin/envio_correos").then((response) => {
-                if (response.data.envio_correo) {
-                    this.oEnvioCorreo = response.data.envio_correo;
-                }
-            });
-        },
-        actualizarEnvioCorreo() {
-            axios
-                .post(main_url + "/admin/envio_correos", this.oEnvioCorreo)
-                .then((response) => {
-                    Swal.fire({
-                        icon: "success",
-                        title: response.data.msj,
-                        showConfirmButton: false,
-                        timer: 1500,
-                    });
-                })
-                .catch((error) => {
-                    if (error.response) {
-                        if (error.response.status === 422) {
-                            this.errors = error.response.data.errors;
-                        }
-                        if (
-                            error.response.status === 420 ||
-                            error.response.status === 419 ||
-                            error.response.status === 401
-                        ) {
-                            window.location = "/";
-                        }
-                        if (error.response.status === 500) {
-                            Swal.fire({
-                                icon: "error",
-                                title: "Error",
-                                html: error.response.data.message,
-                                showConfirmButton: false,
-                                timer: 2000,
-                            });
-                        }
-                    }
-                });
-        },
-
         getFile(e) {
             this.oConfiguracion.logo = e.target.files[0];
         },
@@ -481,9 +460,40 @@ export default {
                     this.oConfiguracion.nombre_sistema
                 );
                 formdata.append("alias", this.oConfiguracion.alias);
-                formdata.append("dir", this.oConfiguracion.dir);
-                formdata.append("actividad", this.oConfiguracion.actividad);
-                formdata.append("logo", this.oConfiguracion.logo);
+                formdata.append(
+                    "razon_social",
+                    this.oConfiguracion.razon_social
+                );
+                formdata.append(
+                    "ciudad",
+                    this.oConfiguracion.ciudad ? this.oConfiguracion.ciudad : ""
+                );
+                formdata.append(
+                    "dir",
+                    this.oConfiguracion.dir ? this.oConfiguracion.dir : ""
+                );
+                formdata.append(
+                    "fono",
+                    this.oConfiguracion.fono ? this.oConfiguracion.fono : ""
+                );
+                formdata.append(
+                    "web",
+                    this.oConfiguracion.web ? this.oConfiguracion.web : ""
+                );
+                formdata.append(
+                    "actividad",
+                    this.oConfiguracion.actividad
+                        ? this.oConfiguracion.actividad
+                        : ""
+                );
+                formdata.append(
+                    "correo",
+                    this.oConfiguracion.correo ? this.oConfiguracion.correo : ""
+                );
+                formdata.append(
+                    "logo",
+                    this.oConfiguracion.logo ? this.oConfiguracion.logo : ""
+                );
 
                 let config = {
                     headers: {
@@ -557,8 +567,13 @@ export default {
             this.textoBtn = "Actualizar";
             this.oConfiguracion.nombre_sistema = "";
             this.oConfiguracion.alias = "";
+            this.oConfiguracion.razon_social = "";
+            this.oConfiguracion.ciudad = "";
             this.oConfiguracion.dir = "";
+            this.oConfiguracion.fono = "";
+            this.oConfiguracion.web = "";
             this.oConfiguracion.actividad = "";
+            this.oConfiguracion.correo = "";
             this.oConfiguracion.logo = "";
         },
     },

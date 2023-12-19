@@ -23,9 +23,13 @@ use PDF;
 class UserController extends Controller
 {
     public $validacion = [
-        'nombre' => 'required|min:4',
-        'paterno' => 'required|min:4',
+        'nombre' => 'required|min:3',
+        'paterno' => 'required|min:3',
+        'ci' => 'required|numeric|digits_between:4, 20|unique:users,ci',
+        'ci_exp' => 'required',
         'dir' => 'required',
+        'correo' => 'required',
+        'fono' => 'required',
         'tipo' => 'required',
     ];
 
@@ -77,21 +81,24 @@ class UserController extends Controller
         if ($request->hasFile('foto')) {
             $this->validacion['foto'] = 'image|mimes:jpeg,jpg,png|max:2048';
         }
-
-        $this->validacion['correo'] = 'required|unique:users,correo';
-        $this->validacion['password'] = 'required|min:6';
-
         $request->validate($this->validacion, $this->mensajes);
-
+        $cont = 0;
+        do {
+            $nombre_usuario = User::getNombreUsuario($request->nombre, $request->paterno);
+            if ($cont > 0) {
+                $nombre_usuario = $nombre_usuario . $cont;
+            }
+            $request['usuario'] = $nombre_usuario;
+            $cont++;
+        } while (User::where('usuario', $nombre_usuario)->get()->first());
+        $request['password'] = 'NoNulo';
         $request['fecha_registro'] = date('Y-m-d');
         DB::beginTransaction();
         try {
             // crear el Usuario
-            $request['usuario'] = $request->correo;
             $nuevo_usuario = User::create(array_map('mb_strtoupper', $request->except('foto')));
-            $nuevo_usuario->password = Hash::make($nuevo_usuario->password);
-            $nuevo_usuario->correo = mb_strtolower($nuevo_usuario->correo);
-            $nuevo_usuario->usuario = mb_strtolower($nuevo_usuario->usuario);
+            $nuevo_usuario->correo = $request->correo;
+            $nuevo_usuario->password = Hash::make($request->ci);
             $nuevo_usuario->save();
             $nuevo_usuario->foto = 'default.png';
             if ($request->hasFile('foto')) {
@@ -130,29 +137,17 @@ class UserController extends Controller
 
     public function update(Request $request, User $usuario)
     {
+        $this->validacion['ci'] = 'required|min:4|numeric|digits_between:4, 20|unique:users,ci,' . $usuario->id;
         if ($request->hasFile('foto')) {
             $this->validacion['foto'] = 'image|mimes:jpeg,jpg,png|max:2048';
-        }
-        $this->validacion['correo'] = 'required|unique:users,correo,' . $usuario->id;
-
-        if (trim($request->password) != '') {
-            $this->validacion['password'] = 'required|min:6';
-        } else {
-            unset($request["password"]);
         }
         $request->validate($this->validacion, $this->mensajes);
         DB::beginTransaction();
         try {
-
             $datos_original = HistorialAccion::getDetalleRegistro($usuario, "users");
             $usuario->update(array_map('mb_strtoupper', $request->except('foto')));
             $usuario->correo = $request->correo;
-            $usuario->usuario = $request->correo;
             $usuario->save();
-            if (trim($request->password) != '') {
-                $usuario->password = Hash::make($usuario->password);
-            }
-
             if ($request->hasFile('foto')) {
                 $antiguo = $usuario->foto;
                 if ($antiguo != 'default.png') {
@@ -472,5 +467,15 @@ class UserController extends Controller
             $usuarios = User::where("id", "!=", 1)->get();
         }
         return response()->JSON($usuarios);
+    }
+    public function updatePassword(User $usuario, Request $request)
+    {
+        $usuario->password = Hash::make($request->password);
+        $usuario->save();
+
+        return response()->JSON([
+            "sw" => true,
+            "message" => "Contraseña actualizada con éxito"
+        ]);
     }
 }

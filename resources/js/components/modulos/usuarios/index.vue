@@ -143,6 +143,18 @@
                                                                 sm="3"
                                                                 class="text-sm-right"
                                                                 ><b
+                                                                    >Correo:</b
+                                                                ></b-col
+                                                            >
+                                                            <b-col>{{
+                                                                row.item.correo
+                                                            }}</b-col>
+                                                        </b-row>
+                                                        <b-row class="mb-2">
+                                                            <b-col
+                                                                sm="3"
+                                                                class="text-sm-right"
+                                                                ><b
                                                                     >Teléfono/Celular:</b
                                                                 ></b-col
                                                             >
@@ -184,6 +196,22 @@
                                                         >
                                                             <i
                                                                 class="fa fa-edit"
+                                                            ></i>
+                                                        </b-button>
+                                                        <b-button
+                                                            size="sm"
+                                                            pill
+                                                            variant="outline-info"
+                                                            class="btn-flat btn-block"
+                                                            title="Cambiar contraseña"
+                                                            @click="
+                                                                cambiarPassword(
+                                                                    row.item
+                                                                )
+                                                            "
+                                                        >
+                                                            <i
+                                                                class="fa fa-key"
                                                             ></i>
                                                         </b-button>
                                                         <b-button
@@ -304,12 +332,15 @@ export default {
                 nombre: "",
                 paterno: "",
                 materno: "",
+                ci: "",
+                ci_exp: "",
                 dir: "",
                 correo: "",
                 fono: "",
-                tipo: "",
-                foto: null,
                 password: "",
+                tipo: "",
+                foto: "",
+                acceso: "0",
             },
             currentPage: 1,
             perPage: 5,
@@ -336,10 +367,14 @@ export default {
             this.oUsuario.nombre = item.nombre ? item.nombre : "";
             this.oUsuario.paterno = item.paterno ? item.paterno : "";
             this.oUsuario.materno = item.materno ? item.materno : "";
+            this.oUsuario.ci = item.ci ? item.ci : "";
+            this.oUsuario.ci_exp = item.ci_exp ? item.ci_exp : "";
             this.oUsuario.dir = item.dir ? item.dir : "";
             this.oUsuario.correo = item.correo ? item.correo : "";
             this.oUsuario.fono = item.fono ? item.fono : "";
+            this.oUsuario.password = item.password ? item.password : "";
             this.oUsuario.tipo = item.tipo ? item.tipo : "";
+            this.oUsuario.foto = item.foto ? item.foto : "";
             this.oUsuario.acceso = item.acceso ? "" + item.acceso : "0";
             this.modal_accion = "edit";
             this.muestra_modal = true;
@@ -362,6 +397,48 @@ export default {
                     this.listRegistros = res.data.usuarios;
                     this.totalRows = res.data.total;
                 });
+        },
+        cambiarPassword(item) {
+            Swal.fire({
+                title: "Modificar contraseña",
+                html: "Usuario: " + item.full_name,
+                input: "text",
+                inputAttributes: {
+                    minlength: 4,
+                },
+                showCancelButton: true,
+                confirmButtonColor: "#17a2b8",
+                confirmButtonText: "Actualizar",
+                cancelButtonText: "Cancelar",
+                preConfirm: (texto) => {
+                    if (texto.length >= 4) {
+                        return axios
+                            .post("/admin/usuarios/updatePassword/" + item.id, {
+                                password: texto,
+                            })
+                            .then((response) => {
+                                Swal.fire({
+                                    icon: "success",
+                                    title: response.data.message,
+                                    showConfirmButton: false,
+                                    timer: 1500,
+                                });
+                            })
+                            .catch((error) => {
+                                Swal.fire({
+                                    icon: "error",
+                                    title: "Ocurrío un error al enviar la contraseña",
+                                    confirmButtonColor: "#e0a800",
+                                    confirmButtonText: `<span class="text-black">Aceptar</span>`,
+                                });
+                            });
+                    } else {
+                        Swal.showValidationMessage(
+                            "El texto debe contener al menos 6 caracteres"
+                        );
+                    }
+                },
+            });
         },
         eliminaUsuario(id, descripcion) {
             Swal.fire({
@@ -431,12 +508,15 @@ export default {
             this.oUsuario.nombre = "";
             this.oUsuario.paterno = "";
             this.oUsuario.materno = "";
+            this.oUsuario.ci = "";
+            this.oUsuario.ci_exp = "";
             this.oUsuario.dir = "";
             this.oUsuario.correo = "";
             this.oUsuario.fono = "";
+            this.oUsuario.password = "";
             this.oUsuario.tipo = "";
-            this.oUsuario.foto = null;
-            this.oUsuario.acceso = "0";
+            this.oUsuario.foto = "";
+            this.oUsuario.acceso = "";
         },
         formatoFecha(date) {
             return this.$moment(String(date)).format("DD/MM/YYYY");

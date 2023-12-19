@@ -1,13 +1,13 @@
 :root {
-    --principal: #13161c;
-    --principal_hover: #000000;
-    --principal2: #03a898;
-    --principal2_hover: #018f81;
-    --principal2_disabled: #64aaa3;
+    --principal: #28a745;
+    --principal_hover: #1c9e3a;
+    --principal2: #28a745;
+    --principal2_hover: #1c9e3a;
+    --principal2_disabled: #4bab61;
     --principal_transparent: #13161ce1;
     --principal_transparent2: #13161c88;
     --secundario: #ffffff;
-    --secundario_transparent: #b9f7f0b7;
+    --secundario_transparent: rgba(185, 247, 240, 0.633)
     --secundario2: #08090b;
     --correcto: #d2e7c9;
     --secondary: #da1900;
@@ -163,7 +163,7 @@ input.form-control {
 }
 
 [class*="sidebar-dark-"] {
-    background-color: var(--principal);
+    background-color: var(--dark);
 }
 
 .nav.nav-treeview {

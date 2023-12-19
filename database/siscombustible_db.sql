@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 15-12-2023 a las 17:09:02
+-- Tiempo de generación: 19-12-2023 a las 15:13:12
 -- Versión del servidor: 8.0.30
 -- Versión de PHP: 7.4.19
 
@@ -20,6 +20,21 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `siscombustible_db`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `conductors`
+--
+
+CREATE TABLE `conductors` (
+  `id` bigint UNSIGNED NOT NULL,
+  `user_id` bigint UNSIGNED NOT NULL,
+  `licencia` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `observacion` varchar(1000) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -48,7 +63,7 @@ CREATE TABLE `configuracions` (
 --
 
 INSERT INTO `configuracions` (`id`, `nombre_sistema`, `alias`, `razon_social`, `ciudad`, `dir`, `fono`, `web`, `actividad`, `correo`, `logo`, `created_at`, `updated_at`) VALUES
-(1, 'SISCOMBUSTIBLE', 'SC', 'SISCOMBUSTIBLE S.A.', 'LA PAZ', 'LOS OLIVOS', '7777777', NULL, 'ACTIVIDAD', 'siscombustible@gmail.com', 'logo.png', NULL, NULL);
+(1, 'SISCOMBUSTIBLE', 'SC', 'SISCOMBUSTIBLE S.A.', 'LA PAZ', 'LOS OLIVOS', '7777777', '', 'ACTIVIDAD', 'siscombustible@gmail.com', 'logo.png', NULL, '2023-12-19 13:40:53');
 
 -- --------------------------------------------------------
 
@@ -70,6 +85,23 @@ CREATE TABLE `historial_accions` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `historial_accions`
+--
+
+INSERT INTO `historial_accions` (`id`, `user_id`, `accion`, `descripcion`, `datos_original`, `datos_nuevo`, `modulo`, `fecha`, `hora`, `created_at`, `updated_at`) VALUES
+(1, 1, 'MODIFICACIÓN', 'EL USUARIO admin MODIFICÓ LA CONFIGURACIÓN', 'actividad: ACTIVIDAD<br/>alias: SC<br/>ciudad: LA PAZ<br/>correo: siscombustible@gmail.com<br/>created_at: <br/>dir: LOS OLIVOS<br/>fono: 7777777<br/>id: 1<br/>logo: logo.png<br/>nombre_sistema: SISCOMBUSTIBLE<br/>razon_social: SISCOMBUSTIBLE S.A.<br/>updated_at: <br/>web: <br/>', 'actividad: ACTIVIDAD<br/>alias: SC<br/>ciudad: LA PAZ<br/>correo: siscombustible@gmail.com<br/>created_at: <br/>dir: LOS OLIVOS<br/>fono: 7777777<br/>id: 1<br/>logo: logo.png<br/>nombre_sistema: SISCOMBUSTIBLE<br/>razon_social: SISCOMBUSTIBLE S.A.<br/>updated_at: 2023-12-19 09:39:17<br/>web: NULL<br/>', 'CONFIGURACIÓN', '2023-12-19', '09:39:17', '2023-12-19 13:39:17', '2023-12-19 13:39:17'),
+(2, 1, 'MODIFICACIÓN', 'EL USUARIO admin MODIFICÓ LA CONFIGURACIÓN', 'actividad: ACTIVIDAD<br/>alias: SC<br/>ciudad: LA PAZ<br/>correo: siscombustible@gmail.com<br/>created_at: <br/>dir: LOS OLIVOS<br/>fono: 7777777<br/>id: 1<br/>logo: logo.png<br/>nombre_sistema: SISCOMBUSTIBLE<br/>razon_social: SISCOMBUSTIBLE S.A.<br/>updated_at: 2023-12-19 09:39:17<br/>web: NULL<br/>', 'actividad: ACTIVIDAD<br/>alias: SC<br/>ciudad: LA PAZ<br/>correo: siscombustible@gmail.com<br/>created_at: <br/>dir: LOS OLIVOS<br/>fono: 7777777<br/>id: 1<br/>logo: logo.png<br/>nombre_sistema: SISCOMBUSTIBLE<br/>razon_social: SISCOMBUSTIBLE S.A.<br/>updated_at: 2023-12-19 09:40:03<br/>web: <br/>', 'CONFIGURACIÓN', '2023-12-19', '09:40:03', '2023-12-19 13:40:03', '2023-12-19 13:40:03'),
+(3, 1, 'MODIFICACIÓN', 'EL USUARIO admin MODIFICÓ LA CONFIGURACIÓN', 'actividad: ACTIVIDAD<br/>alias: SC<br/>ciudad: LA PAZ<br/>correo: siscombustible@gmail.com<br/>created_at: <br/>dir: LOS OLIVOS<br/>fono: 7777777<br/>id: 1<br/>logo: logo.png<br/>nombre_sistema: SISCOMBUSTIBLE<br/>razon_social: SISCOMBUSTIBLE S.A.<br/>updated_at: 2023-12-19 09:40:03<br/>web: <br/>', 'actividad: ACTIVIDADS<br/>alias: SCS<br/>ciudad: LA PAZS<br/>correo: siscombustible@gmail.coms<br/>created_at: <br/>dir: LOS OLIVOSS<br/>fono: 7777777S<br/>id: 1<br/>logo: logo.png<br/>nombre_sistema: SISCOMBUSTIBLES<br/>razon_social: SISCOMBUSTIBLE S.A.S<br/>updated_at: 2023-12-19 09:40:33<br/>web: S<br/>', 'CONFIGURACIÓN', '2023-12-19', '09:40:33', '2023-12-19 13:40:33', '2023-12-19 13:40:33'),
+(4, 1, 'MODIFICACIÓN', 'EL USUARIO admin MODIFICÓ LA CONFIGURACIÓN', 'actividad: ACTIVIDADS<br/>alias: SCS<br/>ciudad: LA PAZS<br/>correo: siscombustible@gmail.coms<br/>created_at: <br/>dir: LOS OLIVOSS<br/>fono: 7777777S<br/>id: 1<br/>logo: logo.png<br/>nombre_sistema: SISCOMBUSTIBLES<br/>razon_social: SISCOMBUSTIBLE S.A.S<br/>updated_at: 2023-12-19 09:40:33<br/>web: S<br/>', 'actividad: ACTIVIDAD<br/>alias: SC<br/>ciudad: LA PAZ<br/>correo: siscombustible@gmail.com<br/>created_at: <br/>dir: LOS OLIVOS<br/>fono: 7777777<br/>id: 1<br/>logo: logo.png<br/>nombre_sistema: SISCOMBUSTIBLE<br/>razon_social: SISCOMBUSTIBLE S.A.<br/>updated_at: 2023-12-19 09:40:53<br/>web: <br/>', 'CONFIGURACIÓN', '2023-12-19', '09:40:53', '2023-12-19 13:40:53', '2023-12-19 13:40:53'),
+(5, 1, 'CREACIÓN', 'EL USUARIO admin REGISTRO UN USUARIO', 'acceso: 1<br/>ci: 1111<br/>ci_exp: LP<br/>correo: JUAN@GMAIL.COM<br/>created_at: 2023-12-19 10:30:38<br/>dir: LOS OLIVOS<br/>fecha_registro: 2023-12-19<br/>fono: 777777<br/>foto: default.png<br/>id: 2<br/>materno: MAMANI<br/>nombre: JUAN<br/>password: $2y$10$8b60BooiXnu5zCZjzPnLFuMWBa55fmckjArCP3DkC7x3UPFzARV8.<br/>paterno: PERES<br/>tipo: ENCARGADO DE COMBUSTIBLE<br/>updated_at: 2023-12-19 10:30:38<br/>usuario: JPERES<br/>', NULL, 'USUARIOS', '2023-12-19', '10:30:38', '2023-12-19 14:30:38', '2023-12-19 14:30:38'),
+(6, 1, 'MODIFICACIÓN', 'EL USUARIO admin MODIFICÓ UN USUARIO', 'acceso: 1<br/>ci: 1111<br/>ci_exp: LP<br/>correo: JUAN@GMAIL.COM<br/>created_at: 2023-12-19 10:30:38<br/>dir: LOS OLIVOS<br/>fecha_registro: 2023-12-19<br/>fono: 777777<br/>foto: default.png<br/>id: 2<br/>materno: MAMANI<br/>nombre: JUAN<br/>password: $2y$10$8b60BooiXnu5zCZjzPnLFuMWBa55fmckjArCP3DkC7x3UPFzARV8.<br/>paterno: PERES<br/>tipo: ENCARGADO DE COMBUSTIBLE<br/>updated_at: 2023-12-19 10:30:38<br/>usuario: JPERES<br/>', 'acceso: 1<br/>ci: 1111<br/>ci_exp: LP<br/>correo: JUAN@GMAIL.COM<br/>created_at: 2023-12-19 10:30:38<br/>dir: LOS OLIVOS<br/>fecha_registro: 2023-12-19<br/>fono: 777777<br/>foto: default.png<br/>id: 2<br/>materno: MAMANI<br/>nombre: JUAN<br/>password: $2y$10$8b60BooiXnu5zCZjzPnLFuMWBa55fmckjArCP3DkC7x3UPFzARV8.<br/>paterno: PERES<br/>tipo: ENCARGADO DE COMBUSTIBLE<br/>updated_at: 2023-12-19 10:30:38<br/>usuario: JPERES<br/>', 'USUARIOS', '2023-12-19', '10:32:26', '2023-12-19 14:32:26', '2023-12-19 14:32:26'),
+(7, 1, 'MODIFICACIÓN', 'EL USUARIO admin MODIFICÓ UN USUARIO', 'acceso: 1<br/>ci: 1111<br/>ci_exp: LP<br/>correo: JUAN@GMAIL.COM<br/>created_at: 2023-12-19 10:30:38<br/>dir: LOS OLIVOS<br/>fecha_registro: 2023-12-19<br/>fono: 777777<br/>foto: default.png<br/>id: 2<br/>materno: MAMANI<br/>nombre: JUAN<br/>password: $2y$10$8b60BooiXnu5zCZjzPnLFuMWBa55fmckjArCP3DkC7x3UPFzARV8.<br/>paterno: PERES<br/>tipo: ENCARGADO DE COMBUSTIBLE<br/>updated_at: 2023-12-19 10:30:38<br/>usuario: JPERES<br/>', 'acceso: 1<br/>ci: 1111<br/>ci_exp: LP<br/>correo: juan@gmail.com<br/>created_at: 2023-12-19 10:30:38<br/>dir: LOS OLIVOS<br/>fecha_registro: 2023-12-19<br/>fono: 777777<br/>foto: default.png<br/>id: 2<br/>materno: MAMANI<br/>nombre: JUAN<br/>password: $2y$10$8b60BooiXnu5zCZjzPnLFuMWBa55fmckjArCP3DkC7x3UPFzARV8.<br/>paterno: PERES<br/>tipo: ENCARGADO DE COMBUSTIBLE<br/>updated_at: 2023-12-19 10:33:16<br/>usuario: JPERES<br/>', 'USUARIOS', '2023-12-19', '10:33:16', '2023-12-19 14:33:16', '2023-12-19 14:33:16'),
+(8, 1, 'MODIFICACIÓN', 'EL USUARIO admin MODIFICÓ UN USUARIO', 'acceso: 1<br/>ci: 1111<br/>ci_exp: LP<br/>correo: juan@gmail.com<br/>created_at: 2023-12-19 10:30:38<br/>dir: LOS OLIVOS<br/>fecha_registro: 2023-12-19<br/>fono: 777777<br/>foto: default.png<br/>id: 2<br/>materno: MAMANI<br/>nombre: JUAN<br/>password: $2y$10$8b60BooiXnu5zCZjzPnLFuMWBa55fmckjArCP3DkC7x3UPFzARV8.<br/>paterno: PERES<br/>tipo: ENCARGADO DE COMBUSTIBLE<br/>updated_at: 2023-12-19 10:33:16<br/>usuario: JPERES<br/>', 'acceso: 0<br/>ci: 1111<br/>ci_exp: LP<br/>correo: juan@gmail.com<br/>created_at: 2023-12-19 10:30:38<br/>dir: LOS OLIVOS<br/>fecha_registro: 2023-12-19<br/>fono: 777777<br/>foto: default.png<br/>id: 2<br/>materno: MAMANI<br/>nombre: JUAN<br/>password: $2y$10$8b60BooiXnu5zCZjzPnLFuMWBa55fmckjArCP3DkC7x3UPFzARV8.<br/>paterno: PERES<br/>tipo: ENCARGADO DE COMBUSTIBLE<br/>updated_at: 2023-12-19 10:34:46<br/>usuario: JPERES<br/>', 'USUARIOS', '2023-12-19', '10:34:46', '2023-12-19 14:34:46', '2023-12-19 14:34:46'),
+(9, 1, 'MODIFICACIÓN', 'EL USUARIO admin MODIFICÓ UN USUARIO', 'acceso: 0<br/>ci: 1111<br/>ci_exp: LP<br/>correo: juan@gmail.com<br/>created_at: 2023-12-19 10:30:38<br/>dir: LOS OLIVOS<br/>fecha_registro: 2023-12-19<br/>fono: 777777<br/>foto: default.png<br/>id: 2<br/>materno: MAMANI<br/>nombre: JUAN<br/>password: $2y$10$8b60BooiXnu5zCZjzPnLFuMWBa55fmckjArCP3DkC7x3UPFzARV8.<br/>paterno: PERES<br/>tipo: ENCARGADO DE COMBUSTIBLE<br/>updated_at: 2023-12-19 10:34:46<br/>usuario: JPERES<br/>', 'acceso: 1<br/>ci: 1111<br/>ci_exp: LP<br/>correo: juan@gmail.com<br/>created_at: 2023-12-19 10:30:38<br/>dir: LOS OLIVOS<br/>fecha_registro: 2023-12-19<br/>fono: 777777<br/>foto: default.png<br/>id: 2<br/>materno: MAMANI<br/>nombre: JUAN<br/>password: $2y$10$8b60BooiXnu5zCZjzPnLFuMWBa55fmckjArCP3DkC7x3UPFzARV8.<br/>paterno: PERES<br/>tipo: ENCARGADO DE COMBUSTIBLE<br/>updated_at: 2023-12-19 10:34:51<br/>usuario: JPERES<br/>', 'USUARIOS', '2023-12-19', '10:34:51', '2023-12-19 14:34:51', '2023-12-19 14:34:51'),
+(10, 1, 'ELIMINACIÓN', 'EL USUARIO admin ELIMINÓ UN USUARIO', 'acceso: 1<br/>ci: 1111<br/>ci_exp: LP<br/>correo: juan@gmail.com<br/>created_at: 2023-12-19 10:30:38<br/>dir: LOS OLIVOS<br/>fecha_registro: 2023-12-19<br/>fono: 777777<br/>foto: default.png<br/>id: 2<br/>materno: MAMANI<br/>nombre: JUAN<br/>password: $2y$10$5oA2x4ys1./La1c/rRd8auUciCR3rUX9EJUxWN7Z5HOM9YAdvfC/i<br/>paterno: PERES<br/>tipo: ENCARGADO DE COMBUSTIBLE<br/>updated_at: 2023-12-19 10:39:30<br/>usuario: JPERES<br/>', NULL, 'USUARIOS', '2023-12-19', '10:39:45', '2023-12-19 14:39:45', '2023-12-19 14:39:45'),
+(11, 1, 'CREACIÓN', 'EL USUARIO admin REGISTRO UN USUARIO', 'acceso: 1<br/>ci: 1111<br/>ci_exp: LP<br/>correo: juan@gmail.com<br/>created_at: 2023-12-19 10:40:17<br/>dir: LOS OLIVOS<br/>fecha_registro: 2023-12-19<br/>fono: 77777777<br/>foto: default.png<br/>id: 2<br/>materno: MAMANI<br/>nombre: JUAN<br/>password: $2y$10$9G3rSNuwX0V5/hu6YTilRuDVlS/RrXBy9QQ/DWowo4mDCYNQT.YvS<br/>paterno: PERES<br/>tipo: ENCARGADO DE COMBUSTIBLE<br/>updated_at: 2023-12-19 10:40:17<br/>usuario: JPERES<br/>', NULL, 'USUARIOS', '2023-12-19', '10:40:17', '2023-12-19 14:40:17', '2023-12-19 14:40:17');
+
 -- --------------------------------------------------------
 
 --
@@ -90,7 +122,13 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (1, '2014_10_12_000002_create_users_table', 1),
 (2, '2019_12_14_000001_create_personal_access_tokens_table', 1),
 (3, '2022_10_13_132625_create_configuracions_table', 1),
-(4, '2023_08_26_190801_create_historial_accions_table', 1);
+(4, '2023_08_26_190801_create_historial_accions_table', 1),
+(5, '2023_12_19_105327_create_unidads_table', 2),
+(6, '2023_12_19_105723_create_conductors_table', 2),
+(7, '2023_12_19_105733_create_vehiculos_table', 2),
+(8, '2023_12_19_105757_create_unidad_solicitantes_table', 2),
+(9, '2023_12_19_105825_create_solicitud_combustibles_table', 2),
+(10, '2023_12_19_105840_create_recorrido_viajes_table', 2);
 
 -- --------------------------------------------------------
 
@@ -113,6 +151,87 @@ CREATE TABLE `personal_access_tokens` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `recorrido_viajes`
+--
+
+CREATE TABLE `recorrido_viajes` (
+  `id` bigint UNSIGNED NOT NULL,
+  `unidad_solicitante_id` bigint UNSIGNED NOT NULL,
+  `descripcion_recorrido` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fecha_inicio` date NOT NULL,
+  `fecha_fin` date NOT NULL,
+  `inicio_combustible` double NOT NULL,
+  `fin_combustible` double NOT NULL,
+  `restante_combustible` double NOT NULL,
+  `inicio_kilometraje` double DEFAULT NULL,
+  `fin_kilometraje` double DEFAULT NULL,
+  `observacion` varchar(700) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `fecha_registro` date NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `solicitud_combustibles`
+--
+
+CREATE TABLE `solicitud_combustibles` (
+  `id` bigint UNSIGNED NOT NULL,
+  `unidad_solicitante_id` bigint UNSIGNED NOT NULL,
+  `user_id` bigint UNSIGNED DEFAULT NULL,
+  `vehiculo_id` bigint UNSIGNED DEFAULT NULL,
+  `combustible` double NOT NULL,
+  `nro_vale` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fecha_entrega` date NOT NULL,
+  `observacion` varchar(700) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `fecha_registro` date NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `unidads`
+--
+
+CREATE TABLE `unidads` (
+  `id` bigint UNSIGNED NOT NULL,
+  `nombre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `descripcion` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `fecha_registro` date NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `unidad_solicitantes`
+--
+
+CREATE TABLE `unidad_solicitantes` (
+  `id` bigint UNSIGNED NOT NULL,
+  `nro` int NOT NULL,
+  `codigo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `unidad_id` bigint UNSIGNED NOT NULL,
+  `descripcion_viaje` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fecha_solicitud` date NOT NULL,
+  `nro_hoja_ruta` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `conductor` int NOT NULL,
+  `vehiculo` int NOT NULL,
+  `combustible` int NOT NULL,
+  `observacion` varchar(700) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `fecha_registro` date NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `users`
 --
 
@@ -124,7 +243,7 @@ CREATE TABLE `users` (
   `materno` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `ci` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `ci_exp` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `dir` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `dir` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `correo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `fono` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -141,11 +260,50 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `usuario`, `nombre`, `paterno`, `materno`, `ci`, `ci_exp`, `dir`, `correo`, `fono`, `password`, `tipo`, `foto`, `fecha_registro`, `acceso`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'admin', 'admin', NULL, '0000', '', '', 'admin@gmail.com', '', '$2y$10$RrCZZySOwPej2gMFWsrjMe6dLzfaL5Q88h4J75I1FesEBRNPwq1x.', 'ADMINISTRADOR', NULL, '2023-12-14', 1, NULL, NULL);
+(1, 'admin', 'admin', 'admin', NULL, '0000', '', '', 'admin@gmail.com', '', '$2y$10$RrCZZySOwPej2gMFWsrjMe6dLzfaL5Q88h4J75I1FesEBRNPwq1x.', 'ADMINISTRADOR', NULL, '2023-12-14', 1, NULL, NULL),
+(2, 'JPERES', 'JUAN', 'PERES', 'MAMANI', '1111', 'LP', 'LOS OLIVOS', 'juan@gmail.com', '77777777', '$2y$10$9G3rSNuwX0V5/hu6YTilRuDVlS/RrXBy9QQ/DWowo4mDCYNQT.YvS', 'ENCARGADO DE COMBUSTIBLE', 'default.png', '2023-12-19', 1, '2023-12-19 14:40:17', '2023-12-19 14:40:17');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `vehiculos`
+--
+
+CREATE TABLE `vehiculos` (
+  `id` bigint UNSIGNED NOT NULL,
+  `placa` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `marca` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `clase` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `modelo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `procedencia` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `servicio` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `traccion` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `turbo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `carroceria` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tipo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `subtipo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `cilindrada` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `nro_puertas` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `capacidad_carga` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `capacidad_plaza` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `capacidad_arrastre` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `foto` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `observacion` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `fecha_registro` date NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `conductors`
+--
+ALTER TABLE `conductors`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `conductors_user_id_foreign` (`user_id`);
 
 --
 -- Indices de la tabla `configuracions`
@@ -174,6 +332,32 @@ ALTER TABLE `personal_access_tokens`
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
 
 --
+-- Indices de la tabla `recorrido_viajes`
+--
+ALTER TABLE `recorrido_viajes`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `recorrido_viajes_unidad_solicitante_id_foreign` (`unidad_solicitante_id`);
+
+--
+-- Indices de la tabla `solicitud_combustibles`
+--
+ALTER TABLE `solicitud_combustibles`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `solicitud_combustibles_unidad_solicitante_id_foreign` (`unidad_solicitante_id`);
+
+--
+-- Indices de la tabla `unidads`
+--
+ALTER TABLE `unidads`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `unidad_solicitantes`
+--
+ALTER TABLE `unidad_solicitantes`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `users`
 --
 ALTER TABLE `users`
@@ -181,8 +365,20 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `users_usuario_unique` (`usuario`);
 
 --
+-- Indices de la tabla `vehiculos`
+--
+ALTER TABLE `vehiculos`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
+
+--
+-- AUTO_INCREMENT de la tabla `conductors`
+--
+ALTER TABLE `conductors`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `configuracions`
@@ -194,13 +390,13 @@ ALTER TABLE `configuracions`
 -- AUTO_INCREMENT de la tabla `historial_accions`
 --
 ALTER TABLE `historial_accions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `personal_access_tokens`
@@ -209,10 +405,62 @@ ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `recorrido_viajes`
+--
+ALTER TABLE `recorrido_viajes`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `solicitud_combustibles`
+--
+ALTER TABLE `solicitud_combustibles`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `unidads`
+--
+ALTER TABLE `unidads`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `unidad_solicitantes`
+--
+ALTER TABLE `unidad_solicitantes`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `vehiculos`
+--
+ALTER TABLE `vehiculos`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `conductors`
+--
+ALTER TABLE `conductors`
+  ADD CONSTRAINT `conductors_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+
+--
+-- Filtros para la tabla `recorrido_viajes`
+--
+ALTER TABLE `recorrido_viajes`
+  ADD CONSTRAINT `recorrido_viajes_unidad_solicitante_id_foreign` FOREIGN KEY (`unidad_solicitante_id`) REFERENCES `unidad_solicitantes` (`id`);
+
+--
+-- Filtros para la tabla `solicitud_combustibles`
+--
+ALTER TABLE `solicitud_combustibles`
+  ADD CONSTRAINT `solicitud_combustibles_unidad_solicitante_id_foreign` FOREIGN KEY (`unidad_solicitante_id`) REFERENCES `unidad_solicitantes` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

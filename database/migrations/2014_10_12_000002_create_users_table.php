@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string("materno", 255)->nullable();
             $table->string("ci", 100);
             $table->string("ci_exp", 100);
-            $table->string("dir", 255);
+            $table->string("dir", 255)->nullable();
             $table->string("correo", 255)->nullable();
             $table->string("fono", 255);
             $table->string("password", 255);

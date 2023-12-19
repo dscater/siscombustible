@@ -35,6 +35,30 @@ export default new Router({
                 .default,
         },
 
+        // Unidads
+        {
+            path: "/unidads",
+            name: "unidads.index",
+            component: require("./components/modulos/unidads/index.vue")
+                .default,
+        },
+
+        // Conductors
+        {
+            path: "/conductors",
+            name: "conductors.index",
+            component: require("./components/modulos/conductors/index.vue")
+                .default,
+        },
+
+        // Vehiculos
+        {
+            path: "/vehiculos",
+            name: "vehiculos.index",
+            component: require("./components/modulos/vehiculos/index.vue")
+                .default,
+        },
+
         // Configuración
         {
             path: "/administracion/configuracion",

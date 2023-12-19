@@ -100,4 +100,9 @@ class User extends Authenticatable
         }
         return asset('imgs/users/default.png');
     }
+
+    public function conductor()
+    {
+        return $this->hasOne(Conductor::class, 'user_id');
+    }
 }

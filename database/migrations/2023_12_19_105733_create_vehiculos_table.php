@@ -17,7 +17,7 @@ class CreateVehiculosTable extends Migration
             $table->id();
             $table->string("placa");
             $table->string("marca", 255);
-            $table->string("clase", 255);
+            $table->string("clase", 255)->nullable();
             $table->string("modelo", 255);
             $table->string("procedencia", 255)->nullable();
             $table->string("servicio", 255)->nullable();

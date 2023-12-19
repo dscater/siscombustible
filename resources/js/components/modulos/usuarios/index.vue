@@ -516,7 +516,7 @@ export default {
             this.oUsuario.password = "";
             this.oUsuario.tipo = "";
             this.oUsuario.foto = "";
-            this.oUsuario.acceso = "";
+            this.oUsuario.acceso = "0";
         },
         formatoFecha(date) {
             return this.$moment(String(date)).format("DD/MM/YYYY");

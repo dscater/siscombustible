@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 19-12-2023 a las 15:13:12
+-- Tiempo de generación: 19-12-2023 a las 17:17:08
 -- Versión del servidor: 8.0.30
 -- Versión de PHP: 7.4.19
 
@@ -35,6 +35,13 @@ CREATE TABLE `conductors` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `conductors`
+--
+
+INSERT INTO `conductors` (`id`, `user_id`, `licencia`, `observacion`, `created_at`, `updated_at`) VALUES
+(1, 3, 'C', 'OBS', '2023-12-19 16:31:52', '2023-12-19 16:34:34');
 
 -- --------------------------------------------------------
 
@@ -100,7 +107,22 @@ INSERT INTO `historial_accions` (`id`, `user_id`, `accion`, `descripcion`, `dato
 (8, 1, 'MODIFICACIÓN', 'EL USUARIO admin MODIFICÓ UN USUARIO', 'acceso: 1<br/>ci: 1111<br/>ci_exp: LP<br/>correo: juan@gmail.com<br/>created_at: 2023-12-19 10:30:38<br/>dir: LOS OLIVOS<br/>fecha_registro: 2023-12-19<br/>fono: 777777<br/>foto: default.png<br/>id: 2<br/>materno: MAMANI<br/>nombre: JUAN<br/>password: $2y$10$8b60BooiXnu5zCZjzPnLFuMWBa55fmckjArCP3DkC7x3UPFzARV8.<br/>paterno: PERES<br/>tipo: ENCARGADO DE COMBUSTIBLE<br/>updated_at: 2023-12-19 10:33:16<br/>usuario: JPERES<br/>', 'acceso: 0<br/>ci: 1111<br/>ci_exp: LP<br/>correo: juan@gmail.com<br/>created_at: 2023-12-19 10:30:38<br/>dir: LOS OLIVOS<br/>fecha_registro: 2023-12-19<br/>fono: 777777<br/>foto: default.png<br/>id: 2<br/>materno: MAMANI<br/>nombre: JUAN<br/>password: $2y$10$8b60BooiXnu5zCZjzPnLFuMWBa55fmckjArCP3DkC7x3UPFzARV8.<br/>paterno: PERES<br/>tipo: ENCARGADO DE COMBUSTIBLE<br/>updated_at: 2023-12-19 10:34:46<br/>usuario: JPERES<br/>', 'USUARIOS', '2023-12-19', '10:34:46', '2023-12-19 14:34:46', '2023-12-19 14:34:46'),
 (9, 1, 'MODIFICACIÓN', 'EL USUARIO admin MODIFICÓ UN USUARIO', 'acceso: 0<br/>ci: 1111<br/>ci_exp: LP<br/>correo: juan@gmail.com<br/>created_at: 2023-12-19 10:30:38<br/>dir: LOS OLIVOS<br/>fecha_registro: 2023-12-19<br/>fono: 777777<br/>foto: default.png<br/>id: 2<br/>materno: MAMANI<br/>nombre: JUAN<br/>password: $2y$10$8b60BooiXnu5zCZjzPnLFuMWBa55fmckjArCP3DkC7x3UPFzARV8.<br/>paterno: PERES<br/>tipo: ENCARGADO DE COMBUSTIBLE<br/>updated_at: 2023-12-19 10:34:46<br/>usuario: JPERES<br/>', 'acceso: 1<br/>ci: 1111<br/>ci_exp: LP<br/>correo: juan@gmail.com<br/>created_at: 2023-12-19 10:30:38<br/>dir: LOS OLIVOS<br/>fecha_registro: 2023-12-19<br/>fono: 777777<br/>foto: default.png<br/>id: 2<br/>materno: MAMANI<br/>nombre: JUAN<br/>password: $2y$10$8b60BooiXnu5zCZjzPnLFuMWBa55fmckjArCP3DkC7x3UPFzARV8.<br/>paterno: PERES<br/>tipo: ENCARGADO DE COMBUSTIBLE<br/>updated_at: 2023-12-19 10:34:51<br/>usuario: JPERES<br/>', 'USUARIOS', '2023-12-19', '10:34:51', '2023-12-19 14:34:51', '2023-12-19 14:34:51'),
 (10, 1, 'ELIMINACIÓN', 'EL USUARIO admin ELIMINÓ UN USUARIO', 'acceso: 1<br/>ci: 1111<br/>ci_exp: LP<br/>correo: juan@gmail.com<br/>created_at: 2023-12-19 10:30:38<br/>dir: LOS OLIVOS<br/>fecha_registro: 2023-12-19<br/>fono: 777777<br/>foto: default.png<br/>id: 2<br/>materno: MAMANI<br/>nombre: JUAN<br/>password: $2y$10$5oA2x4ys1./La1c/rRd8auUciCR3rUX9EJUxWN7Z5HOM9YAdvfC/i<br/>paterno: PERES<br/>tipo: ENCARGADO DE COMBUSTIBLE<br/>updated_at: 2023-12-19 10:39:30<br/>usuario: JPERES<br/>', NULL, 'USUARIOS', '2023-12-19', '10:39:45', '2023-12-19 14:39:45', '2023-12-19 14:39:45'),
-(11, 1, 'CREACIÓN', 'EL USUARIO admin REGISTRO UN USUARIO', 'acceso: 1<br/>ci: 1111<br/>ci_exp: LP<br/>correo: juan@gmail.com<br/>created_at: 2023-12-19 10:40:17<br/>dir: LOS OLIVOS<br/>fecha_registro: 2023-12-19<br/>fono: 77777777<br/>foto: default.png<br/>id: 2<br/>materno: MAMANI<br/>nombre: JUAN<br/>password: $2y$10$9G3rSNuwX0V5/hu6YTilRuDVlS/RrXBy9QQ/DWowo4mDCYNQT.YvS<br/>paterno: PERES<br/>tipo: ENCARGADO DE COMBUSTIBLE<br/>updated_at: 2023-12-19 10:40:17<br/>usuario: JPERES<br/>', NULL, 'USUARIOS', '2023-12-19', '10:40:17', '2023-12-19 14:40:17', '2023-12-19 14:40:17');
+(11, 1, 'CREACIÓN', 'EL USUARIO admin REGISTRO UN USUARIO', 'acceso: 1<br/>ci: 1111<br/>ci_exp: LP<br/>correo: juan@gmail.com<br/>created_at: 2023-12-19 10:40:17<br/>dir: LOS OLIVOS<br/>fecha_registro: 2023-12-19<br/>fono: 77777777<br/>foto: default.png<br/>id: 2<br/>materno: MAMANI<br/>nombre: JUAN<br/>password: $2y$10$9G3rSNuwX0V5/hu6YTilRuDVlS/RrXBy9QQ/DWowo4mDCYNQT.YvS<br/>paterno: PERES<br/>tipo: ENCARGADO DE COMBUSTIBLE<br/>updated_at: 2023-12-19 10:40:17<br/>usuario: JPERES<br/>', NULL, 'USUARIOS', '2023-12-19', '10:40:17', '2023-12-19 14:40:17', '2023-12-19 14:40:17'),
+(12, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA UNIDAD', 'created_at: 2023-12-19 11:37:53<br/>descripcion: DESCRIPCION UNIDAD #1<br/>fecha_registro: 2023-12-19<br/>id: 1<br/>nombre: UNIDAD #1<br/>updated_at: 2023-12-19 11:37:53<br/>', NULL, 'UNIDAD', '2023-12-19', '11:37:53', '2023-12-19 15:37:53', '2023-12-19 15:37:53'),
+(13, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA UNIDAD', 'created_at: 2023-12-19 11:39:05<br/>descripcion: <br/>fecha_registro: 2023-12-19<br/>id: 2<br/>nombre: UNIDAD #2<br/>updated_at: 2023-12-19 11:39:05<br/>', NULL, 'UNIDAD', '2023-12-19', '11:39:05', '2023-12-19 15:39:05', '2023-12-19 15:39:05'),
+(14, 1, 'ELIMINACIÓN', 'EL USUARIO  ELIMINÓ UNA UNIDAD', 'created_at: 2023-12-19 11:39:05<br/>descripcion: <br/>fecha_registro: 2023-12-19<br/>id: 2<br/>nombre: UNIDAD #2<br/>updated_at: 2023-12-19 11:39:05<br/>', NULL, 'UNIDAD', '2023-12-19', '11:40:37', '2023-12-19 15:40:37', '2023-12-19 15:40:37'),
+(15, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA UNIDAD', 'created_at: 2023-12-19 11:41:33<br/>descripcion: <br/>fecha_registro: 2023-12-19<br/>id: 2<br/>nombre: ASD<br/>updated_at: 2023-12-19 11:41:33<br/>', NULL, 'UNIDAD', '2023-12-19', '11:41:33', '2023-12-19 15:41:33', '2023-12-19 15:41:33'),
+(16, 1, 'ELIMINACIÓN', 'EL USUARIO  ELIMINÓ UNA UNIDAD', 'created_at: 2023-12-19 11:41:33<br/>descripcion: <br/>fecha_registro: 2023-12-19<br/>id: 2<br/>nombre: ASD<br/>updated_at: 2023-12-19 11:41:33<br/>', NULL, 'UNIDAD', '2023-12-19', '11:41:36', '2023-12-19 15:41:36', '2023-12-19 15:41:36'),
+(17, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA UNIDAD', 'created_at: 2023-12-19 12:27:28<br/>descripcion: <br/>fecha_registro: 2023-12-19<br/>id: 2<br/>nombre: FERNANDO<br/>updated_at: 2023-12-19 12:27:28<br/>', NULL, 'UNIDAD', '2023-12-19', '12:27:28', '2023-12-19 16:27:28', '2023-12-19 16:27:28'),
+(18, 1, 'CREACIÓN', 'EL USUARIO admin REGISTRO UN CONDUCTOR', 'acceso: 1<br/>ci: 2222<br/>ci_exp: LP<br/>correo: <br/>created_at: 2023-12-19 12:31:51<br/>dir: LOS OLIVOS<br/>fecha_registro: 2023-12-19<br/>fono: 777777<br/>foto: default.png<br/>id: 3<br/>materno: MAMANI<br/>nombre: FERNANDO<br/>password: $2y$10$ESFDr/KIjjfvr257rvXlvO4uIH5ldRTZvSJtho9o6G5B17rZ/PACK<br/>paterno: MAMANI<br/>tipo: CONDUCTOR<br/>updated_at: 2023-12-19 12:31:51<br/>usuario: FMAMANI<br/>', NULL, 'CONDUCTORES', '2023-12-19', '12:31:52', '2023-12-19 16:31:52', '2023-12-19 16:31:52'),
+(19, 1, 'MODIFICACIÓN', 'EL USUARIO admin MODIFICÓ UN USUARIO', 'acceso: 1<br/>ci: 1111<br/>ci_exp: LP<br/>correo: juan@gmail.com<br/>created_at: 2023-12-19 10:40:17<br/>dir: LOS OLIVOS<br/>fecha_registro: 2023-12-19<br/>fono: 77777777<br/>foto: default.png<br/>id: 2<br/>materno: MAMANI<br/>nombre: JUAN<br/>password: $2y$10$9G3rSNuwX0V5/hu6YTilRuDVlS/RrXBy9QQ/DWowo4mDCYNQT.YvS<br/>paterno: PERES<br/>tipo: ENCARGADO DE COMBUSTIBLE<br/>updated_at: 2023-12-19 10:40:17<br/>usuario: JPERES<br/>', 'acceso: 1<br/>ci: 1111<br/>ci_exp: LP<br/>correo: juan@gmail.com<br/>created_at: 2023-12-19 10:40:17<br/>dir: LOS OLIVOS<br/>fecha_registro: 2023-12-19<br/>fono: 77777777<br/>foto: default.png<br/>id: 2<br/>materno: MAMANI<br/>nombre: JUAN<br/>password: $2y$10$9G3rSNuwX0V5/hu6YTilRuDVlS/RrXBy9QQ/DWowo4mDCYNQT.YvS<br/>paterno: PERES<br/>tipo: ENCARGADO DE COMBUSTIBLE<br/>updated_at: 2023-12-19 12:33:11<br/>usuario: JPERES<br/>', 'USUARIOS', '2023-12-19', '12:33:11', '2023-12-19 16:33:11', '2023-12-19 16:33:11'),
+(20, 1, 'MODIFICACIÓN', 'EL USUARIO admin MODIFICÓ UN USUARIO CONDUCTOR', 'acceso: 1<br/>ci: 2222<br/>ci_exp: LP<br/>correo: <br/>created_at: 2023-12-19 12:31:51<br/>dir: LOS OLIVOS<br/>fecha_registro: 2023-12-19<br/>fono: 777777<br/>foto: default.png<br/>id: 3<br/>materno: MAMANI<br/>nombre: FERNANDO<br/>password: $2y$10$ESFDr/KIjjfvr257rvXlvO4uIH5ldRTZvSJtho9o6G5B17rZ/PACK<br/>paterno: MAMANI<br/>tipo: CONDUCTOR<br/>updated_at: 2023-12-19 12:31:51<br/>usuario: FMAMANI<br/>', 'acceso: 1<br/>ci: 2222<br/>ci_exp: LP<br/>correo: <br/>created_at: 2023-12-19 12:31:51<br/>dir: LOS OLIVOS<br/>fecha_registro: 2023-12-19<br/>fono: 777777<br/>foto: default.png<br/>id: 3<br/>materno: MAMANI<br/>nombre: FERNANDO<br/>password: $2y$10$ESFDr/KIjjfvr257rvXlvO4uIH5ldRTZvSJtho9o6G5B17rZ/PACK<br/>paterno: MAMANI<br/>tipo: CONDUCTOR<br/>updated_at: 2023-12-19 12:31:51<br/>usuario: FMAMANI<br/>', 'CONDUCTORES', '2023-12-19', '12:34:34', '2023-12-19 16:34:34', '2023-12-19 16:34:34'),
+(21, 1, 'CREACIÓN', 'EL USUARIO admin REGISTRO UN CONDUCTOR', 'acceso: 0<br/>ci: 1234<br/>ci_exp: CB<br/>correo: <br/>created_at: 2023-12-19 12:36:31<br/>dir: <br/>fecha_registro: 2023-12-19<br/>fono: 7777777<br/>foto: default.png<br/>id: 4<br/>materno: ASD<br/>nombre: ASD<br/>password: $2y$10$F7WiAhFWNOTZAaxntGDXw.l8nxFXWPFkQawLJiD0ybwZ92etxxMLm<br/>paterno: ASD<br/>tipo: CONDUCTOR<br/>updated_at: 2023-12-19 12:36:32<br/>usuario: AASD<br/>', NULL, 'CONDUCTORES', '2023-12-19', '12:36:32', '2023-12-19 16:36:32', '2023-12-19 16:36:32'),
+(22, 1, 'ELIMINACIÓN', 'EL USUARIO admin ELIMINÓ UN USUARIO CONDUCTOR', 'acceso: <br/>ci: <br/>ci_exp: <br/>correo: <br/>created_at: <br/>dir: <br/>fecha_registro: <br/>fono: <br/>foto: <br/>id: <br/>materno: <br/>nombre: <br/>password: <br/>paterno: <br/>tipo: <br/>updated_at: <br/>usuario: <br/>', NULL, 'CONDUCTORES', '2023-12-19', '12:36:42', '2023-12-19 16:36:42', '2023-12-19 16:36:42'),
+(23, 1, 'ELIMINACIÓN', 'EL USUARIO admin ELIMINÓ UN USUARIO CONDUCTOR', 'acceso: 0<br/>ci: 1234<br/>ci_exp: CB<br/>correo: <br/>created_at: 2023-12-19 12:36:31<br/>dir: <br/>fecha_registro: 2023-12-19<br/>fono: 7777777<br/>foto: default.png<br/>id: 4<br/>materno: ASD<br/>nombre: ASD<br/>password: $2y$10$F7WiAhFWNOTZAaxntGDXw.l8nxFXWPFkQawLJiD0ybwZ92etxxMLm<br/>paterno: ASD<br/>tipo: CONDUCTOR<br/>updated_at: 2023-12-19 12:36:32<br/>usuario: AASD<br/>', NULL, 'CONDUCTORES', '2023-12-19', '12:37:11', '2023-12-19 16:37:11', '2023-12-19 16:37:11'),
+(24, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UN VEHICULO', 'acceso: <br/>ci: <br/>ci_exp: <br/>correo: <br/>created_at: 2023-12-19 13:11:19<br/>dir: <br/>fecha_registro: 2023-12-19<br/>fono: <br/>foto: 1703005879_.jpg<br/>id: 2<br/>materno: <br/>nombre: <br/>password: <br/>paterno: <br/>tipo: TIPO<br/>updated_at: 2023-12-19 13:11:19<br/>usuario: <br/>', NULL, 'VEHICULOS', '2023-12-19', '13:11:19', '2023-12-19 17:11:19', '2023-12-19 17:11:19'),
+(25, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UN VEHICULO', 'acceso: <br/>ci: <br/>ci_exp: <br/>correo: <br/>created_at: 2023-12-19 13:14:23<br/>dir: <br/>fecha_registro: 2023-12-19<br/>fono: <br/>foto: default.png<br/>id: 3<br/>materno: <br/>nombre: <br/>password: <br/>paterno: <br/>tipo: <br/>updated_at: 2023-12-19 13:14:23<br/>usuario: <br/>', NULL, 'VEHICULOS', '2023-12-19', '13:14:23', '2023-12-19 17:14:23', '2023-12-19 17:14:23'),
+(26, 1, 'ELIMINACIÓN', 'EL USUARIO  ELIMINÓ UN VEHICULO', 'acceso: <br/>ci: <br/>ci_exp: <br/>correo: <br/>created_at: 2023-12-19 13:14:23<br/>dir: <br/>fecha_registro: 2023-12-19<br/>fono: <br/>foto: default.png<br/>id: 3<br/>materno: <br/>nombre: <br/>password: <br/>paterno: <br/>tipo: <br/>updated_at: 2023-12-19 13:14:23<br/>usuario: <br/>', NULL, 'VEHICULOS', '2023-12-19', '13:16:46', '2023-12-19 17:16:46', '2023-12-19 17:16:46');
 
 -- --------------------------------------------------------
 
@@ -206,6 +228,14 @@ CREATE TABLE `unidads` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `unidads`
+--
+
+INSERT INTO `unidads` (`id`, `nombre`, `descripcion`, `fecha_registro`, `created_at`, `updated_at`) VALUES
+(1, 'UNIDAD #1', 'DESCRIPCION UNIDAD #1', '2023-12-19', '2023-12-19 15:37:53', '2023-12-19 15:37:53'),
+(2, 'FERNANDO', NULL, '2023-12-19', '2023-12-19 16:27:28', '2023-12-19 16:27:28');
+
 -- --------------------------------------------------------
 
 --
@@ -261,7 +291,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `usuario`, `nombre`, `paterno`, `materno`, `ci`, `ci_exp`, `dir`, `correo`, `fono`, `password`, `tipo`, `foto`, `fecha_registro`, `acceso`, `created_at`, `updated_at`) VALUES
 (1, 'admin', 'admin', 'admin', NULL, '0000', '', '', 'admin@gmail.com', '', '$2y$10$RrCZZySOwPej2gMFWsrjMe6dLzfaL5Q88h4J75I1FesEBRNPwq1x.', 'ADMINISTRADOR', NULL, '2023-12-14', 1, NULL, NULL),
-(2, 'JPERES', 'JUAN', 'PERES', 'MAMANI', '1111', 'LP', 'LOS OLIVOS', 'juan@gmail.com', '77777777', '$2y$10$9G3rSNuwX0V5/hu6YTilRuDVlS/RrXBy9QQ/DWowo4mDCYNQT.YvS', 'ENCARGADO DE COMBUSTIBLE', 'default.png', '2023-12-19', 1, '2023-12-19 14:40:17', '2023-12-19 14:40:17');
+(2, 'JPERES', 'JUAN', 'PERES', 'MAMANI', '1111', 'LP', 'LOS OLIVOS', 'juan@gmail.com', '77777777', '$2y$10$9G3rSNuwX0V5/hu6YTilRuDVlS/RrXBy9QQ/DWowo4mDCYNQT.YvS', 'ENCARGADO DE COMBUSTIBLE', 'default.png', '2023-12-19', 1, '2023-12-19 14:40:17', '2023-12-19 16:33:11'),
+(3, 'FMAMANI', 'FERNANDO', 'MAMANI', 'MAMANI', '2222', 'LP', 'LOS OLIVOS', '', '777777', '$2y$10$ESFDr/KIjjfvr257rvXlvO4uIH5ldRTZvSJtho9o6G5B17rZ/PACK', 'CONDUCTOR', 'default.png', '2023-12-19', 1, '2023-12-19 16:31:51', '2023-12-19 16:31:51');
 
 -- --------------------------------------------------------
 
@@ -273,7 +304,7 @@ CREATE TABLE `vehiculos` (
   `id` bigint UNSIGNED NOT NULL,
   `placa` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `marca` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `clase` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `clase` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `modelo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `procedencia` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `servicio` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -293,6 +324,13 @@ CREATE TABLE `vehiculos` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `vehiculos`
+--
+
+INSERT INTO `vehiculos` (`id`, `placa`, `marca`, `clase`, `modelo`, `procedencia`, `servicio`, `traccion`, `turbo`, `carroceria`, `tipo`, `subtipo`, `cilindrada`, `nro_puertas`, `capacidad_carga`, `capacidad_plaza`, `capacidad_arrastre`, `foto`, `observacion`, `fecha_registro`, `created_at`, `updated_at`) VALUES
+(2, '1234', 'VOLVO', 'CLASE', 'MODELO', 'CHINA', 'SERVICIO', 'TRASERA', 'NO', 'ROJA', 'TIPO', 'SUBTIPO', '2300CC', '4', '10000KG', '5', 'CAPACIDAD ARRASTRE', '1703005879_.jpg', 'OBS', '2023-12-19', '2023-12-19 17:11:19', '2023-12-19 17:11:19');
 
 --
 -- Índices para tablas volcadas
@@ -378,7 +416,7 @@ ALTER TABLE `vehiculos`
 -- AUTO_INCREMENT de la tabla `conductors`
 --
 ALTER TABLE `conductors`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `configuracions`
@@ -390,7 +428,7 @@ ALTER TABLE `configuracions`
 -- AUTO_INCREMENT de la tabla `historial_accions`
 --
 ALTER TABLE `historial_accions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT de la tabla `migrations`
@@ -420,7 +458,7 @@ ALTER TABLE `solicitud_combustibles`
 -- AUTO_INCREMENT de la tabla `unidads`
 --
 ALTER TABLE `unidads`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `unidad_solicitantes`
@@ -432,13 +470,13 @@ ALTER TABLE `unidad_solicitantes`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `vehiculos`
 --
 ALTER TABLE `vehiculos`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas

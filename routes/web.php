@@ -1,9 +1,12 @@
 <?php
 
+use App\Http\Controllers\ConductorController;
 use App\Http\Controllers\ConfiguracionController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ReporteController;
+use App\Http\Controllers\UnidadController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\VehiculoController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -41,6 +44,21 @@ Route::middleware(['auth'])->group(function () {
         Route::post('usuarios/actualizaContrasenia/{usuario}', [UserController::class, 'actualizaContrasenia']);
         Route::post('usuarios/actualizaFoto/{usuario}', [UserController::class, 'actualizaFoto']);
         Route::resource('usuarios', UserController::class)->only([
+            'index', 'store', 'update', 'destroy', 'show'
+        ]);
+
+        // UNIDADS
+        Route::resource('unidads', UnidadController::class)->only([
+            'index', 'store', 'update', 'destroy', 'show'
+        ]);
+
+        // CONDUCTORS
+        Route::resource('conductors', ConductorController::class)->only([
+            'index', 'store', 'update', 'destroy', 'show'
+        ]);
+
+        // VEHICULOS
+        Route::resource('vehiculos', VehiculoController::class)->only([
             'index', 'store', 'update', 'destroy', 'show'
         ]);
 

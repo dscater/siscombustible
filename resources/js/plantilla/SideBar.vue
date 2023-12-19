@@ -81,9 +81,56 @@
                     </li>
                     <li
                         class="nav-header bg-navy"
-                        v-if="permisos.includes('usuarios.index')"
+                        v-if="
+                            permisos.includes('usuarios.index') ||
+                            permisos.includes('unidads.index') ||
+                            permisos.includes('conductors.index') ||
+                            permisos.includes('vehiculos.index')
+                        "
                     >
                         ADMINISTRACIÓN
+                    </li>
+                    <li
+                        class="nav-item"
+                        v-if="permisos.includes('vehiculos.index')"
+                    >
+                        <router-link
+                            exact
+                            :to="{ name: 'vehiculos.index' }"
+                            class="nav-link"
+                            v-loading.fullscreen.lock="fullscreenLoading"
+                        >
+                            <i class="nav-icon fas fa-truck"></i>
+                            <p>Administrar Vehículos</p>
+                        </router-link>
+                    </li>
+                    <li
+                        class="nav-item"
+                        v-if="permisos.includes('unidads.index')"
+                    >
+                        <router-link
+                            exact
+                            :to="{ name: 'unidads.index' }"
+                            class="nav-link"
+                            v-loading.fullscreen.lock="fullscreenLoading"
+                        >
+                            <i class="nav-icon fas fa-list"></i>
+                            <p>Administrar Unidad</p>
+                        </router-link>
+                    </li>
+                    <li
+                        class="nav-item"
+                        v-if="permisos.includes('conductors.index')"
+                    >
+                        <router-link
+                            exact
+                            :to="{ name: 'conductors.index' }"
+                            class="nav-link"
+                            v-loading.fullscreen.lock="fullscreenLoading"
+                        >
+                            <i class="nav-icon fas fa-users"></i>
+                            <p>Administrar Conductores</p>
+                        </router-link>
                     </li>
                     <li
                         class="nav-item"

@@ -58,6 +58,21 @@ class UserController extends Controller
             'usuarios.edit',
             'usuarios.destroy',
 
+            'unidads.index',
+            'unidads.create',
+            'unidads.edit',
+            'unidads.destroy',
+
+            'conductors.index',
+            'conductors.create',
+            'conductors.edit',
+            'conductors.destroy',
+
+            'vehiculos.index',
+            'vehiculos.create',
+            'vehiculos.edit',
+            'vehiculos.destroy',
+
             'configuracion.index',
             'configuracion.edit',
 
@@ -72,7 +87,7 @@ class UserController extends Controller
 
     public function index(Request $request)
     {
-        $usuarios = User::whereNotIn("tipo", ["ESTUDIANTE", "PROFESOR"])->where('id', '!=', 1)->get();
+        $usuarios = User::whereNotIn("tipo", ["CONDUCTOR"])->where('id', '!=', 1)->get();
         return response()->JSON(['usuarios' => $usuarios, 'total' => count($usuarios)], 200);
     }
 

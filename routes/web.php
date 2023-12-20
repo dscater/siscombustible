@@ -3,8 +3,11 @@
 use App\Http\Controllers\ConductorController;
 use App\Http\Controllers\ConfiguracionController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RecorridoViajeController;
 use App\Http\Controllers\ReporteController;
+use App\Http\Controllers\SolicitudCombustibleController;
 use App\Http\Controllers\UnidadController;
+use App\Http\Controllers\UnidadSolicitanteController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VehiculoController;
 use Illuminate\Support\Facades\Route;
@@ -59,6 +62,21 @@ Route::middleware(['auth'])->group(function () {
 
         // VEHICULOS
         Route::resource('vehiculos', VehiculoController::class)->only([
+            'index', 'store', 'update', 'destroy', 'show'
+        ]);
+
+        // UNIDAD SOLICITANTE
+        Route::resource('unidad_solicitantes', UnidadSolicitanteController::class)->only([
+            'index', 'store', 'update', 'destroy', 'show'
+        ]);
+
+        // SOLICITUD COMBUSTIBLE
+        Route::resource('solicitud_combustibles', SolicitudCombustibleController::class)->only([
+            'index', 'store', 'update', 'destroy', 'show'
+        ]);
+
+        // RECORRIDO VIAJES
+        Route::resource('recorrido_viajes', RecorridoViajeController::class)->only([
             'index', 'store', 'update', 'destroy', 'show'
         ]);
 

@@ -47,6 +47,6 @@ class Vehiculo extends Model
 
     public function getFullNameAttribute()
     {
-        return $this->placa . '|' . $this->marca . ($this->clase ? "|" . $this->clase : "") . "|" . $this->modelo;
+        return $this->placa . ' | ' . $this->marca . ($this->clase ? " | " . $this->clase : "") . " | " . $this->modelo;
     }
 }

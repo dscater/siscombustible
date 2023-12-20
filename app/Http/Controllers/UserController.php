@@ -73,6 +73,21 @@ class UserController extends Controller
             'vehiculos.edit',
             'vehiculos.destroy',
 
+            'unidad_solicitantes.index',
+            'unidad_solicitantes.create',
+            'unidad_solicitantes.edit',
+            'unidad_solicitantes.destroy',
+
+            'solicitud_combustibles.index',
+            'solicitud_combustibles.create',
+            'solicitud_combustibles.edit',
+            'solicitud_combustibles.destroy',
+
+            'recorrido_viajes.index',
+            'recorrido_viajes.create',
+            'recorrido_viajes.edit',
+            'recorrido_viajes.destroy',
+
             'configuracion.index',
             'configuracion.edit',
 

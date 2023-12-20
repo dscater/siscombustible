@@ -18,13 +18,13 @@ class CreateSolicitudCombustiblesTable extends Migration
             $table->unsignedBigInteger("unidad_solicitante_id");
             $table->unsignedBigInteger("user_id")->nullable();
             $table->unsignedBigInteger("vehiculo_id")->nullable();
-            $table->double("combustible");
+            $table->double("combustible")->nullable();
             $table->string("nro_vale");
             $table->date("fecha_entrega");
             $table->string("observacion", 700)->nullable();
             $table->date("fecha_registro");
             $table->timestamps();
-            
+
             $table->foreign("unidad_solicitante_id")->on("unidad_solicitantes")->references("id");
         });
     }

@@ -59,6 +59,63 @@ export default new Router({
                 .default,
         },
 
+        // Unidad Solicitante
+        {
+            path: "/unidad_solicitantes",
+            name: "unidad_solicitantes.index",
+            component:
+                require("./components/modulos/unidad_solicitantes/index.vue")
+                    .default,
+        },
+
+        // Solicitud Combustibles
+        {
+            path: "/solicitud_combustibles",
+            name: "solicitud_combustibles.index",
+            component:
+                require("./components/modulos/solicitud_combustibles/index.vue")
+                    .default,
+        },
+        {
+            path: "/solicitud_combustibles/create",
+            name: "solicitud_combustibles.create",
+            component:
+                require("./components/modulos/solicitud_combustibles/create.vue")
+                    .default,
+        },
+        {
+            path: "/solicitud_combustibles/:id",
+            name: "solicitud_combustibles.edit",
+            component:
+                require("./components/modulos/solicitud_combustibles/edit.vue")
+                    .default,
+            props: true,
+        },
+
+        // Recorrido Viajes
+        {
+            path: "/recorrido_viajes",
+            name: "recorrido_viajes.index",
+            component:
+                require("./components/modulos/recorrido_viajes/index.vue")
+                    .default,
+        },
+        {
+            path: "/recorrido_viajes/create",
+            name: "recorrido_viajes.create",
+            component:
+                require("./components/modulos/recorrido_viajes/create.vue")
+                    .default,
+        },
+        {
+            path: "/recorrido_viajes/:id",
+            name: "recorrido_viajes.edit",
+            component:
+                require("./components/modulos/recorrido_viajes/edit.vue")
+                    .default,
+            props: true,
+        },
+
         // Configuración
         {
             path: "/administracion/configuracion",

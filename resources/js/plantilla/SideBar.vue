@@ -85,10 +85,53 @@
                             permisos.includes('usuarios.index') ||
                             permisos.includes('unidads.index') ||
                             permisos.includes('conductors.index') ||
-                            permisos.includes('vehiculos.index')
+                            permisos.includes('vehiculos.index') ||
+                            permisos.includes('unidad_solicitantes.index') ||
+                            permisos.includes('solicitud_combustibles.index') ||
+                            permisos.includes('recorrido_viajes.index')
                         "
                     >
                         ADMINISTRACIÓN
+                    </li>                    
+                    <li
+                        class="nav-item"
+                        v-if="permisos.includes('recorrido_viajes.index')"
+                    >
+                        <router-link
+                            :to="{ name: 'recorrido_viajes.index' }"
+                            class="nav-link"
+                            v-loading.fullscreen.lock="fullscreenLoading"
+                        >
+                            <i class="nav-icon fas fa-list-alt"></i>
+                            <p>Recorrido de Viajes</p>
+                        </router-link>
+                    </li>
+                    <li
+                        class="nav-item"
+                        v-if="permisos.includes('solicitud_combustibles.index')"
+                    >
+                        <router-link
+                            :to="{ name: 'solicitud_combustibles.index' }"
+                            class="nav-link"
+                            v-loading.fullscreen.lock="fullscreenLoading"
+                        >
+                            <i class="nav-icon fas fa-list-alt"></i>
+                            <p>Solicitud de Combustible</p>
+                        </router-link>
+                    </li>
+                    <li
+                        class="nav-item"
+                        v-if="permisos.includes('unidad_solicitantes.index')"
+                    >
+                        <router-link
+                            exact
+                            :to="{ name: 'unidad_solicitantes.index' }"
+                            class="nav-link"
+                            v-loading.fullscreen.lock="fullscreenLoading"
+                        >
+                            <i class="nav-icon fas fa-list-alt"></i>
+                            <p>Unidad Solicitante</p>
+                        </router-link>
                     </li>
                     <li
                         class="nav-item"

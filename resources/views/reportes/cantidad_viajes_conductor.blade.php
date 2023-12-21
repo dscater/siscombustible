@@ -171,6 +171,21 @@
         $cont = 0;
     @endphp
     @foreach ($usuarios as $conductor)
+        @php
+            $recorrido_viajes = App\Models\RecorridoViaje::select('recorrido_viajes.*')
+                ->join('unidad_solicitantes', 'unidad_solicitantes.id', '=', 'recorrido_viajes.unidad_solicitante_id')
+                ->join('solicitud_combustibles', 'solicitud_combustibles.unidad_solicitante_id', '=', 'unidad_solicitantes.id')
+                ->where('solicitud_combustibles.user_id', $conductor->id)
+                ->get();
+            if ($filtro == 'Rango de fechas' && $fecha_ini != '' && $fecha_fin != '') {
+                $recorrido_viajes = App\Models\RecorridoViaje::select('recorrido_viajes.*')
+                    ->join('unidad_solicitantes', 'unidad_solicitantes.id', '=', 'recorrido_viajes.unidad_solicitante_id')
+                    ->join('solicitud_combustibles', 'solicitud_combustibles.unidad_solicitante_id', '=', 'unidad_solicitantes.id')
+                    ->where('solicitud_combustibles.user_id', $conductor->id)
+                    ->whereBetween('recorrido_viajes.fecha_inicio', [$fecha_ini, $fecha_fin])
+                    ->get();
+            }
+        @endphp
         <div class="encabezado">
             <div class="logo">
                 <img src="{{ asset('imgs/' . $configuracion->first()->logo) }}">
@@ -191,6 +206,10 @@
                     <td class="text-right bold text-lg" width="20%">C.I.:</td>
                     <td class="text-lg">{{ $conductor->full_ci }}</td>
                 </tr>
+                <tr>
+                    <td class="text-right bold text-lg" width="20%">Total viajes:</td>
+                    <td class="text-lg">{{ count($recorrido_viajes) }}</td>
+                </tr>
             </tbody>
         </table>
         <table border="1">
@@ -210,20 +229,6 @@
             </thead>
             <tbody>
                 @php
-                    $recorrido_viajes = App\Models\RecorridoViaje::select('recorrido_viajes.*')
-                        ->join('unidad_solicitantes', 'unidad_solicitantes.id', '=', 'recorrido_viajes.unidad_solicitante_id')
-                        ->join('solicitud_combustibles', 'solicitud_combustibles.unidad_solicitante_id', '=', 'unidad_solicitantes.id')
-                        ->where('solicitud_combustibles.user_id', $conductor->id)
-                        ->get();
-                    if ($filtro == 'Rango de fechas' && $fecha_ini != '' && $fecha_fin != '') {
-                        $recorrido_viajes = App\Models\RecorridoViaje::select('recorrido_viajes.*')
-                            ->join('unidad_solicitantes', 'unidad_solicitantes.id', '=', 'recorrido_viajes.unidad_solicitante_id')
-                            ->join('unidad_solicitantes', 'unidad_solicitantes.id', '=', 'solicitud_combustibles.unidad_solicitante_id')
-                            ->where('solicitud_combustibles.user_id', $conductor->id)
-                            ->whereBetween('recorrido_viajes.fecha_inicio', [$fecha_ini, $fecha_fin])
-                            ->get();
-                    }
-
                     $total_inicio_combustible = 0;
                     $total_fin_combustible = 0;
                     $total_restante_combustible = 0;

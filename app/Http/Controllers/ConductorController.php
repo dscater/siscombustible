@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\HistorialAccion;
+use App\Models\SolicitudCombustible;
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -177,6 +179,10 @@ class ConductorController extends Controller
         $usuario = $conductor;
         DB::beginTransaction();
         try {
+            $existe = SolicitudCombustible::where("user_id", $usuario->id)->get();
+            if (count($existe) > 0) {
+                throw new Exception("No es posible eliminar el registro porque esta siendo utilizado");
+            }
             $antiguo = $usuario->foto;
             if ($antiguo != 'default.png') {
                 \File::delete(public_path() . '/imgs/users/' . $antiguo);

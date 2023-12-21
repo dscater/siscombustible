@@ -10,6 +10,7 @@ use App\Models\Horario;
 use App\Models\Inscripcion;
 use App\Models\InscripcionSolicitud;
 use App\Models\Profesor;
+use App\Models\SolicitudCombustible;
 use App\Models\Unidad;
 use App\Models\UnidadSolicitante;
 use App\Models\User;
@@ -201,9 +202,74 @@ class ReporteController extends Controller
     public function cantidad_viajes_unidad(Request $request)
     {
         $filtro = $request->filtro;
+        $unidad_id = $request->unidad_id;
+        $fecha_ini = $request->fecha_ini;
+        $fecha_fin = $request->fecha_fin;
+
+        $unidads = [];
+
+        $unidads = Unidad::orderBy("nombre", "asc")->get();
+        if ($filtro != 'Todos') {
+            if ($filtro == 'Unidad') {
+                if ($unidad_id != '') {
+                    $unidads = Unidad::where("id", $unidad_id)->orderBy("nombre", "asc")->get();
+                }
+            }
+        }
+
+        $pdf = PDF::loadView('reportes.cantidad_viajes_unidad', compact('unidads', 'filtro', 'fecha_ini', 'fecha_fin'))->setPaper('letter', 'portrait');
+
+        // ENUMERAR LAS PÁGINAS USANDO CANVAS
+        $pdf->output();
+        $dom_pdf = $pdf->getDomPDF();
+        $canvas = $dom_pdf->get_canvas();
+        $alto = $canvas->get_height();
+        $ancho = $canvas->get_width();
+        $canvas->page_text($ancho - 90, $alto - 25, "Página {PAGE_NUM} de {PAGE_COUNT}", null, 9, array(0, 0, 0));
+
+        return $pdf->download('cantidad_viajes_unidad.pdf');
     }
     public function g_cantidad_combustible_unidad(Request $request)
     {
         $filtro = $request->filtro;
+        $unidad_id = $request->unidad_id;
+        $fecha_ini = $request->fecha_ini;
+        $fecha_fin = $request->fecha_fin;
+
+        $unidads = [];
+
+        $unidads = Unidad::orderBy("nombre", "asc")->get();
+        if ($filtro != 'Todos') {
+            if ($filtro == 'Unidad') {
+                if ($unidad_id != '') {
+                    $unidads = Unidad::where("id", $unidad_id)->orderBy("nombre", "asc")->get();
+                }
+            }
+        }
+
+        $datos = [];
+
+        foreach ($unidads as $value) {
+            if ($filtro == 'Rango de fechas' && $fecha_ini != '' && $fecha_fin != '') {
+                $suma_combustible = SolicitudCombustible::select("solicitud_combustibles.*")
+                    ->join("unidad_solicitantes", "unidad_solicitantes.id", "=", "solicitud_combustibles.unidad_solicitante_id")
+                    ->where("unidad_solicitantes.combustible", 1)
+                    ->whereBetween("fecha_entrega", [$fecha_ini, $fecha_fin])
+                    ->where("unidad_solicitantes.unidad_id", $value->id)
+                    ->sum("solicitud_combustibles.combustible");
+            } else {
+                $suma_combustible = SolicitudCombustible::select("solicitud_combustibles.*")
+                    ->join("unidad_solicitantes", "unidad_solicitantes.id", "=", "solicitud_combustibles.unidad_solicitante_id")
+                    ->where("unidad_solicitantes.combustible", 1)
+                    ->where("unidad_solicitantes.unidad_id", $value->id)
+                    ->sum("solicitud_combustibles.combustible");
+            }
+            $datos[] = [$value->nombre, (float)$suma_combustible];
+        }
+
+        return response()->JSON([
+            "sw" => true,
+            "datos" => $datos,
+        ]);
     }
 }

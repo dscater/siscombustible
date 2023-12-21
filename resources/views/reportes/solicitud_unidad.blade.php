@@ -186,7 +186,7 @@
                     <td class="centreado">{{ $value->nro_hoja_ruta }}</td>
                     <td class="centreado">
                         @if (count($value->solicitud_combustibles) > 0 && $value->conductor == 1)
-                            <ul style="padding-left:10px">
+                            <ul style="padding-left:10px; list-style:none;">
                                 @foreach ($value->solicitud_combustibles as $sc)
                                     <li>{{ $sc->user->full_name }}</li>
                                 @endforeach
@@ -197,7 +197,7 @@
                     </td>
                     <td class="centreado">
                         @if (count($value->solicitud_combustibles) > 0 && $value->vehiculo == 1)
-                            <ul style="padding-left:10px">
+                            <ul style="padding-left:10px; list-style:none;">
                                 @foreach ($value->solicitud_combustibles as $sc)
                                     <li>{{ $sc->vehiculo->full_name }}</li>
                                 @endforeach
@@ -208,7 +208,7 @@
                     </td>
                     <td class="centreado">
                         @if (count($value->solicitud_combustibles) > 0 && $value->combustible == 1)
-                            <ul style="padding-left:10px">
+                            <ul style="padding-left:10px; list-style:none;">
                                 @foreach ($value->solicitud_combustibles as $sc)
                                     <li>{{ $sc->combustible }}</li>
                                 @endforeach

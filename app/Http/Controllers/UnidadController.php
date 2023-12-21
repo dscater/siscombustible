@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\HistorialAccion;
 use App\Models\Unidad;
+use App\Models\UnidadSolicitante;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -105,6 +107,10 @@ class UnidadController extends Controller
     {
         DB::beginTransaction();
         try {
+            $existe = UnidadSolicitante::where("unidad_id", $unidad->id)->get();
+            if (count($existe) > 0) {
+                throw new Exception("No es posible eliminar el registor porque esta siendo utilizado");
+            }
             $datos_original = HistorialAccion::getDetalleRegistro($unidad, "unidads");
             $unidad->delete();
             HistorialAccion::create([

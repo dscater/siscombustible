@@ -337,7 +337,7 @@
                                                         <strong
                                                             >Conductor: </strong
                                                         >{{
-                                                            item.user.full_name
+                                                            item.user?.full_name
                                                         }}
                                                     </p>
                                                     <p>
@@ -345,7 +345,7 @@
                                                             >Vehículo: </strong
                                                         >{{
                                                             item.vehiculo
-                                                                .full_name
+                                                                ?.full_name
                                                         }}
                                                     </p>
                                                     <p>

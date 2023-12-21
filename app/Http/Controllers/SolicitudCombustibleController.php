@@ -46,12 +46,18 @@ class SolicitudCombustibleController extends Controller
         }
         if ($unidad_solicitante->conductor == 1) {
             $this->validacion["user_id"] = "required";
+        } else {
+            unset($request["user_id"]);
         }
         if ($unidad_solicitante->vehiculo == 1) {
             $this->validacion["vehiculo_id"] = "required";
+        } else {
+            unset($request["vehiculo_id"]);
         }
         if ($unidad_solicitante->combustible == 1) {
             $this->validacion["combustible"] = "required";
+        } else {
+            unset($request["combustible"]);
         }
 
         $request->validate($this->validacion, $this->mensajes);
@@ -110,12 +116,18 @@ class SolicitudCombustibleController extends Controller
         }
         if ($unidad_solicitante->conductor == 1) {
             $this->validacion["user_id"] = "required";
+        } else {
+            unset($request["user_id"]);
         }
         if ($unidad_solicitante->vehiculo == 1) {
             $this->validacion["vehiculo_id"] = "required";
+        } else {
+            unset($request["vehiculo_id"]);
         }
         if ($unidad_solicitante->combustible == 1) {
             $this->validacion["combustible"] = "required";
+        } else {
+            unset($request["combustible"]);
         }
         $request->validate($this->validacion, $this->mensajes);
         DB::beginTransaction();

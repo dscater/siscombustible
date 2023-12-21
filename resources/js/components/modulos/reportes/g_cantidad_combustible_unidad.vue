@@ -3,8 +3,11 @@
         <section class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h1>Reportes - Lista de Usuarios</h1>
+                    <div class="col-sm-12">
+                        <h1>
+                            Reportes - Cantidad de Combustible Entregado por
+                            Unidad
+                        </h1>
                     </div>
                 </div>
             </div>
@@ -53,39 +56,38 @@
                                             <div
                                                 class="form-group col-md-12"
                                                 v-if="
-                                                    oReporte.filtro ==
-                                                    'Tipo de usuario'
+                                                    oReporte.filtro == 'Unidad'
                                                 "
                                             >
                                                 <label
                                                     :class="{
                                                         'text-danger':
-                                                            errors.tipo,
+                                                            errors.unidad_id,
                                                     }"
-                                                    >Seleccione*</label
+                                                    >Seleccione Unidad*</label
                                                 >
                                                 <el-select
-                                                    v-model="oReporte.tipo"
+                                                    v-model="oReporte.unidad_id"
                                                     filterable
                                                     placeholder="Seleccione"
                                                     class="d-block"
                                                     :class="{
                                                         'is-invalid':
-                                                            errors.tipo,
+                                                            errors.unidad_id,
                                                     }"
                                                 >
                                                     <el-option
-                                                        v-for="item in listTipos"
-                                                        :key="item"
-                                                        :label="item"
-                                                        :value="item"
+                                                        v-for="item in listUnidads"
+                                                        :key="item.id"
+                                                        :value="item.id"
+                                                        :label="item.nombre"
                                                     >
                                                     </el-option>
                                                 </el-select>
                                                 <span
                                                     class="error invalid-feedback"
-                                                    v-if="errors.tipo"
-                                                    v-text="errors.tipo[0]"
+                                                    v-if="errors.unidad_id"
+                                                    v-text="errors.unidad_id[0]"
                                                 ></span>
                                             </div>
                                             <div
@@ -158,6 +160,13 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-12" id="container"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -175,77 +184,115 @@ export default {
             errors: [],
             oReporte: {
                 filtro: "Todos",
-                tipo: "",
+                unidad_id: "",
                 fecha_ini: "",
                 fecha_fin: "",
             },
             aFechas: [],
             enviando: false,
             textoBtn: "Generar Reporte",
-            listFiltro: [
-                "Todos",
-                "Tipo de usuario",
-                // "Rango de fechas",
-            ],
-            listTipos: [
-                "ADMINISTRADOR",
-                "DIRECTOR",
-                "ADMINISTRATIVO",
-                "ENCARGADO DE COMBUSTIBLE",
-                "CONDUCTOR",
-            ],
+            listFiltro: ["Todos", "Unidad", "Rango de fechas"],
+            listUnidads: [],
             errors: [],
         };
     },
     mounted() {
         this.loadingWindow.close();
+        this.getUnidads();
     },
     methods: {
+        getUnidads() {
+            axios.get(main_url + "/admin/unidads").then((response) => {
+                this.listUnidads = response.data.unidads;
+            });
+        },
         limpiarFormulario() {
             this.oReporte.filtro = "Todos";
         },
         generaReporte() {
             this.enviando = true;
-            let config = {
-                responseType: "blob",
-            };
             axios
                 .post(
-                    main_url + "/admin/reportes/usuarios",
-                    this.oReporte,
-                    config
+                    main_url + "/admin/reportes/g_cantidad_combustible_unidad",
+                    this.oReporte
                 )
-                .then((res) => {
+                .then((response) => {
                     this.errors = [];
-                    this.enviando = false;
-                    let pdfBlob = new Blob([res.data], {
-                        type: "application/pdf",
+                    Highcharts.chart("container", {
+                        chart: {
+                            type: "column",
+                        },
+                        title: {
+                            text: "CANTIDAD DE COMBUSTIBLE ENTREGADO POR UNIDAD",
+                        },
+                        subtitle: {
+                            text: "",
+                        },
+                        xAxis: {
+                            type: "category",
+                            // crosshair: true,
+                            labels: {
+                                rotation: -45,
+                                style: {
+                                    fontSize: "13px",
+                                    fontFamily: "Verdana, sans-serif",
+                                },
+                            },
+                        },
+                        yAxis: {
+                            min: 0,
+                            title: {
+                                text: "TOTAL",
+                            },
+                        },
+                        legend: {
+                            enabled: true,
+                        },
+                        plotOptions: {
+                            series: {
+                                borderWidth: 0,
+                                dataLabels: {
+                                    enabled: true,
+                                    format: "{point.y:.2f}",
+                                },
+                            },
+                        },
+                        tooltip: {
+                            headerFormat:
+                                '<span style="font-size:10px"><b>{point.key}</b></span><table>',
+                            pointFormat:
+                                '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                                '<td style="padding:0"><b>{point.y:.2f}</b></td></tr>',
+                            footerFormat: "</table>",
+                            shared: true,
+                            useHTML: true,
+                        },
+
+                        series: [
+                            {
+                                name: "Ingresos",
+                                colorByPoint: true,
+                                data: response.data.datos,
+                                dataLabels: {
+                                    rotation: 0,
+                                    color: "#000000",
+                                    format: "{point.y:.2f}", // one decimal
+                                    y: 0, // 10 pixels down from the top
+                                    style: {
+                                        fontSize: "13px",
+                                        fontFamily: "Verdana, sans-serif",
+                                    },
+                                },
+                            },
+                        ],
                     });
-                    let urlReporte = URL.createObjectURL(pdfBlob);
-                    window.open(urlReporte);
+                    this.enviando = false;
                 })
                 .catch(async (error) => {
-                    let responseObj = await error.response.data.text();
-                    responseObj = JSON.parse(responseObj);
-                    console.log(error);
                     this.enviando = false;
                     if (error.response) {
                         if (error.response.status === 422) {
-                            this.errors = responseObj.errors;
-                        }
-                        if (
-                            error.response.status === 420 ||
-                            error.response.status === 419 ||
-                            error.response.status === 401
-                        ) {
-                            Swal.fire({
-                                icon: "error",
-                                title: "Error",
-                                html: responseObj.message,
-                                showConfirmButton: false,
-                                timer: 2000,
-                            });
-                            window.location = "/";
+                            this.errors = error.response.data.errors;
                         }
                     }
                 });

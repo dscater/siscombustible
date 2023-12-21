@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\HistorialAccion;
+use App\Models\RecorridoViaje;
+use App\Models\SolicitudCombustible;
 use App\Models\UnidadSolicitante;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -121,6 +124,15 @@ class UnidadSolicitanteController extends Controller
     {
         DB::beginTransaction();
         try {
+            $existe = SolicitudCombustible::where("unidad_solicitante_id", $unidad_solicitante->id)->get();
+            if (count($existe) > 0) {
+                throw new Exception("No es posible eliminar el registro porque esta siendo utilizado");
+            }
+            $existe = RecorridoViaje::where("unidad_solicitante_id", $unidad_solicitante->id)->get();
+            if (count($existe) > 0) {
+                throw new Exception("No es posible eliminar el registro porque esta siendo utilizado");
+            }
+
             $datos_original = HistorialAccion::getDetalleRegistro($unidad_solicitante, "unidad_solicitantes");
             $unidad_solicitante->delete();
             HistorialAccion::create([

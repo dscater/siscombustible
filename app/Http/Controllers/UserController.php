@@ -116,6 +116,13 @@ class UserController extends Controller
             'solicitud_combustibles.index',
 
             'recorrido_viajes.index',
+
+            "reportes.solicitud_unidad",
+            "reportes.cantidad_combustible_unidad",
+            "reportes.cantidad_viajes_conductor",
+            "reportes.cantidad_combustible_conductor",
+            "reportes.cantidad_viajes_unidad",
+            "reportes.g_cantidad_combustible_unidad",
         ],
         "ADMINISTRATIVO" => [
             'unidads.index',
@@ -141,6 +148,13 @@ class UserController extends Controller
             'solicitud_combustibles.index',
 
             'recorrido_viajes.index',
+            
+            "reportes.solicitud_unidad",
+            "reportes.cantidad_combustible_unidad",
+            "reportes.cantidad_viajes_conductor",
+            "reportes.cantidad_combustible_conductor",
+            "reportes.cantidad_viajes_unidad",
+            "reportes.g_cantidad_combustible_unidad",
         ],
         "ENCARGADO DE COMBUSTIBLE" => [
             'conductors.index',
@@ -157,11 +171,23 @@ class UserController extends Controller
             'unidad_solicitantes.create',
             'unidad_solicitantes.edit',
             'unidad_solicitantes.destroy',
+            
+            'solicitud_combustibles.index',
+            'solicitud_combustibles.create',
+            'solicitud_combustibles.edit',
+            'solicitud_combustibles.destroy',
 
             'recorrido_viajes.index',
             'recorrido_viajes.create',
             'recorrido_viajes.edit',
             'recorrido_viajes.destroy',
+            
+            "reportes.solicitud_unidad",
+            "reportes.cantidad_combustible_unidad",
+            "reportes.cantidad_viajes_conductor",
+            "reportes.cantidad_combustible_conductor",
+            "reportes.cantidad_viajes_unidad",
+            "reportes.g_cantidad_combustible_unidad",
         ],
         "CONDUCTOR" => [
             'solicitud_combustibles.index',

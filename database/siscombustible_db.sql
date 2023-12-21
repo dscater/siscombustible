@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 21-12-2023 a las 15:23:05
+-- Tiempo de generación: 21-12-2023 a las 18:19:12
 -- Versión del servidor: 8.0.30
 -- Versión de PHP: 7.4.19
 
@@ -154,7 +154,19 @@ INSERT INTO `historial_accions` (`id`, `user_id`, `accion`, `descripcion`, `dato
 (54, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA SOLICITUD DE COMBUSTIBLE', 'combustible: 10<br/>created_at: 2023-12-20 11:27:06<br/>fecha_entrega: 2023-12-20<br/>fecha_registro: 2023-12-20<br/>id: 1<br/>nro_vale: 123<br/>observacion: OBS<br/>unidad_solicitante_id: 1<br/>updated_at: 2023-12-21 09:40:45<br/>user_id: 7<br/>vehiculo_id: 2<br/>', 'combustible: 10<br/>created_at: 2023-12-20 11:27:06<br/>fecha_entrega: 2023-12-20<br/>fecha_registro: 2023-12-20<br/>id: 1<br/>nro_vale: 123<br/>observacion: OBS<br/>unidad_solicitante_id: 1<br/>updated_at: 2023-12-21 09:43:10<br/>user_id: 3<br/>vehiculo_id: 2<br/>', 'SOLICITUD DE COMBUSTIBLE', '2023-12-21', '09:43:10', '2023-12-21 13:43:10', '2023-12-21 13:43:10'),
 (55, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA SOLICITUD DE COMBUSTIBLE', 'combustible: 10<br/>created_at: 2023-12-20 11:27:06<br/>fecha_entrega: 2023-12-20<br/>fecha_registro: 2023-12-20<br/>id: 1<br/>nro_vale: 123<br/>observacion: OBS<br/>unidad_solicitante_id: 1<br/>updated_at: 2023-12-21 09:43:10<br/>user_id: 3<br/>vehiculo_id: 2<br/>', 'combustible: 10<br/>created_at: 2023-12-20 11:27:06<br/>fecha_entrega: 2023-12-20<br/>fecha_registro: 2023-12-20<br/>id: 1<br/>nro_vale: 123<br/>observacion: OBS<br/>unidad_solicitante_id: 1<br/>updated_at: 2023-12-21 09:46:52<br/>user_id: 7<br/>vehiculo_id: 2<br/>', 'SOLICITUD DE COMBUSTIBLE', '2023-12-21', '09:46:52', '2023-12-21 13:46:52', '2023-12-21 13:46:52'),
 (56, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA SOLICITUD DE COMBUSTIBLE', 'combustible: 5<br/>created_at: 2023-12-21 11:14:34<br/>fecha_entrega: 2023-12-21<br/>fecha_registro: 2023-12-21<br/>id: 2<br/>nro_vale: 123<br/>observacion: OBS.<br/>unidad_solicitante_id: 1<br/>updated_at: 2023-12-21 11:14:34<br/>user_id: 7<br/>vehiculo_id: 2<br/>', NULL, 'SOLICITUD DE COMBUSTIBLE', '2023-12-21', '11:14:35', '2023-12-21 15:14:35', '2023-12-21 15:14:35'),
-(57, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA SOLICITUD DE COMBUSTIBLE', 'combustible: 5<br/>created_at: 2023-12-21 11:14:34<br/>fecha_entrega: 2023-12-21<br/>fecha_registro: 2023-12-21<br/>id: 2<br/>nro_vale: 123<br/>observacion: OBS.<br/>unidad_solicitante_id: 1<br/>updated_at: 2023-12-21 11:14:34<br/>user_id: 7<br/>vehiculo_id: 2<br/>', 'combustible: 5<br/>created_at: 2023-12-21 11:14:34<br/>fecha_entrega: 2023-12-21<br/>fecha_registro: 2023-12-21<br/>id: 2<br/>nro_vale: 123<br/>observacion: OBS.<br/>unidad_solicitante_id: 1<br/>updated_at: 2023-12-21 11:22:35<br/>user_id: 3<br/>vehiculo_id: 2<br/>', 'SOLICITUD DE COMBUSTIBLE', '2023-12-21', '11:22:35', '2023-12-21 15:22:35', '2023-12-21 15:22:35');
+(57, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA SOLICITUD DE COMBUSTIBLE', 'combustible: 5<br/>created_at: 2023-12-21 11:14:34<br/>fecha_entrega: 2023-12-21<br/>fecha_registro: 2023-12-21<br/>id: 2<br/>nro_vale: 123<br/>observacion: OBS.<br/>unidad_solicitante_id: 1<br/>updated_at: 2023-12-21 11:14:34<br/>user_id: 7<br/>vehiculo_id: 2<br/>', 'combustible: 5<br/>created_at: 2023-12-21 11:14:34<br/>fecha_entrega: 2023-12-21<br/>fecha_registro: 2023-12-21<br/>id: 2<br/>nro_vale: 123<br/>observacion: OBS.<br/>unidad_solicitante_id: 1<br/>updated_at: 2023-12-21 11:22:35<br/>user_id: 3<br/>vehiculo_id: 2<br/>', 'SOLICITUD DE COMBUSTIBLE', '2023-12-21', '11:22:35', '2023-12-21 15:22:35', '2023-12-21 15:22:35'),
+(58, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA UNIDAD', 'created_at: 2023-12-21 13:59:23<br/>descripcion: <br/>fecha_registro: 2023-12-21<br/>id: 3<br/>nombre: UNIDAD #3<br/>updated_at: 2023-12-21 13:59:23<br/>', NULL, 'UNIDAD', '2023-12-21', '13:59:23', '2023-12-21 17:59:23', '2023-12-21 17:59:23'),
+(59, 1, 'ELIMINACIÓN', 'EL USUARIO  ELIMINÓ UNA UNIDAD', 'created_at: 2023-12-21 13:59:23<br/>descripcion: <br/>fecha_registro: 2023-12-21<br/>id: 3<br/>nombre: UNIDAD #3<br/>updated_at: 2023-12-21 13:59:23<br/>', NULL, 'UNIDAD', '2023-12-21', '14:02:15', '2023-12-21 18:02:15', '2023-12-21 18:02:15'),
+(60, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UN VEHICULO', 'acceso: <br/>ci: <br/>ci_exp: <br/>correo: <br/>created_at: 2023-12-21 14:04:22<br/>dir: <br/>fecha_registro: 2023-12-21<br/>fono: <br/>foto: default.png<br/>id: 4<br/>materno: <br/>nombre: <br/>password: <br/>paterno: <br/>tipo: TIPO #2<br/>updated_at: 2023-12-21 14:04:22<br/>usuario: <br/>', NULL, 'VEHICULOS', '2023-12-21', '14:04:23', '2023-12-21 18:04:23', '2023-12-21 18:04:23'),
+(61, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UN VEHICULO', 'acceso: <br/>ci: <br/>ci_exp: <br/>correo: <br/>created_at: 2023-12-21 14:04:38<br/>dir: <br/>fecha_registro: 2023-12-21<br/>fono: <br/>foto: default.png<br/>id: 5<br/>materno: <br/>nombre: <br/>password: <br/>paterno: <br/>tipo: <br/>updated_at: 2023-12-21 14:04:38<br/>usuario: <br/>', NULL, 'VEHICULOS', '2023-12-21', '14:04:38', '2023-12-21 18:04:38', '2023-12-21 18:04:38'),
+(62, 1, 'ELIMINACIÓN', 'EL USUARIO  ELIMINÓ UN VEHICULO', 'acceso: <br/>ci: <br/>ci_exp: <br/>correo: <br/>created_at: 2023-12-21 14:04:38<br/>dir: <br/>fecha_registro: 2023-12-21<br/>fono: <br/>foto: default.png<br/>id: 5<br/>materno: <br/>nombre: <br/>password: <br/>paterno: <br/>tipo: <br/>updated_at: 2023-12-21 14:04:38<br/>usuario: <br/>', NULL, 'VEHICULOS', '2023-12-21', '14:04:41', '2023-12-21 18:04:41', '2023-12-21 18:04:41'),
+(63, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA UNIDAD SOLICITANTE', 'codigo: SOL.3<br/>combustible: 0<br/>conductor: 0<br/>created_at: 2023-12-21 14:05:56<br/>descripcion_viaje: ASASD<br/>fecha_registro: 2023-12-21<br/>fecha_solicitud: 2023-12-21<br/>id: 3<br/>nro: 3<br/>nro_hoja_ruta: 123<br/>observacion: <br/>unidad_id: 2<br/>updated_at: 2023-12-21 14:05:56<br/>vehiculo: 0<br/>', NULL, 'UNIDAD SOLICITANTE', '2023-12-21', '14:05:56', '2023-12-21 18:05:56', '2023-12-21 18:05:56'),
+(64, 1, 'ELIMINACIÓN', 'EL USUARIO  ELIMINÓ UNA UNIDAD SOLICITANTE', 'codigo: SOL.3<br/>combustible: 0<br/>conductor: 0<br/>created_at: 2023-12-21 14:05:56<br/>descripcion_viaje: ASASD<br/>fecha_registro: 2023-12-21<br/>fecha_solicitud: 2023-12-21<br/>id: 3<br/>nro: 3<br/>nro_hoja_ruta: 123<br/>observacion: <br/>unidad_id: 2<br/>updated_at: 2023-12-21 14:05:56<br/>vehiculo: 0<br/>', NULL, 'UNIDAD SOLICITANTE', '2023-12-21', '14:06:00', '2023-12-21 18:06:00', '2023-12-21 18:06:00'),
+(65, 1, 'ELIMINACIÓN', 'EL USUARIO  ELIMINÓ UNA SOLICITUD DE COMBUSTIBLE', 'combustible: 5<br/>created_at: 2023-12-21 11:14:34<br/>fecha_entrega: 2023-12-21<br/>fecha_registro: 2023-12-21<br/>id: 2<br/>nro_vale: 123<br/>observacion: OBS.<br/>unidad_solicitante_id: 1<br/>updated_at: 2023-12-21 11:22:35<br/>user_id: 3<br/>vehiculo_id: 2<br/>', NULL, 'SOLICITUD DE COMBUSTIBLE', '2023-12-21', '14:06:16', '2023-12-21 18:06:16', '2023-12-21 18:06:16'),
+(66, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA SOLICITUD DE COMBUSTIBLE', 'combustible: <br/>created_at: 2023-12-21 14:08:07<br/>fecha_entrega: 2023-12-21<br/>fecha_registro: 2023-12-21<br/>id: 3<br/>nro_vale: 334<br/>observacion: OBS #2<br/>unidad_solicitante_id: 2<br/>updated_at: 2023-12-21 14:08:07<br/>user_id: <br/>vehiculo_id: <br/>', NULL, 'SOLICITUD DE COMBUSTIBLE', '2023-12-21', '14:08:07', '2023-12-21 18:08:07', '2023-12-21 18:08:07'),
+(67, 2, 'CREACIÓN', 'EL USUARIO  REGISTRO UN RECORRIDO DE VIAJE', 'created_at: 2023-12-21 14:11:25<br/>descripcion_recorrido: DESC. RECORRIDO #2<br/>fecha_fin: 2024-01-30<br/>fecha_inicio: 2024-01-01<br/>fecha_registro: 2023-12-21<br/>fin_combustible: 15<br/>fin_kilometraje: 2000<br/>id: 2<br/>inicio_combustible: 30<br/>inicio_kilometraje: 1000<br/>observacion: <br/>restante_combustible: 15<br/>unidad_solicitante_id: 2<br/>updated_at: 2023-12-21 14:11:25<br/>', NULL, 'RECORRIDO DE VIAJES', '2023-12-21', '14:11:25', '2023-12-21 18:11:25', '2023-12-21 18:11:25'),
+(68, 2, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA UNIDAD SOLICITANTE', 'codigo: SOL.2<br/>combustible: 0<br/>conductor: 0<br/>created_at: 2023-12-20 09:50:00<br/>descripcion_viaje: DESC.<br/>fecha_registro: 2023-12-20<br/>fecha_solicitud: 2023-12-20<br/>id: 2<br/>nro: 2<br/>nro_hoja_ruta: 111<br/>observacion: OBS #2<br/>unidad_id: 2<br/>updated_at: 2023-12-20 09:53:33<br/>vehiculo: 0<br/>', 'codigo: SOL.2<br/>combustible: 1<br/>conductor: 0<br/>created_at: 2023-12-20 09:50:00<br/>descripcion_viaje: DESC.<br/>fecha_registro: 2023-12-20<br/>fecha_solicitud: 2023-12-20<br/>id: 2<br/>nro: 2<br/>nro_hoja_ruta: 111<br/>observacion: OBS #2<br/>unidad_id: 2<br/>updated_at: 2023-12-21 14:13:27<br/>vehiculo: 0<br/>', 'UNIDAD SOLICITANTE', '2023-12-21', '14:13:27', '2023-12-21 18:13:27', '2023-12-21 18:13:27'),
+(69, 2, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA SOLICITUD DE COMBUSTIBLE', 'combustible: <br/>created_at: 2023-12-21 14:08:07<br/>fecha_entrega: 2023-12-21<br/>fecha_registro: 2023-12-21<br/>id: 3<br/>nro_vale: 334<br/>observacion: OBS #2<br/>unidad_solicitante_id: 2<br/>updated_at: 2023-12-21 14:08:07<br/>user_id: <br/>vehiculo_id: <br/>', 'combustible: 25<br/>created_at: 2023-12-21 14:08:07<br/>fecha_entrega: 2023-12-21<br/>fecha_registro: 2023-12-21<br/>id: 3<br/>nro_vale: 334<br/>observacion: OBS #2<br/>unidad_solicitante_id: 2<br/>updated_at: 2023-12-21 14:13:37<br/>user_id: <br/>vehiculo_id: <br/>', 'SOLICITUD DE COMBUSTIBLE', '2023-12-21', '14:13:37', '2023-12-21 18:13:37', '2023-12-21 18:13:37');
 
 -- --------------------------------------------------------
 
@@ -230,7 +242,8 @@ CREATE TABLE `recorrido_viajes` (
 --
 
 INSERT INTO `recorrido_viajes` (`id`, `unidad_solicitante_id`, `descripcion_recorrido`, `fecha_inicio`, `fecha_fin`, `inicio_combustible`, `fin_combustible`, `restante_combustible`, `inicio_kilometraje`, `fin_kilometraje`, `observacion`, `fecha_registro`, `created_at`, `updated_at`) VALUES
-(1, 1, 'DESC. RECORRIDO', '2023-12-01', '2023-12-12', 5, 4, 4, 1000, 1500, 'OBS.', '2023-12-20', '2023-12-20 16:15:01', '2023-12-20 16:16:16');
+(1, 1, 'DESC. RECORRIDO', '2023-12-01', '2023-12-12', 5, 4, 4, 1000, 1500, 'OBS.', '2023-12-20', '2023-12-20 16:15:01', '2023-12-20 16:16:16'),
+(2, 2, 'DESC. RECORRIDO #2', '2024-01-01', '2024-01-30', 30, 15, 15, 1000, 2000, '', '2023-12-21', '2023-12-21 18:11:25', '2023-12-21 18:11:25');
 
 -- --------------------------------------------------------
 
@@ -258,7 +271,7 @@ CREATE TABLE `solicitud_combustibles` (
 
 INSERT INTO `solicitud_combustibles` (`id`, `unidad_solicitante_id`, `user_id`, `vehiculo_id`, `combustible`, `nro_vale`, `fecha_entrega`, `observacion`, `fecha_registro`, `created_at`, `updated_at`) VALUES
 (1, 1, 7, 2, 10, '123', '2023-12-20', 'OBS', '2023-12-20', '2023-12-20 15:27:06', '2023-12-21 13:46:52'),
-(2, 1, 3, 2, 5, '123', '2023-12-21', 'OBS.', '2023-12-21', '2023-12-21 15:14:34', '2023-12-21 15:22:35');
+(3, 2, NULL, NULL, 25, '334', '2023-12-21', 'OBS #2', '2023-12-21', '2023-12-21 18:08:07', '2023-12-21 18:13:37');
 
 -- --------------------------------------------------------
 
@@ -312,7 +325,7 @@ CREATE TABLE `unidad_solicitantes` (
 
 INSERT INTO `unidad_solicitantes` (`id`, `nro`, `codigo`, `unidad_id`, `descripcion_viaje`, `fecha_solicitud`, `nro_hoja_ruta`, `conductor`, `vehiculo`, `combustible`, `observacion`, `fecha_registro`, `created_at`, `updated_at`) VALUES
 (1, 1, 'SOL.1', 1, 'DESC. VIAJE', '2023-12-21', 'H001', 1, 1, 1, 'OBS. #1', '2023-12-20', '2023-12-20 13:43:52', '2023-12-20 13:45:14'),
-(2, 2, 'SOL.2', 2, 'DESC.', '2023-12-20', '111', 0, 0, 0, 'OBS #2', '2023-12-20', '2023-12-20 13:50:00', '2023-12-20 13:53:33');
+(2, 2, 'SOL.2', 2, 'DESC.', '2023-12-20', '111', 0, 0, 1, 'OBS #2', '2023-12-20', '2023-12-20 13:50:00', '2023-12-21 18:13:27');
 
 -- --------------------------------------------------------
 
@@ -388,7 +401,8 @@ CREATE TABLE `vehiculos` (
 --
 
 INSERT INTO `vehiculos` (`id`, `placa`, `marca`, `clase`, `modelo`, `procedencia`, `servicio`, `traccion`, `turbo`, `carroceria`, `tipo`, `subtipo`, `cilindrada`, `nro_puertas`, `capacidad_carga`, `capacidad_plaza`, `capacidad_arrastre`, `foto`, `observacion`, `fecha_registro`, `created_at`, `updated_at`) VALUES
-(2, '1234', 'VOLVO', 'CLASE', 'MODELO', 'CHINA', 'SERVICIO', 'TRASERA', 'NO', 'ROJA', 'TIPO', 'SUBTIPO', '2300CC', '4', '10000KG', '5', 'CAPACIDAD ARRASTRE', '1703005879_.jpg', 'OBS', '2023-12-19', '2023-12-19 17:11:19', '2023-12-19 17:11:19');
+(2, '1234', 'VOLVO', 'CLASE', 'MODELO', 'CHINA', 'SERVICIO', 'TRASERA', 'NO', 'ROJA', 'TIPO', 'SUBTIPO', '2300CC', '4', '10000KG', '5', 'CAPACIDAD ARRASTRE', '1703005879_.jpg', 'OBS', '2023-12-19', '2023-12-19 17:11:19', '2023-12-19 17:11:19'),
+(4, '3333', 'MARCA #2', 'CLASE #2', 'MODELO #2', 'CHINA', 'SERVICIO #2', 'TRACCION #2', 'TURBO #2', 'CARROCERIA #2', 'TIPO #2', 'SUBTIPO #2', '1000CC', '4', '10000KG', '4', '', 'default.png', '', '2023-12-21', '2023-12-21 18:04:22', '2023-12-21 18:04:22');
 
 --
 -- Índices para tablas volcadas
@@ -486,7 +500,7 @@ ALTER TABLE `configuracions`
 -- AUTO_INCREMENT de la tabla `historial_accions`
 --
 ALTER TABLE `historial_accions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- AUTO_INCREMENT de la tabla `migrations`
@@ -504,25 +518,25 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT de la tabla `recorrido_viajes`
 --
 ALTER TABLE `recorrido_viajes`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `solicitud_combustibles`
 --
 ALTER TABLE `solicitud_combustibles`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `unidads`
 --
 ALTER TABLE `unidads`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `unidad_solicitantes`
 --
 ALTER TABLE `unidad_solicitantes`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
@@ -534,7 +548,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `vehiculos`
 --
 ALTER TABLE `vehiculos`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restricciones para tablas volcadas

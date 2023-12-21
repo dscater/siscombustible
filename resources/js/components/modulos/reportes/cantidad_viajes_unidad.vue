@@ -3,8 +3,8 @@
         <section class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h1>Reportes - Lista de Usuarios</h1>
+                    <div class="col-sm-12">
+                        <h1>Reportes - Cantidad de Viajes por Unidad</h1>
                     </div>
                 </div>
             </div>
@@ -53,39 +53,38 @@
                                             <div
                                                 class="form-group col-md-12"
                                                 v-if="
-                                                    oReporte.filtro ==
-                                                    'Tipo de usuario'
+                                                    oReporte.filtro == 'Unidad'
                                                 "
                                             >
                                                 <label
                                                     :class="{
                                                         'text-danger':
-                                                            errors.tipo,
+                                                            errors.unidad_id,
                                                     }"
-                                                    >Seleccione*</label
+                                                    >Seleccione Unidad*</label
                                                 >
                                                 <el-select
-                                                    v-model="oReporte.tipo"
+                                                    v-model="oReporte.unidad_id"
                                                     filterable
                                                     placeholder="Seleccione"
                                                     class="d-block"
                                                     :class="{
                                                         'is-invalid':
-                                                            errors.tipo,
+                                                            errors.unidad_id,
                                                     }"
                                                 >
                                                     <el-option
-                                                        v-for="item in listTipos"
-                                                        :key="item"
-                                                        :label="item"
-                                                        :value="item"
+                                                        v-for="item in listUnidads"
+                                                        :key="item.id"
+                                                        :value="item.id"
+                                                        :label="item.nombre"
                                                     >
                                                     </el-option>
                                                 </el-select>
                                                 <span
                                                     class="error invalid-feedback"
-                                                    v-if="errors.tipo"
-                                                    v-text="errors.tipo[0]"
+                                                    v-if="errors.unidad_id"
+                                                    v-text="errors.unidad_id[0]"
                                                 ></span>
                                             </div>
                                             <div
@@ -175,32 +174,28 @@ export default {
             errors: [],
             oReporte: {
                 filtro: "Todos",
-                tipo: "",
+                unidad_id: "",
                 fecha_ini: "",
                 fecha_fin: "",
             },
             aFechas: [],
             enviando: false,
             textoBtn: "Generar Reporte",
-            listFiltro: [
-                "Todos",
-                "Tipo de usuario",
-                // "Rango de fechas",
-            ],
-            listTipos: [
-                "ADMINISTRADOR",
-                "DIRECTOR",
-                "ADMINISTRATIVO",
-                "ENCARGADO DE COMBUSTIBLE",
-                "CONDUCTOR",
-            ],
+            listFiltro: ["Todos", "Unidad", "Rango de fechas"],
+            listUnidads: [],
             errors: [],
         };
     },
     mounted() {
         this.loadingWindow.close();
+        this.getUnidads();
     },
     methods: {
+        getUnidads() {
+            axios.get(main_url + "/admin/unidads").then((response) => {
+                this.listUnidads = response.data.unidads;
+            });
+        },
         limpiarFormulario() {
             this.oReporte.filtro = "Todos";
         },
@@ -211,7 +206,7 @@ export default {
             };
             axios
                 .post(
-                    main_url + "/admin/reportes/usuarios",
+                    main_url + "/admin/reportes/cantidad_viajes_unidad",
                     this.oReporte,
                     config
                 )

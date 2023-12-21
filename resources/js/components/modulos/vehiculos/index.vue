@@ -305,22 +305,6 @@
                                                             ></i>
                                                         </b-button>
                                                         <b-button
-                                                            size="sm"
-                                                            pill
-                                                            variant="outline-info"
-                                                            class="btn-flat btn-block"
-                                                            title="Cambiar contraseña"
-                                                            @click="
-                                                                cambiarPassword(
-                                                                    row.item
-                                                                )
-                                                            "
-                                                        >
-                                                            <i
-                                                                class="fa fa-key"
-                                                            ></i>
-                                                        </b-button>
-                                                        <b-button
                                                             v-if="
                                                                 permisos.includes(
                                                                     'vehiculos.destroy'
@@ -525,51 +509,6 @@ export default {
                     this.listRegistros = res.data.vehiculos;
                     this.totalRows = res.data.total;
                 });
-        },
-        cambiarPassword(item) {
-            Swal.fire({
-                title: "Modificar contraseña",
-                html: "Vehiculo: " + item.full_name,
-                input: "text",
-                inputAttributes: {
-                    minlength: 4,
-                },
-                showCancelButton: true,
-                confirmButtonColor: "#17a2b8",
-                confirmButtonText: "Actualizar",
-                cancelButtonText: "Cancelar",
-                preConfirm: (texto) => {
-                    if (texto.length >= 4) {
-                        return axios
-                            .post(
-                                "/admin/vehiculos/updatePassword/" + item.id,
-                                {
-                                    password: texto,
-                                }
-                            )
-                            .then((response) => {
-                                Swal.fire({
-                                    icon: "success",
-                                    title: response.data.message,
-                                    showConfirmButton: false,
-                                    timer: 1500,
-                                });
-                            })
-                            .catch((error) => {
-                                Swal.fire({
-                                    icon: "error",
-                                    title: "Ocurrío un error al enviar la contraseña",
-                                    confirmButtonColor: "#e0a800",
-                                    confirmButtonText: `<span class="text-black">Aceptar</span>`,
-                                });
-                            });
-                    } else {
-                        Swal.showValidationMessage(
-                            "El texto debe contener al menos 6 caracteres"
-                        );
-                    }
-                },
-            });
         },
         eliminaVehiculo(id, descripcion) {
             Swal.fire({

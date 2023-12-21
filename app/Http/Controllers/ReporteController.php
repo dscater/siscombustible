@@ -145,10 +145,58 @@ class ReporteController extends Controller
     public function cantidad_viajes_conductor(Request $request)
     {
         $filtro = $request->filtro;
+        $user_id = $request->user_id;
+        $fecha_ini = $request->fecha_ini;
+        $fecha_fin = $request->fecha_fin;
+
+        $usuarios = User::where("tipo", "CONDUCTOR")->where('id', '!=', 1)->get();
+
+        if ($filtro != 'Todos') {
+            if ($filtro == 'Conductor') {
+                if ($user_id != '') {
+                    $usuarios = User::where("tipo", "CONDUCTOR")->where('id', '!=', 1)->where("id", $user_id)->get();
+                }
+            }
+        }
+
+        $pdf = PDF::loadView('reportes.cantidad_viajes_conductor', compact('usuarios', 'filtro', 'fecha_ini', 'fecha_fin'))->setPaper('letter', 'portrait');
+
+        // ENUMERAR LAS PÁGINAS USANDO CANVAS
+        $pdf->output();
+        $dom_pdf = $pdf->getDomPDF();
+        $canvas = $dom_pdf->get_canvas();
+        $alto = $canvas->get_height();
+        $ancho = $canvas->get_width();
+        $canvas->page_text($ancho - 90, $alto - 25, "Página {PAGE_NUM} de {PAGE_COUNT}", null, 9, array(0, 0, 0));
+
+        return $pdf->download('cantidad_viajes_conductor.pdf');
     }
     public function cantidad_combustible_conductor(Request $request)
     {
         $filtro = $request->filtro;
+        $user_id = $request->user_id;
+        $fecha_ini = $request->fecha_ini;
+        $fecha_fin = $request->fecha_fin;
+
+        $usuarios = User::where("tipo", "CONDUCTOR")->where('id', '!=', 1)->get();
+        if ($filtro != 'Todos') {
+            if ($filtro == 'Conductor') {
+                if ($user_id != '') {
+                    $usuarios = User::where("tipo", "CONDUCTOR")->where('id', '!=', 1)->where("id", $user_id)->get();
+                }
+            }
+        }
+        $pdf = PDF::loadView('reportes.cantidad_combustible_conductor', compact('usuarios', 'filtro', 'fecha_ini', 'fecha_fin'))->setPaper('letter', 'portrait');
+
+        // ENUMERAR LAS PÁGINAS USANDO CANVAS
+        $pdf->output();
+        $dom_pdf = $pdf->getDomPDF();
+        $canvas = $dom_pdf->get_canvas();
+        $alto = $canvas->get_height();
+        $ancho = $canvas->get_width();
+        $canvas->page_text($ancho - 90, $alto - 25, "Página {PAGE_NUM} de {PAGE_COUNT}", null, 9, array(0, 0, 0));
+
+        return $pdf->download('cantidad_combustible_conductor.pdf');
     }
     public function cantidad_viajes_unidad(Request $request)
     {

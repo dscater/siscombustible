@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Usuarios</title>
+    <title>CantidadViajesConductor</title>
     <style type="text/css">
         * {
             font-family: sans-serif;
@@ -138,65 +138,131 @@
             color: white;
         }
 
-        .txt_rojo {}
+        .bold {
+            font-weight: bold;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        .text-lg {
+            font-size: 9pt;
+        }
 
         .img_celda img {
             width: 45px;
+        }
+
+        .salto_pagina {
+            page-break-after: always;
+        }
+
+        .nombre_unidad {
+            text-align: center;
+            font-size: 10pt;
         }
     </style>
 </head>
 
 <body>
     @inject('configuracion', 'App\Models\Configuracion')
-    <div class="encabezado">
-        <div class="logo">
-            <img src="{{ asset('imgs/' . $configuracion->first()->logo) }}">
+    @php
+        $cont = 0;
+    @endphp
+    @foreach ($usuarios as $conductor)
+        <div class="encabezado">
+            <div class="logo">
+                <img src="{{ asset('imgs/' . $configuracion->first()->logo) }}">
+            </div>
+            <h2 class="titulo">
+                {{ $configuracion->first()->nombre_sistema }}
+            </h2>
+            <h4 class="texto">CANTIDAD DE VIAJES POR CONDUCTOR</h4>
+            <h4 class="fecha">Expedido: {{ date('d-m-Y') }}</h4>
         </div>
-        <h2 class="titulo">
-            {{ $configuracion->first()->nombre_sistema }}
-        </h2>
-        <h4 class="texto">LISTA DE USUARIOS</h4>
-        <h4 class="fecha">Expedido: {{ date('d-m-Y') }}</h4>
-    </div>
-    <table border="1">
-        <thead class="bg-principal">
-            <tr>
-                <th width="3%">N°</th>
-                <th width="5%">FOTO</th>
-                <th>USUARIO</th>
-                <th>PATERNO</th>
-                <th>MATERNO</th>
-                <th>NOMBRE(S)</th>
-                <th>DIRECCIÓN</th>
-                <th>EMAIL</th>
-                <th>TELÉFONO/CELULAR</th>
-                <th>TIPO DE USUARIO</th>
-                <th>ACCESO</th>
-                <th width="9%">FECHA DE REGISTRO</th>
-            </tr>
-        </thead>
-        <tbody>
-            @php
-                $cont = 1;
-            @endphp
-            @foreach ($usuarios as $user)
+        <table style="width:50%;margin:auto;margin-top:20px;">
+            <tbody>
                 <tr>
-                    <td class="centreado">{{ $cont++ }}</td>
-                    <td class="img_celda"><img src="{{ $user->path_image }}" alt="Foto"></td>
-                    <td>{{ $user->usuario }}</td>
-                    <td class="centreado">{{ $user->paterno }}</td>
-                    <td class="centreado">{{ $user->materno }}</td>
-                    <td class="centreado">{{ $user->nombre }}</td>
-                    <td class="centreado">{{ $user->dir }}</td>
-                    <td class="centreado">{{ $user->correo }}</td>
-                    <td class="centreado">{{ $user->fono }}</td>
-                    <td class="centreado">{{ $user->tipo }}</td>
-                    <td class="centreado">{{ $user->acceso == 1 ? 'HABILITADO' : 'DESHABILITADO' }}</td>
-                    <td class="centreado">{{ $user->fecha_registro }}</td>
+                    <td class="text-right bold text-lg" width="20%">Nombre:</td>
+                    <td class="text-lg">{{ $conductor->full_name }}</td>
                 </tr>
-            @endforeach
-        </tbody>
-    </table>
+                <tr>
+                    <td class="text-right bold text-lg" width="20%">C.I.:</td>
+                    <td class="text-lg">{{ $conductor->full_ci }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <table border="1">
+            <thead class="bg-principal">
+                <tr>
+                    <th width="8%">CÓDIGO</th>
+                    <th>DESCRIPCIÓN RECORRIDO</th>
+                    <th>FECHA INICIO</th>
+                    <th>FECHA FIN</th>
+                    <th>INICIO KILOMETRAJE</th>
+                    <th>FIN KILOMETRAJE</th>
+                    <th>INICIO COMBUSTIBLE LTS.</th>
+                    <th>FIN COMBUSTIBLE LTS.</th>
+                    <th>RESTANTE COMBUSTIBLE LTS</th>
+                    <th>OBSERVACIÓN</th>
+                </tr>
+            </thead>
+            <tbody>
+                @php
+                    $recorrido_viajes = App\Models\RecorridoViaje::select('recorrido_viajes.*')
+                        ->join('unidad_solicitantes', 'unidad_solicitantes.id', '=', 'recorrido_viajes.unidad_solicitante_id')
+                        ->join('solicitud_combustibles', 'solicitud_combustibles.unidad_solicitante_id', '=', 'unidad_solicitantes.id')
+                        ->where('solicitud_combustibles.user_id', $conductor->id)
+                        ->get();
+                    if ($filtro == 'Rango de fechas' && $fecha_ini != '' && $fecha_fin != '') {
+                        $recorrido_viajes = App\Models\RecorridoViaje::select('recorrido_viajes.*')
+                            ->join('unidad_solicitantes', 'unidad_solicitantes.id', '=', 'recorrido_viajes.unidad_solicitante_id')
+                            ->join('unidad_solicitantes', 'unidad_solicitantes.id', '=', 'solicitud_combustibles.unidad_solicitante_id')
+                            ->where('solicitud_combustibles.user_id', $conductor->id)
+                            ->whereBetween('recorrido_viajes.fecha_inicio', [$fecha_ini, $fecha_fin])
+                            ->get();
+                    }
+
+                    $total_inicio_combustible = 0;
+                    $total_fin_combustible = 0;
+                    $total_restante_combustible = 0;
+                @endphp
+                @foreach ($recorrido_viajes as $value)
+                    @php
+                        $total_inicio_combustible += (float) $value->inicio_combustible ? $value->inicio_combustible : 0;
+                        $total_fin_combustible += (float) $value->fin_combustible ? $value->fin_combustible : 0;
+                        $total_restante_combustible += (float) $value->restante_combustible ? $value->restante_combustible : 0;
+                    @endphp
+                    <tr>
+                        <td class="centreado">{{ $value->unidad_solicitante->codigo }}</td>
+                        <td class="centreado">{{ $value->descripcion_recorrido }}</td>
+                        <td class="centreado">{{ $value->fecha_inicio_t }}</td>
+                        <td class="centreado">{{ $value->fecha_fin_t }}</td>
+                        <td class="centreado">{{ $value->inicio_kilometraje }}</td>
+                        <td class="centreado">{{ $value->fin_kilometraje }}</td>
+                        <td class="centreado">{{ $value->inicio_combustible }}</td>
+                        <td class="centreado">{{ $value->fin_combustible }}</td>
+                        <td class="centreado">{{ $value->restante_combustible }}</td>
+                        <td class="centreado">{{ $value->observacion }}</td>
+                    </tr>
+                @endforeach
+                <tr>
+                    <td class="text-right text-lg bold" colspan="6">TOTAL</td>
+                    <td class="text-lg centreado bold">{{ $total_inicio_combustible }}</td>
+                    <td class="text-lg centreado bold">{{ $total_fin_combustible }}</td>
+                    <td class="text-lg centreado bold">{{ $total_restante_combustible }}</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+        @php
+            $cont++;
+        @endphp
+        @if ($cont < count($usuarios))
+            <div class="salto_pagina"></div>
+        @endif
+    @endforeach
 </body>
 
 </html>

@@ -3,8 +3,11 @@
         <section class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h1>Reportes - Lista de Usuarios</h1>
+                    <div class="col-sm-12">
+                        <h1>
+                            Reportes - Cantidad de Combustible entregado al
+                            Conductor
+                        </h1>
                     </div>
                 </div>
             </div>
@@ -54,38 +57,38 @@
                                                 class="form-group col-md-12"
                                                 v-if="
                                                     oReporte.filtro ==
-                                                    'Tipo de usuario'
+                                                    'Conductor'
                                                 "
                                             >
                                                 <label
                                                     :class="{
                                                         'text-danger':
-                                                            errors.tipo,
+                                                            errors.user_id,
                                                     }"
                                                     >Seleccione*</label
                                                 >
                                                 <el-select
-                                                    v-model="oReporte.tipo"
+                                                    v-model="oReporte.user_id"
                                                     filterable
                                                     placeholder="Seleccione"
                                                     class="d-block"
                                                     :class="{
                                                         'is-invalid':
-                                                            errors.tipo,
+                                                            errors.user_id,
                                                     }"
                                                 >
                                                     <el-option
-                                                        v-for="item in listTipos"
-                                                        :key="item"
-                                                        :label="item"
-                                                        :value="item"
+                                                        v-for="item in listConductors"
+                                                        :key="item.id"
+                                                        :value="item.id"
+                                                        :label="item.full_name"
                                                     >
                                                     </el-option>
                                                 </el-select>
                                                 <span
                                                     class="error invalid-feedback"
-                                                    v-if="errors.tipo"
-                                                    v-text="errors.tipo[0]"
+                                                    v-if="errors.user_id"
+                                                    v-text="errors.user_id[0]"
                                                 ></span>
                                             </div>
                                             <div
@@ -175,32 +178,28 @@ export default {
             errors: [],
             oReporte: {
                 filtro: "Todos",
-                tipo: "",
+                user_id: "",
                 fecha_ini: "",
                 fecha_fin: "",
             },
             aFechas: [],
             enviando: false,
             textoBtn: "Generar Reporte",
-            listFiltro: [
-                "Todos",
-                "Tipo de usuario",
-                // "Rango de fechas",
-            ],
-            listTipos: [
-                "ADMINISTRADOR",
-                "DIRECTOR",
-                "ADMINISTRATIVO",
-                "ENCARGADO DE COMBUSTIBLE",
-                "CONDUCTOR",
-            ],
+            listFiltro: ["Todos", "Conductor", "Rango de fechas"],
+            listConductors: [],
             errors: [],
         };
     },
     mounted() {
         this.loadingWindow.close();
+        this.getConductors();
     },
     methods: {
+        getConductors() {
+            axios.get(main_url + "/admin/conductors").then((response) => {
+                this.listConductors = response.data.usuarios;
+            });
+        },
         limpiarFormulario() {
             this.oReporte.filtro = "Todos";
         },
@@ -211,7 +210,7 @@ export default {
             };
             axios
                 .post(
-                    main_url + "/admin/reportes/usuarios",
+                    main_url + "/admin/reportes/cantidad_combustible_conductor",
                     this.oReporte,
                     config
                 )

@@ -92,7 +92,7 @@
                         "
                     >
                         ADMINISTRACIÓN
-                    </li>                    
+                    </li>
                     <li
                         class="nav-item"
                         v-if="permisos.includes('recorrido_viajes.index')"
@@ -206,7 +206,25 @@
 
                     <li
                         class="nav-header bg-navy"
-                        v-if="permisos.includes('reportes.usuarios')"
+                        v-if="
+                            permisos.includes('reportes.usuarios') ||
+                            permisos.includes('reportes.solicitud_unidad') ||
+                            permisos.includes(
+                                'reportes.cantidad_combustible_unidad'
+                            ) ||
+                            permisos.includes(
+                                'reportes.cantidad_viajes_conductor'
+                            ) ||
+                            permisos.includes(
+                                'reportes.cantidad_combustible_conductor'
+                            ) ||
+                            permisos.includes(
+                                'reportes.cantidad_viajes_unidad'
+                            ) ||
+                            permisos.includes(
+                                'reportes.g_cantidad_combustible_unidad'
+                            )
+                        "
                     >
                         REPORTES
                     </li>
@@ -220,6 +238,108 @@
                         >
                             <i class="fas fa-file-pdf nav-icon"></i>
                             <p>Lista de Usuarios</p>
+                        </router-link>
+                    </li>
+                    <li
+                        class="nav-item"
+                        v-if="permisos.includes('reportes.solicitud_unidad')"
+                    >
+                        <router-link
+                            :to="{ name: 'reportes.solicitud_unidad' }"
+                            class="nav-link"
+                        >
+                            <i class="fas fa-file-pdf nav-icon"></i>
+                            <p>Solicitud de Unidad</p>
+                        </router-link>
+                    </li>
+                    <li
+                        class="nav-item"
+                        v-if="
+                            permisos.includes(
+                                'reportes.cantidad_combustible_unidad'
+                            )
+                        "
+                    >
+                        <router-link
+                            :to="{
+                                name: 'reportes.cantidad_combustible_unidad',
+                            }"
+                            class="nav-link"
+                        >
+                            <i class="fas fa-file-pdf nav-icon"></i>
+                            <p>Cantidad de combustible por Unidad</p>
+                        </router-link>
+                    </li>
+                    <li
+                        class="nav-item"
+                        v-if="
+                            permisos.includes(
+                                'reportes.cantidad_viajes_conductor'
+                            )
+                        "
+                    >
+                        <router-link
+                            :to="{
+                                name: 'reportes.cantidad_viajes_conductor',
+                            }"
+                            class="nav-link"
+                        >
+                            <i class="fas fa-file-pdf nav-icon"></i>
+                            <p>Cantidad de Viajes por Conductor</p>
+                        </router-link>
+                    </li>
+                    <li
+                        class="nav-item"
+                        v-if="
+                            permisos.includes(
+                                'reportes.cantidad_combustible_conductor'
+                            )
+                        "
+                    >
+                        <router-link
+                            :to="{
+                                name: 'reportes.cantidad_combustible_conductor',
+                            }"
+                            class="nav-link"
+                        >
+                            <i class="fas fa-file-pdf nav-icon"></i>
+                            <p>Cantidad de Combustible entregado al Conductor</p>
+                        </router-link>
+                    </li>
+                    <li
+                        class="nav-item"
+                        v-if="
+                            permisos.includes(
+                                'reportes.cantidad_viajes_unidad'
+                            )
+                        "
+                    >
+                        <router-link
+                            :to="{
+                                name: 'reportes.cantidad_viajes_unidad',
+                            }"
+                            class="nav-link"
+                        >
+                            <i class="fas fa-file-pdf nav-icon"></i>
+                            <p>Cantidad de Viajes por Unidad</p>
+                        </router-link>
+                    </li>
+                    <li
+                        class="nav-item"
+                        v-if="
+                            permisos.includes(
+                                'reportes.g_cantidad_combustible_unidad'
+                            )
+                        "
+                    >
+                        <router-link
+                            :to="{
+                                name: 'reportes.g_cantidad_combustible_unidad',
+                            }"
+                            class="nav-link"
+                        >
+                            <i class="fas fa-chart-bar nav-icon"></i>
+                            <p>Cantidad de Combustible Entregado por Unidad</p>
                         </router-link>
                     </li>
                     <li class="nav-header bg-navy">OTRAS OPCIONES</li>

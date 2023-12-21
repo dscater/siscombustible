@@ -34,7 +34,18 @@ class RecorridoViajeController extends Controller
 
     public function index(Request $request)
     {
-        $recorrido_viajes = RecorridoViaje::with(["unidad_solicitante"])->orderBy("id", "desc")->get();
+        $recorrido_viajes = [];
+        if (Auth::user()->tipo == 'CONDUCTOR') {
+            $recorrido_viajes = RecorridoViaje::select("recorrido_viajes.*")
+                ->with(["unidad_solicitante"])
+                ->join("unidad_solicitantes", "unidad_solicitantes.id", "=", "recorrido_viajes.unidad_solicitante_id")
+                ->join("solicitud_combustibles", "solicitud_combustibles.unidad_solicitante_id", "=", "unidad_solicitantes.id")
+                ->where("solicitud_combustibles.user_id", Auth::user()->id)
+                ->orderBy("id", "desc")->get();
+        } else {
+            $recorrido_viajes = RecorridoViaje::with(["unidad_solicitante"])->orderBy("id", "desc")->get();
+        }
+
         return response()->JSON(['recorrido_viajes' => $recorrido_viajes, 'total' => count($recorrido_viajes)], 200);
     }
 

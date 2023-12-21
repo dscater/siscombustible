@@ -201,6 +201,11 @@
                                                             ></i>
                                                         </b-button>
                                                         <b-button
+                                                            v-if="
+                                                                permisos.includes(
+                                                                    'usuarios.update_password'
+                                                                )
+                                                            "
                                                             size="sm"
                                                             pill
                                                             variant="outline-info"
@@ -299,7 +304,10 @@ export default {
     data() {
         return {
             user: JSON.parse(localStorage.getItem("user")),
-            permisos: localStorage.getItem("permisos"),
+            permisos:
+                typeof localStorage.getItem("permisos") == "string"
+                    ? JSON.parse(localStorage.getItem("permisos"))
+                    : localStorage.getItem("permisos"),
             search: "",
             listRegistros: [],
             showOverlay: false,
@@ -429,9 +437,12 @@ export default {
                 preConfirm: (texto) => {
                     if (texto.length >= 4) {
                         return axios
-                            .post("/admin/conductors/updatePassword/" + item.id, {
-                                password: texto,
-                            })
+                            .post(
+                                "/admin/conductors/updatePassword/" + item.id,
+                                {
+                                    password: texto,
+                                }
+                            )
                             .then((response) => {
                                 Swal.fire({
                                     icon: "success",

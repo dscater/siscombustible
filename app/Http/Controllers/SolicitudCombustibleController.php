@@ -27,7 +27,12 @@ class SolicitudCombustibleController extends Controller
 
     public function index(Request $request)
     {
-        $solicitud_combustibles = SolicitudCombustible::with(["unidad_solicitante", "user", "vehiculo"])->orderBy("id", "desc")->get();
+        $solicitud_combustibles = [];
+        if (Auth::user()->tipo == 'CONDUCTOR') {
+            $solicitud_combustibles = SolicitudCombustible::with(["unidad_solicitante", "user", "vehiculo"])->where("user_id", Auth::user()->id)->orderBy("id", "desc")->get();
+        } else {
+            $solicitud_combustibles = SolicitudCombustible::with(["unidad_solicitante", "user", "vehiculo"])->orderBy("id", "desc")->get();
+        }
         return response()->JSON(['solicitud_combustibles' => $solicitud_combustibles, 'total' => count($solicitud_combustibles)], 200);
     }
 

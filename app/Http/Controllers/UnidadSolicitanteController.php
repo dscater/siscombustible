@@ -26,7 +26,16 @@ class UnidadSolicitanteController extends Controller
 
     public function index(Request $request)
     {
-        $unidad_solicitantes = UnidadSolicitante::with(["unidad"])->orderBy("id", "desc")->get();
+        $unidad_solicitantes = [];
+        if (Auth::user()->tipo == 'CONDUCTOR') {
+            $unidad_solicitantes = UnidadSolicitante::select("unidad_solicitantes.*")
+                ->with(["unidad"])
+                ->join("solicitud_combustibles", "solicitud_combustibles.unidad_solicitante_id", "=", "unidad_solicitantes.id")
+                ->where("solicitud_combustibles.user_id", Auth::user()->id)
+                ->orderBy("id", "desc")->get();
+        } else {
+            $unidad_solicitantes = UnidadSolicitante::with(["unidad"])->orderBy("id", "desc")->get();
+        }
         return response()->JSON(['unidad_solicitantes' => $unidad_solicitantes, 'total' => count($unidad_solicitantes)], 200);
     }
 

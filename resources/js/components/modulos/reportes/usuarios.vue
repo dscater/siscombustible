@@ -187,7 +187,13 @@ export default {
                 "Tipo de usuario",
                 // "Rango de fechas",
             ],
-            listTipos: ["ADMINISTRADOR", "AUXILIAR"],
+            listTipos: [
+                "ADMINISTRADOR",
+                "DIRECTOR",
+                "ADMINISTRATIVO",
+                "ENCARGADO DE COMBUSTIBLE",
+                "CONDUCTOR",
+            ],
             errors: [],
         };
     },

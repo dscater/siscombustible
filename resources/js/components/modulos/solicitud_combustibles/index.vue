@@ -185,6 +185,11 @@ export default {
             showOverlay: false,
             fields: [
                 {
+                    key: "id",
+                    label: "Código",
+                    sortable: true,
+                },
+                {
                     key: "unidad_solicitante.full_name",
                     label: "Código Unidad Solicitante",
                     sortable: true,

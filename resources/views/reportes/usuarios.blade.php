@@ -45,10 +45,9 @@
 
         .logo img {
             position: absolute;
-            width: 200px;
-            height: 90px;
+            height: 120px;
             top: -20px;
-            left: 0px;
+            left: 10px;
         }
 
         h2.titulo {
@@ -135,7 +134,7 @@
         }
 
         .bg-principal {
-            background: #03a898;
+            background: #161717;
             color: white;
         }
 
@@ -172,7 +171,7 @@
                 <th>EMAIL</th>
                 <th>TELÉFONO/CELULAR</th>
                 <th>TIPO DE USUARIO</th>
-                <th>ESTADO</th>
+                <th>ACCESO</th>
                 <th width="9%">FECHA DE REGISTRO</th>
             </tr>
         </thead>
@@ -192,7 +191,7 @@
                     <td class="centreado">{{ $user->correo }}</td>
                     <td class="centreado">{{ $user->fono }}</td>
                     <td class="centreado">{{ $user->tipo }}</td>
-                    <td class="centreado">{{ $user->estado == 1 ? 'HABILITADO' : 'DESHABILITADO' }}</td>
+                    <td class="centreado">{{ $user->acceso == 1 ? 'HABILITADO' : 'DESHABILITADO' }}</td>
                     <td class="centreado">{{ $user->fecha_registro }}</td>
                 </tr>
             @endforeach

@@ -12,7 +12,12 @@ use App\Models\GrupoRecurso;
 use App\Models\HistorialAccion;
 use App\Models\Horario;
 use App\Models\Inscripcion;
+use App\Models\RecorridoViaje;
+use App\Models\SolicitudCombustible;
+use App\Models\Unidad;
+use App\Models\UnidadSolicitante;
 use App\Models\User;
+use App\Models\Vehiculo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -57,6 +62,7 @@ class UserController extends Controller
             'usuarios.create',
             'usuarios.edit',
             'usuarios.destroy',
+            'usuarios.update_password',
 
             'unidads.index',
             'unidads.create',
@@ -92,11 +98,87 @@ class UserController extends Controller
             'configuracion.edit',
 
             "reportes.usuarios",
+            "reportes.solicitud_unidad",
+            "reportes.cantidad_combustible_unidad",
+            "reportes.cantidad_viajes_conductor",
+            "reportes.cantidad_combustible_conductor",
+            "reportes.cantidad_viajes_unidad",
+            "reportes.g_cantidad_combustible_unidad",
         ],
-        "DIRECTOR" => [],
-        "ADMINISTRATIVO" => [],
-        "ENCARGADO DE COMBUSTIBLE" => [],
-        "CONDUCTOR" => [],
+        "DIRECTOR" => [
+            'unidads.index',
+
+            'conductors.index',
+            'vehiculos.index',
+
+            'unidad_solicitantes.index',
+
+            'solicitud_combustibles.index',
+
+            'recorrido_viajes.index',
+        ],
+        "ADMINISTRATIVO" => [
+            'unidads.index',
+            'unidads.create',
+            'unidads.edit',
+            'unidads.destroy',
+
+            'conductors.index',
+            'conductors.create',
+            'conductors.edit',
+            'conductors.destroy',
+
+            'vehiculos.index',
+            'vehiculos.create',
+            'vehiculos.edit',
+            'vehiculos.destroy',
+
+            'unidad_solicitantes.index',
+            'unidad_solicitantes.create',
+            'unidad_solicitantes.edit',
+            'unidad_solicitantes.destroy',
+
+            'solicitud_combustibles.index',
+
+            'recorrido_viajes.index',
+        ],
+        "ENCARGADO DE COMBUSTIBLE" => [
+            'conductors.index',
+            'conductors.create',
+            'conductors.edit',
+            'conductors.destroy',
+
+            'vehiculos.index',
+            'vehiculos.create',
+            'vehiculos.edit',
+            'vehiculos.destroy',
+
+            'unidad_solicitantes.index',
+            'unidad_solicitantes.create',
+            'unidad_solicitantes.edit',
+            'unidad_solicitantes.destroy',
+
+            'recorrido_viajes.index',
+            'recorrido_viajes.create',
+            'recorrido_viajes.edit',
+            'recorrido_viajes.destroy',
+        ],
+        "CONDUCTOR" => [
+            'solicitud_combustibles.index',
+            'solicitud_combustibles.create',
+            'solicitud_combustibles.edit',
+            'solicitud_combustibles.destroy',
+
+            'recorrido_viajes.index',
+            'recorrido_viajes.create',
+            'recorrido_viajes.edit',
+            'recorrido_viajes.destroy',
+
+            'recorrido_viajes.index',
+            'recorrido_viajes.create',
+            'recorrido_viajes.edit',
+            'recorrido_viajes.destroy',
+        ],
     ];
 
 
@@ -331,144 +413,79 @@ class UserController extends Controller
     {
         $tipo = Auth::user()->tipo;
         $array_infos = [];
-        if (in_array('inscripcions.index', $this->permisos[$tipo])) {
+        if (in_array('vehiculos.index', $this->permisos[$tipo])) {
             $array_infos[] = [
-                'label' => 'Inscripciones',
-                'cantidad' => count(Inscripcion::all()),
+                'label' => 'Vehículos',
+                'cantidad' => count(Vehiculo::all()),
                 'color' => 'bg-dark',
-                'icon' => asset("imgs/icon_inscripcion.png"),
-                "url" => "inscripcions.index"
+                'icon' => asset("imgs/cars.png"),
+                "url" => "vehiculos.index"
             ];
         }
 
-        if (in_array('horarios.index', $this->permisos[$tipo])) {
-            $array_infos[] = [
-                'label' => 'Horarios',
-                'cantidad' => count(Horario::all()),
-                'color' => 'bg-dark',
-                'icon' => asset("imgs/icon_horarios.png"),
-                "url" => "horarios.index"
-            ];
+        if (in_array('conductors.index', $this->permisos[$tipo])) {
+            if (in_array('conductors.index', $this->permisos[$tipo])) {
+                $array_infos[] = [
+                    'label' => 'Conductores',
+                    'cantidad' => count(User::where("tipo", "CONDUCTOR")->where('id', '!=', 1)->get()),
+                    'color' => 'bg-dark',
+                    'icon' => asset("imgs/users.png"),
+                    "url" => "conductors.index"
+                ];
+            }
         }
 
-        if (in_array('gestoria_solicituds.index', $this->permisos[$tipo])) {
+        if (in_array('unidad_solicitantes.index', $this->permisos[$tipo])) {
             $array_infos[] = [
-                'label' => 'Gestoría Solicitudes',
-                'cantidad' => count(GestoriaSolicitud::all()),
+                'label' => 'Unidad Solicitante',
+                'cantidad' => count(UnidadSolicitante::all()),
                 'color' => 'bg-dark',
                 'icon' => asset("imgs/icon_solicitud.png"),
-                "url" => "gestoria_solicituds.index"
-            ];
-        }
-        if (in_array('gestoria_tips.index', $this->permisos[$tipo])) {
-            $array_infos[] = [
-                'label' => 'Tips de Visa',
-                'cantidad' => count(GestoriaTip::all()),
-                'color' => 'bg-dark',
-                'icon' => asset("imgs/icon_tips.png"),
-                "url" => "gestoria_tips.index"
+                "url" => "unidad_solicitantes.index"
             ];
         }
 
-        if (in_array('users.index', $this->permisos[$tipo])) {
+        if (in_array('solicitud_combustibles.index', $this->permisos[$tipo])) {
+            $array_infos[] = [
+                'label' => 'Solicitud Combustible',
+                'cantidad' => count(SolicitudCombustible::all()),
+                'color' => 'bg-dark',
+                'icon' => asset("imgs/icon_inscripcion.png"),
+                "url" => "solicitud_combustibles.index"
+            ];
+        }
+
+        if (in_array('recorrido_viajes.index', $this->permisos[$tipo])) {
+            $array_infos[] = [
+                'label' => 'Recorrido de Viajes',
+                'cantidad' => count(RecorridoViaje::all()),
+                'color' => 'bg-dark',
+                'icon' => asset("imgs/renewal.png"),
+                "url" => "recorrido_viajes.index"
+            ];
+        }
+
+        if (in_array('unidads.index', $this->permisos[$tipo])) {
+            $array_infos[] = [
+                'label' => 'Unidades',
+                'cantidad' => count(Unidad::all()),
+                'color' => 'bg-dark',
+                'icon' => asset("imgs/list.png"),
+                "url" => "unidads.index"
+            ];
+        }
+
+        if (in_array('usuarios.index', $this->permisos[$tipo])) {
             if (in_array('usuarios.index', $this->permisos[$tipo])) {
                 $array_infos[] = [
                     'label' => 'Usuarios',
-                    'cantidad' => count(User::where('id', '!=', 1)->get()),
+                    'cantidad' => count(User::whereNotIn("tipo", ["CONDUCTOR"])->where('id', '!=', 1)->get()),
                     'color' => 'bg-dark',
                     'icon' => asset("imgs/icon_users.png"),
                     "url" => "usuarios.index"
                 ];
             }
         }
-
-        if (in_array('cursos.index', $this->permisos[$tipo])) {
-            $array_infos[] = [
-                'label' => 'Cursos',
-                'cantidad' => count(Curso::all()),
-                'color' => 'bg-dark',
-                'icon' => asset("imgs/icon_recursos.png"),
-                "url" => "cursos.index"
-            ];
-        }
-
-        if (in_array('grupo_recursos.index', $this->permisos[$tipo])) {
-            $grupo_recursos = GrupoRecurso::all();
-            $user = Auth::user();
-            if ($user->tipo == 'PROFESOR') {
-                $id_grupos_user = GrupoProfesor::where("user_id", $user->id)->pluck("grupo_id");
-                $grupo_recursos = GrupoRecurso::whereIn("grupo_id", $id_grupos_user)->get();
-            }
-            $array_infos[] = [
-                'label' => 'Recursos',
-                'cantidad' => count($grupo_recursos),
-                'color' => 'bg-dark',
-                'icon' => asset("imgs/icon_recursos.png"),
-                "url" => "grupo_recursos.index"
-            ];
-        }
-
-        if (in_array('comunicados.index', $this->permisos[$tipo])) {
-            $comunicados = Comunicado::all();
-            $user = Auth::user();
-            if ($user->tipo == 'PROFESOR') {
-                $id_grupos_user = GrupoProfesor::where("user_id", $user->id)->pluck("grupo_id");
-                $comunicados = Comunicado::whereIn("grupo_id", $id_grupos_user)->get();
-            }
-
-            $array_infos[] = [
-                'label' => 'Comunicados',
-                'cantidad' => count($comunicados),
-                'color' => 'bg-dark',
-                'icon' => asset("imgs/icon_recursos.png"),
-                "url" => "comunicados.index"
-            ];
-        }
-
-        if (in_array('estudiante_cursos.index', $this->permisos[$tipo])) {
-            $user = Auth::user();
-            $inscripcion = Inscripcion::where("user_id", $user->id)->get()->first();
-            $asignacion_grupos = AsignacionGrupo::where("inscripcion_id", $inscripcion->id)->get();
-            $array_infos[] = [
-                'label' => 'Cursos',
-                'cantidad' => count($asignacion_grupos),
-                'color' => 'bg-dark',
-                'icon' => asset("imgs/icon_recursos.png"),
-                "url" => "estudiante_cursos.index",
-                "col" => "col-md-4 col-sm-4"
-            ];
-        }
-
-        if (in_array('grupo_recursos.estudiante_recursos', $this->permisos[$tipo])) {
-            $user = Auth::user();
-            $inscripcion = Inscripcion::where("user_id", $user->id)->get()->first();
-            $id_grupos_user = AsignacionGrupo::where("inscripcion_id", $inscripcion->id)->pluck("grupo_id");
-            $grupo_recursos = GrupoRecurso::whereIn("grupo_id", $id_grupos_user)->get();
-            $array_infos[] = [
-                'label' => 'Recursos',
-                'cantidad' => count($grupo_recursos),
-                'color' => 'bg-dark',
-                'icon' => asset("imgs/icon_recursos.png"),
-                "url" => "grupo_recursos.estudiante_recursos",
-                "col" => "col-md-4 col-sm-4"
-            ];
-        }
-
-        if (in_array('comunicados.estudiantes', $this->permisos[$tipo])) {
-            $user = Auth::user();
-            $inscripcion = Inscripcion::where("user_id", $user->id)->get()->first();
-            $id_grupos_user = AsignacionGrupo::where("inscripcion_id", $inscripcion->id)->pluck("grupo_id");
-            $comunicados = Comunicado::whereIn("grupo_id", $id_grupos_user)->get();
-            $array_infos[] = [
-                'label' => 'Comunicados',
-                'cantidad' => count($comunicados),
-                'color' => 'bg-dark',
-                'icon' => asset("imgs/icon_recursos.png"),
-                "url" => "comunicados.estudiantes",
-                "col" => "col-md-4 col-sm-4"
-            ];
-        }
-
 
         return response()->JSON($array_infos);
     }

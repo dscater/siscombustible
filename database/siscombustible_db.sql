@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 20-12-2023 a las 16:16:54
+-- Tiempo de generación: 21-12-2023 a las 15:23:05
 -- Versión del servidor: 8.0.30
--- Versión de PHP: 8.1.10
+-- Versión de PHP: 7.4.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -41,7 +41,8 @@ CREATE TABLE `conductors` (
 --
 
 INSERT INTO `conductors` (`id`, `user_id`, `licencia`, `observacion`, `created_at`, `updated_at`) VALUES
-(1, 3, 'C', 'OBS', '2023-12-19 16:31:52', '2023-12-19 16:34:34');
+(1, 3, 'C', 'OBS', '2023-12-19 16:31:52', '2023-12-19 16:34:34'),
+(3, 7, 'B', '', '2023-12-21 13:40:24', '2023-12-21 13:40:24');
 
 -- --------------------------------------------------------
 
@@ -143,7 +144,17 @@ INSERT INTO `historial_accions` (`id`, `user_id`, `accion`, `descripcion`, `dato
 (44, 1, 'ELIMINACIÓN', 'EL USUARIO  ELIMINÓ UNA SOLICITUD DE COMBUSTIBLE', 'combustible: 1<br/>created_at: 2023-12-20 11:25:39<br/>fecha_entrega: 2023-12-20<br/>fecha_registro: 2023-12-20<br/>id: 1<br/>nro_vale: 1234<br/>observacion: OBS.SOLICITUD<br/>unidad_solicitante_id: 1<br/>updated_at: 2023-12-20 11:25:54<br/>user_id: 3<br/>vehiculo_id: 2<br/>', NULL, 'SOLICITUD DE COMBUSTIBLE', '2023-12-20', '11:26:43', '2023-12-20 15:26:43', '2023-12-20 15:26:43'),
 (45, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA SOLICITUD DE COMBUSTIBLE', 'combustible: 10<br/>created_at: 2023-12-20 11:27:06<br/>fecha_entrega: 2023-12-20<br/>fecha_registro: 2023-12-20<br/>id: 1<br/>nro_vale: 123<br/>observacion: OBS<br/>unidad_solicitante_id: 1<br/>updated_at: 2023-12-20 11:27:06<br/>user_id: 3<br/>vehiculo_id: 2<br/>', NULL, 'SOLICITUD DE COMBUSTIBLE', '2023-12-20', '11:27:06', '2023-12-20 15:27:06', '2023-12-20 15:27:06'),
 (46, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UN RECORRIDO DE VIAJE', 'created_at: 2023-12-20 12:15:01<br/>descripcion_recorrido: DESC. RECORRIDO<br/>fecha_fin: 2023-12-12<br/>fecha_inicio: 2023-12-01<br/>fecha_registro: 2023-12-20<br/>fin_combustible: 1<br/>fin_kilometraje: 1500<br/>id: 1<br/>inicio_combustible: 5<br/>inicio_kilometraje: 1000<br/>observacion: OBS.<br/>restante_combustible: 4<br/>unidad_solicitante_id: 1<br/>updated_at: 2023-12-20 12:15:01<br/>', NULL, 'RECORRIDO DE VIAJES', '2023-12-20', '12:15:01', '2023-12-20 16:15:01', '2023-12-20 16:15:01'),
-(47, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN RECORRIDO DE VIAJE', 'created_at: 2023-12-20 12:15:01<br/>descripcion_recorrido: DESC. RECORRIDO<br/>fecha_fin: 2023-12-12<br/>fecha_inicio: 2023-12-01<br/>fecha_registro: 2023-12-20<br/>fin_combustible: 1<br/>fin_kilometraje: 1500<br/>id: 1<br/>inicio_combustible: 5<br/>inicio_kilometraje: 1000<br/>observacion: OBS.<br/>restante_combustible: 4<br/>unidad_solicitante_id: 1<br/>updated_at: 2023-12-20 12:15:01<br/>', 'created_at: 2023-12-20 12:15:01<br/>descripcion_recorrido: DESC. RECORRIDO<br/>fecha_fin: 2023-12-12<br/>fecha_inicio: 2023-12-01<br/>fecha_registro: 2023-12-20<br/>fin_combustible: 4<br/>fin_kilometraje: 1500<br/>id: 1<br/>inicio_combustible: 5<br/>inicio_kilometraje: 1000<br/>observacion: OBS.<br/>restante_combustible: 4<br/>unidad_solicitante_id: 1<br/>updated_at: 2023-12-20 12:16:16<br/>', 'RECORRIDO DE VIAJES', '2023-12-20', '12:16:16', '2023-12-20 16:16:16', '2023-12-20 16:16:16');
+(47, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN RECORRIDO DE VIAJE', 'created_at: 2023-12-20 12:15:01<br/>descripcion_recorrido: DESC. RECORRIDO<br/>fecha_fin: 2023-12-12<br/>fecha_inicio: 2023-12-01<br/>fecha_registro: 2023-12-20<br/>fin_combustible: 1<br/>fin_kilometraje: 1500<br/>id: 1<br/>inicio_combustible: 5<br/>inicio_kilometraje: 1000<br/>observacion: OBS.<br/>restante_combustible: 4<br/>unidad_solicitante_id: 1<br/>updated_at: 2023-12-20 12:15:01<br/>', 'created_at: 2023-12-20 12:15:01<br/>descripcion_recorrido: DESC. RECORRIDO<br/>fecha_fin: 2023-12-12<br/>fecha_inicio: 2023-12-01<br/>fecha_registro: 2023-12-20<br/>fin_combustible: 4<br/>fin_kilometraje: 1500<br/>id: 1<br/>inicio_combustible: 5<br/>inicio_kilometraje: 1000<br/>observacion: OBS.<br/>restante_combustible: 4<br/>unidad_solicitante_id: 1<br/>updated_at: 2023-12-20 12:16:16<br/>', 'RECORRIDO DE VIAJES', '2023-12-20', '12:16:16', '2023-12-20 16:16:16', '2023-12-20 16:16:16'),
+(48, 1, 'CREACIÓN', 'EL USUARIO admin REGISTRO UN USUARIO', 'acceso: 0<br/>ci: 3333<br/>ci_exp: LP<br/>correo: eduardo@gmail.com<br/>created_at: 2023-12-21 09:12:33<br/>dir: LOS OLIVOS<br/>fecha_registro: 2023-12-21<br/>fono: 66666666<br/>foto: default.png<br/>id: 5<br/>materno: MAMANI<br/>nombre: EDUARDO<br/>password: $2y$10$Zl1QN3F2aOJpZK/DbVzMIOrLtt58CN3JGpGXdyfUp1HBvJE.ksKYa<br/>paterno: MAMANI<br/>tipo: DIRECTOR<br/>updated_at: 2023-12-21 09:12:33<br/>usuario: EMAMANI<br/>', NULL, 'USUARIOS', '2023-12-21', '09:12:33', '2023-12-21 13:12:33', '2023-12-21 13:12:33'),
+(49, 1, 'CREACIÓN', 'EL USUARIO admin REGISTRO UN USUARIO', 'acceso: 1<br/>ci: 4444<br/>ci_exp: SC<br/>correo: jaime@gmail.com<br/>created_at: 2023-12-21 09:13:10<br/>dir: LOS OLIVOS<br/>fecha_registro: 2023-12-21<br/>fono: 77777777<br/>foto: default.png<br/>id: 6<br/>materno: CONDORI<br/>nombre: JAIME<br/>password: $2y$10$9/yPhubuhjBz.x94KIJLTuaOONRVzeeRB6pI.dK6MB2LN4WlSCOPG<br/>paterno: CONDORI<br/>tipo: ADMINISTRATIVO<br/>updated_at: 2023-12-21 09:13:10<br/>usuario: JCONDORI<br/>', NULL, 'USUARIOS', '2023-12-21', '09:13:10', '2023-12-21 13:13:10', '2023-12-21 13:13:10'),
+(50, 1, 'MODIFICACIÓN', 'EL USUARIO admin MODIFICÓ UN USUARIO', 'acceso: 0<br/>ci: 3333<br/>ci_exp: LP<br/>correo: eduardo@gmail.com<br/>created_at: 2023-12-21 09:12:33<br/>dir: LOS OLIVOS<br/>fecha_registro: 2023-12-21<br/>fono: 66666666<br/>foto: default.png<br/>id: 5<br/>materno: MAMANI<br/>nombre: EDUARDO<br/>password: $2y$10$Zl1QN3F2aOJpZK/DbVzMIOrLtt58CN3JGpGXdyfUp1HBvJE.ksKYa<br/>paterno: MAMANI<br/>tipo: DIRECTOR<br/>updated_at: 2023-12-21 09:12:33<br/>usuario: EMAMANI<br/>', 'acceso: 1<br/>ci: 3333<br/>ci_exp: LP<br/>correo: eduardo@gmail.com<br/>created_at: 2023-12-21 09:12:33<br/>dir: LOS OLIVOS<br/>fecha_registro: 2023-12-21<br/>fono: 66666666<br/>foto: default.png<br/>id: 5<br/>materno: MAMANI<br/>nombre: EDUARDO<br/>password: $2y$10$Zl1QN3F2aOJpZK/DbVzMIOrLtt58CN3JGpGXdyfUp1HBvJE.ksKYa<br/>paterno: MAMANI<br/>tipo: DIRECTOR<br/>updated_at: 2023-12-21 09:13:16<br/>usuario: EMAMANI<br/>', 'USUARIOS', '2023-12-21', '09:13:16', '2023-12-21 13:13:16', '2023-12-21 13:13:16'),
+(51, 1, 'CREACIÓN', 'EL USUARIO admin REGISTRO UN CONDUCTOR', 'acceso: 0<br/>ci: 5555<br/>ci_exp: LP<br/>correo: <br/>created_at: 2023-12-21 09:40:24<br/>dir: LOS OLIVOS<br/>fecha_registro: 2023-12-21<br/>fono: 67676767<br/>foto: 1703166024_ACONTRERAS.jpg<br/>id: 7<br/>materno: MAMANI<br/>nombre: ALEX<br/>password: $2y$10$2W0woyGsd0g8.UYSSi83z.hww7tVyCXO59aB612tgJl98fAUgYkGa<br/>paterno: CONTRERAS<br/>tipo: CONDUCTOR<br/>updated_at: 2023-12-21 09:40:24<br/>usuario: ACONTRERAS<br/>', NULL, 'CONDUCTORES', '2023-12-21', '09:40:24', '2023-12-21 13:40:24', '2023-12-21 13:40:24'),
+(52, 1, 'MODIFICACIÓN', 'EL USUARIO admin MODIFICÓ UN USUARIO CONDUCTOR', 'acceso: 0<br/>ci: 5555<br/>ci_exp: LP<br/>correo: <br/>created_at: 2023-12-21 09:40:24<br/>dir: LOS OLIVOS<br/>fecha_registro: 2023-12-21<br/>fono: 67676767<br/>foto: 1703166024_ACONTRERAS.jpg<br/>id: 7<br/>materno: MAMANI<br/>nombre: ALEX<br/>password: $2y$10$2W0woyGsd0g8.UYSSi83z.hww7tVyCXO59aB612tgJl98fAUgYkGa<br/>paterno: CONTRERAS<br/>tipo: CONDUCTOR<br/>updated_at: 2023-12-21 09:40:24<br/>usuario: ACONTRERAS<br/>', 'acceso: 1<br/>ci: 5555<br/>ci_exp: LP<br/>correo: <br/>created_at: 2023-12-21 09:40:24<br/>dir: LOS OLIVOS<br/>fecha_registro: 2023-12-21<br/>fono: 67676767<br/>foto: 1703166024_ACONTRERAS.jpg<br/>id: 7<br/>materno: MAMANI<br/>nombre: ALEX<br/>password: $2y$10$2W0woyGsd0g8.UYSSi83z.hww7tVyCXO59aB612tgJl98fAUgYkGa<br/>paterno: CONTRERAS<br/>tipo: CONDUCTOR<br/>updated_at: 2023-12-21 09:40:31<br/>usuario: ACONTRERAS<br/>', 'CONDUCTORES', '2023-12-21', '09:40:31', '2023-12-21 13:40:31', '2023-12-21 13:40:31'),
+(53, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA SOLICITUD DE COMBUSTIBLE', 'combustible: 10<br/>created_at: 2023-12-20 11:27:06<br/>fecha_entrega: 2023-12-20<br/>fecha_registro: 2023-12-20<br/>id: 1<br/>nro_vale: 123<br/>observacion: OBS<br/>unidad_solicitante_id: 1<br/>updated_at: 2023-12-20 11:27:06<br/>user_id: 3<br/>vehiculo_id: 2<br/>', 'combustible: 10<br/>created_at: 2023-12-20 11:27:06<br/>fecha_entrega: 2023-12-20<br/>fecha_registro: 2023-12-20<br/>id: 1<br/>nro_vale: 123<br/>observacion: OBS<br/>unidad_solicitante_id: 1<br/>updated_at: 2023-12-21 09:40:45<br/>user_id: 7<br/>vehiculo_id: 2<br/>', 'SOLICITUD DE COMBUSTIBLE', '2023-12-21', '09:40:45', '2023-12-21 13:40:45', '2023-12-21 13:40:45'),
+(54, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA SOLICITUD DE COMBUSTIBLE', 'combustible: 10<br/>created_at: 2023-12-20 11:27:06<br/>fecha_entrega: 2023-12-20<br/>fecha_registro: 2023-12-20<br/>id: 1<br/>nro_vale: 123<br/>observacion: OBS<br/>unidad_solicitante_id: 1<br/>updated_at: 2023-12-21 09:40:45<br/>user_id: 7<br/>vehiculo_id: 2<br/>', 'combustible: 10<br/>created_at: 2023-12-20 11:27:06<br/>fecha_entrega: 2023-12-20<br/>fecha_registro: 2023-12-20<br/>id: 1<br/>nro_vale: 123<br/>observacion: OBS<br/>unidad_solicitante_id: 1<br/>updated_at: 2023-12-21 09:43:10<br/>user_id: 3<br/>vehiculo_id: 2<br/>', 'SOLICITUD DE COMBUSTIBLE', '2023-12-21', '09:43:10', '2023-12-21 13:43:10', '2023-12-21 13:43:10'),
+(55, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA SOLICITUD DE COMBUSTIBLE', 'combustible: 10<br/>created_at: 2023-12-20 11:27:06<br/>fecha_entrega: 2023-12-20<br/>fecha_registro: 2023-12-20<br/>id: 1<br/>nro_vale: 123<br/>observacion: OBS<br/>unidad_solicitante_id: 1<br/>updated_at: 2023-12-21 09:43:10<br/>user_id: 3<br/>vehiculo_id: 2<br/>', 'combustible: 10<br/>created_at: 2023-12-20 11:27:06<br/>fecha_entrega: 2023-12-20<br/>fecha_registro: 2023-12-20<br/>id: 1<br/>nro_vale: 123<br/>observacion: OBS<br/>unidad_solicitante_id: 1<br/>updated_at: 2023-12-21 09:46:52<br/>user_id: 7<br/>vehiculo_id: 2<br/>', 'SOLICITUD DE COMBUSTIBLE', '2023-12-21', '09:46:52', '2023-12-21 13:46:52', '2023-12-21 13:46:52'),
+(56, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA SOLICITUD DE COMBUSTIBLE', 'combustible: 5<br/>created_at: 2023-12-21 11:14:34<br/>fecha_entrega: 2023-12-21<br/>fecha_registro: 2023-12-21<br/>id: 2<br/>nro_vale: 123<br/>observacion: OBS.<br/>unidad_solicitante_id: 1<br/>updated_at: 2023-12-21 11:14:34<br/>user_id: 7<br/>vehiculo_id: 2<br/>', NULL, 'SOLICITUD DE COMBUSTIBLE', '2023-12-21', '11:14:35', '2023-12-21 15:14:35', '2023-12-21 15:14:35'),
+(57, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA SOLICITUD DE COMBUSTIBLE', 'combustible: 5<br/>created_at: 2023-12-21 11:14:34<br/>fecha_entrega: 2023-12-21<br/>fecha_registro: 2023-12-21<br/>id: 2<br/>nro_vale: 123<br/>observacion: OBS.<br/>unidad_solicitante_id: 1<br/>updated_at: 2023-12-21 11:14:34<br/>user_id: 7<br/>vehiculo_id: 2<br/>', 'combustible: 5<br/>created_at: 2023-12-21 11:14:34<br/>fecha_entrega: 2023-12-21<br/>fecha_registro: 2023-12-21<br/>id: 2<br/>nro_vale: 123<br/>observacion: OBS.<br/>unidad_solicitante_id: 1<br/>updated_at: 2023-12-21 11:22:35<br/>user_id: 3<br/>vehiculo_id: 2<br/>', 'SOLICITUD DE COMBUSTIBLE', '2023-12-21', '11:22:35', '2023-12-21 15:22:35', '2023-12-21 15:22:35');
 
 -- --------------------------------------------------------
 
@@ -246,7 +257,8 @@ CREATE TABLE `solicitud_combustibles` (
 --
 
 INSERT INTO `solicitud_combustibles` (`id`, `unidad_solicitante_id`, `user_id`, `vehiculo_id`, `combustible`, `nro_vale`, `fecha_entrega`, `observacion`, `fecha_registro`, `created_at`, `updated_at`) VALUES
-(1, 1, 3, 2, 10, '123', '2023-12-20', 'OBS', '2023-12-20', '2023-12-20 15:27:06', '2023-12-20 15:27:06');
+(1, 1, 7, 2, 10, '123', '2023-12-20', 'OBS', '2023-12-20', '2023-12-20 15:27:06', '2023-12-21 13:46:52'),
+(2, 1, 3, 2, 5, '123', '2023-12-21', 'OBS.', '2023-12-21', '2023-12-21 15:14:34', '2023-12-21 15:22:35');
 
 -- --------------------------------------------------------
 
@@ -335,7 +347,10 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `usuario`, `nombre`, `paterno`, `materno`, `ci`, `ci_exp`, `dir`, `correo`, `fono`, `password`, `tipo`, `foto`, `fecha_registro`, `acceso`, `created_at`, `updated_at`) VALUES
 (1, 'admin', 'admin', 'admin', NULL, '0000', '', '', 'admin@gmail.com', '', '$2y$10$RrCZZySOwPej2gMFWsrjMe6dLzfaL5Q88h4J75I1FesEBRNPwq1x.', 'ADMINISTRADOR', NULL, '2023-12-14', 1, NULL, NULL),
 (2, 'JPERES', 'JUAN', 'PERES', 'MAMANI', '1111', 'LP', 'LOS OLIVOS', 'juan@gmail.com', '77777777', '$2y$10$9G3rSNuwX0V5/hu6YTilRuDVlS/RrXBy9QQ/DWowo4mDCYNQT.YvS', 'ENCARGADO DE COMBUSTIBLE', 'default.png', '2023-12-19', 1, '2023-12-19 14:40:17', '2023-12-19 16:33:11'),
-(3, 'FMAMANI', 'FERNANDO', 'MAMANI', 'MAMANI', '2222', 'LP', 'LOS OLIVOS', '', '777777', '$2y$10$ESFDr/KIjjfvr257rvXlvO4uIH5ldRTZvSJtho9o6G5B17rZ/PACK', 'CONDUCTOR', 'default.png', '2023-12-19', 1, '2023-12-19 16:31:51', '2023-12-19 16:31:51');
+(3, 'FMAMANI', 'FERNANDO', 'MAMANI', 'MAMANI', '2222', 'LP', 'LOS OLIVOS', '', '777777', '$2y$10$ESFDr/KIjjfvr257rvXlvO4uIH5ldRTZvSJtho9o6G5B17rZ/PACK', 'CONDUCTOR', 'default.png', '2023-12-19', 1, '2023-12-19 16:31:51', '2023-12-19 16:31:51'),
+(5, 'EMAMANI', 'EDUARDO', 'MAMANI', 'MAMANI', '3333', 'LP', 'LOS OLIVOS', 'eduardo@gmail.com', '66666666', '$2y$10$Zl1QN3F2aOJpZK/DbVzMIOrLtt58CN3JGpGXdyfUp1HBvJE.ksKYa', 'DIRECTOR', 'default.png', '2023-12-21', 1, '2023-12-21 13:12:33', '2023-12-21 13:13:16'),
+(6, 'JCONDORI', 'JAIME', 'CONDORI', 'CONDORI', '4444', 'SC', 'LOS OLIVOS', 'jaime@gmail.com', '77777777', '$2y$10$9/yPhubuhjBz.x94KIJLTuaOONRVzeeRB6pI.dK6MB2LN4WlSCOPG', 'ADMINISTRATIVO', 'default.png', '2023-12-21', 1, '2023-12-21 13:13:10', '2023-12-21 13:13:10'),
+(7, 'ACONTRERAS', 'ALEX', 'CONTRERAS', 'MAMANI', '5555', 'LP', 'LOS OLIVOS', '', '67676767', '$2y$10$2W0woyGsd0g8.UYSSi83z.hww7tVyCXO59aB612tgJl98fAUgYkGa', 'CONDUCTOR', '1703166024_ACONTRERAS.jpg', '2023-12-21', 1, '2023-12-21 13:40:24', '2023-12-21 13:40:31');
 
 -- --------------------------------------------------------
 
@@ -459,7 +474,7 @@ ALTER TABLE `vehiculos`
 -- AUTO_INCREMENT de la tabla `conductors`
 --
 ALTER TABLE `conductors`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `configuracions`
@@ -471,7 +486,7 @@ ALTER TABLE `configuracions`
 -- AUTO_INCREMENT de la tabla `historial_accions`
 --
 ALTER TABLE `historial_accions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT de la tabla `migrations`
@@ -495,7 +510,7 @@ ALTER TABLE `recorrido_viajes`
 -- AUTO_INCREMENT de la tabla `solicitud_combustibles`
 --
 ALTER TABLE `solicitud_combustibles`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `unidads`
@@ -513,7 +528,7 @@ ALTER TABLE `unidad_solicitantes`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `vehiculos`

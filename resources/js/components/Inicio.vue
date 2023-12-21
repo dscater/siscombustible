@@ -11,15 +11,6 @@
         </section>
         <section class="content-header">
             <div class="container-fluid">
-                <div class="row mb-2" v-if="user.tipo == 'ESTUDIANTE'">
-                    <div class="col-md-12">
-                        <img
-                            width="100%"
-                            :src="url_principal + '/imgs/inicio_estudiante.jpg'"
-                            alt=""
-                        />
-                    </div>
-                </div>
                 <div class="row">
                     <div
                         class="col-12"
@@ -39,7 +30,7 @@
                             </div>
                             <router-link
                                 :to="{ name: item.url }"
-                                class="small-box-footer bg-success"
+                                class="small-box-footer bg-danger"
                                 >Ver más
                                 <i class="fas fa-arrow-circle-right"></i
                             ></router-link>

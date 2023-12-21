@@ -110,9 +110,8 @@ export default new Router({
         {
             path: "/recorrido_viajes/:id",
             name: "recorrido_viajes.edit",
-            component:
-                require("./components/modulos/recorrido_viajes/edit.vue")
-                    .default,
+            component: require("./components/modulos/recorrido_viajes/edit.vue")
+                .default,
             props: true,
         },
 
@@ -131,6 +130,54 @@ export default new Router({
             name: "reportes.usuarios",
             component: require("./components/modulos/reportes/usuarios.vue")
                 .default,
+            props: true,
+        },
+        {
+            path: "/reportes/solicitud_unidad",
+            name: "reportes.solicitud_unidad",
+            component:
+                require("./components/modulos/reportes/solicitud_unidad.vue")
+                    .default,
+            props: true,
+        },
+        {
+            path: "/reportes/cantidad_combustible_unidad",
+            name: "reportes.cantidad_combustible_unidad",
+            component:
+                require("./components/modulos/reportes/cantidad_combustible_unidad.vue")
+                    .default,
+            props: true,
+        },
+        {
+            path: "/reportes/cantidad_viajes_conductor",
+            name: "reportes.cantidad_viajes_conductor",
+            component:
+                require("./components/modulos/reportes/cantidad_viajes_conductor.vue")
+                    .default,
+            props: true,
+        },
+        {
+            path: "/reportes/cantidad_combustible_conductor",
+            name: "reportes.cantidad_combustible_conductor",
+            component:
+                require("./components/modulos/reportes/cantidad_combustible_conductor.vue")
+                    .default,
+            props: true,
+        },
+        {
+            path: "/reportes/cantidad_viajes_unidad",
+            name: "reportes.cantidad_viajes_unidad",
+            component:
+                require("./components/modulos/reportes/cantidad_viajes_unidad.vue")
+                    .default,
+            props: true,
+        },
+        {
+            path: "/reportes/g_cantidad_combustible_unidad",
+            name: "reportes.g_cantidad_combustible_unidad",
+            component:
+                require("./components/modulos/reportes/g_cantidad_combustible_unidad.vue")
+                    .default,
             props: true,
         },
 

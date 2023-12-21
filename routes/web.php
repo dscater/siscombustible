@@ -82,6 +82,12 @@ Route::middleware(['auth'])->group(function () {
 
         // REPORTES
         Route::post('reportes/usuarios', [ReporteController::class, 'usuarios']);
+        Route::post('reportes/solicitud_unidad', [ReporteController::class, 'solicitud_unidad']);
+        Route::post('reportes/cantidad_combustible_unidad', [ReporteController::class, 'cantidad_combustible_unidad']);
+        Route::post('reportes/cantidad_viajes_conductor', [ReporteController::class, 'cantidad_viajes_conductor']);
+        Route::post('reportes/cantidad_combustible_conductor', [ReporteController::class, 'cantidad_combustible_conductor']);
+        Route::post('reportes/cantidad_viajes_unidad', [ReporteController::class, 'cantidad_viajes_unidad']);
+        Route::post('reportes/g_cantidad_combustible_unidad', [ReporteController::class, 'g_cantidad_combustible_unidad']);
     });
 });
 

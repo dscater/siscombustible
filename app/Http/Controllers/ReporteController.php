@@ -10,6 +10,7 @@ use App\Models\Horario;
 use App\Models\Inscripcion;
 use App\Models\InscripcionSolicitud;
 use App\Models\Profesor;
+use App\Models\Unidad;
 use App\Models\UnidadSolicitante;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -114,6 +115,32 @@ class ReporteController extends Controller
     public function cantidad_combustible_unidad(Request $request)
     {
         $filtro = $request->filtro;
+        $unidad_id = $request->unidad_id;
+        $fecha_ini = $request->fecha_ini;
+        $fecha_fin = $request->fecha_fin;
+
+        $unidads = [];
+
+        $unidads = Unidad::orderBy("nombre", "asc")->get();
+        if ($filtro != 'Todos') {
+            if ($filtro == 'Unidad') {
+                if ($unidad_id != '') {
+                    $unidads = Unidad::where("id", $unidad_id)->orderBy("nombre", "asc")->get();
+                }
+            }
+        }
+
+        $pdf = PDF::loadView('reportes.cantidad_combustible_unidad', compact('unidads', 'filtro', 'fecha_ini', 'fecha_fin'))->setPaper('letter', 'portrait');
+
+        // ENUMERAR LAS PÁGINAS USANDO CANVAS
+        $pdf->output();
+        $dom_pdf = $pdf->getDomPDF();
+        $canvas = $dom_pdf->get_canvas();
+        $alto = $canvas->get_height();
+        $ancho = $canvas->get_width();
+        $canvas->page_text($ancho - 90, $alto - 25, "Página {PAGE_NUM} de {PAGE_COUNT}", null, 9, array(0, 0, 0));
+
+        return $pdf->download('cantidad_combustible_unidad.pdf');
     }
     public function cantidad_viajes_conductor(Request $request)
     {

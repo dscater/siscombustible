@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\File;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -43,7 +44,21 @@ class User extends Authenticatable
         'password',
     ];
 
-    protected $appends = ['full_name', 'full_name_abre', 'full_ci', 'path_image', "fecha_registro_t"];
+    protected $appends = ['full_name', 'full_name_abre', 'full_ci', 'path_image', "fecha_registro_t", "img64"];
+
+    public function getImg64Attribute()
+    {
+        if ($this->foto) {
+            $ruta = public_path("imgs/users/" . $this->foto);
+            if (file_exists($ruta)) {
+                $contenidoImagen = file_get_contents($ruta);
+                $base64 = base64_encode($contenidoImagen);
+                $formato = File::extension($ruta);
+                return "data:image/" . $formato . ";base64, " . $base64;
+            }
+        }
+        return "";
+    }
 
     public function getFechaRegistroTAttribute()
     {

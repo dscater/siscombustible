@@ -188,7 +188,7 @@
         @endphp
         <div class="encabezado">
             <div class="logo">
-                <img src="{{ asset('imgs/' . $configuracion->first()->logo) }}">
+                <img src="{{ $configuracion->first()->img64 }}">
             </div>
             <h2 class="titulo">
                 {{ $configuracion->first()->nombre_sistema }}

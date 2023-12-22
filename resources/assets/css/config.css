@@ -17,6 +17,11 @@
     cursor: pointer;
 }
 
+.bg-info-box{
+    background-color: #025916;
+    color:white;
+}
+
 .el-textarea.rounded-0 > textarea,
 .el-input.rounded-0 > input,
 .el-select.rounded-0 > select {

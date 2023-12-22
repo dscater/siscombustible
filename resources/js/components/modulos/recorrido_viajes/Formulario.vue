@@ -319,16 +319,10 @@
                     <div class="row" v-if="oUnidadSolicitante">
                         <div
                             class="col-12"
-                            v-if="
-                                oUnidadSolicitante.solicitud_combustibles
-                                    .length > 0
-                            "
+                            v-if="oUnidadSolicitante.solicitud_combustible"
                         >
                             <div class="row">
-                                <div
-                                    class="col-12"
-                                    v-for="item in oUnidadSolicitante.solicitud_combustibles"
-                                >
+                                <div class="col-12">
                                     <div class="card">
                                         <div class="card-body">
                                             <div class="row">
@@ -337,14 +331,14 @@
                                                         <strong
                                                             >Conductor: </strong
                                                         >{{
-                                                            item.user?.full_name
+                                                            oUnidadSolicitante.solicitud_combustible.user?.full_name
                                                         }}
                                                     </p>
                                                     <p>
                                                         <strong
                                                             >Vehículo: </strong
                                                         >{{
-                                                            item.vehiculo
+                                                            oUnidadSolicitante.solicitud_combustible.vehiculo
                                                                 ?.full_name
                                                         }}
                                                     </p>
@@ -352,30 +346,30 @@
                                                         <strong
                                                             >Cantidad de
                                                             Combustible: </strong
-                                                        >{{ item.combustible }}
+                                                        >{{ oUnidadSolicitante.solicitud_combustible.combustible }}
                                                     </p>
                                                     <p>
                                                         <strong
                                                             >Nro. Vale: </strong
-                                                        >{{ item.nro_vale }}
+                                                        >{{ oUnidadSolicitante.solicitud_combustible.nro_vale }}
                                                     </p>
                                                     <p>
                                                         <strong
                                                             >Fecha de Entrega: </strong
                                                         >{{
-                                                            item.fecha_entrega_t
+                                                            oUnidadSolicitante.solicitud_combustible.fecha_entrega_t
                                                         }}
                                                     </p>
                                                     <p>
                                                         <strong
                                                             >Observación: </strong
-                                                        >{{ item.observacion }}
+                                                        >{{ oUnidadSolicitante.solicitud_combustible.observacion }}
                                                     </p>
                                                     <p>
                                                         <strong
                                                             >Fecha de registro: </strong
                                                         >{{
-                                                            item.fecha_registro_t
+                                                            oUnidadSolicitante.solicitud_combustible.fecha_registro_t
                                                         }}
                                                     </p>
                                                 </div>
@@ -430,6 +424,7 @@ export default {
     watch: {
         recorrido_viaje(newVal) {
             this.getUnidadSolicitante();
+            this.getUnidadSolicitantes();
         },
     },
     computed: {
@@ -462,7 +457,14 @@ export default {
     methods: {
         getUnidadSolicitantes() {
             axios
-                .get(main_url + "/admin/unidad_solicitantes")
+                .get(
+                    main_url + "/admin/unidad_solicitantes/sinRecorridoViaje",
+                    {
+                        params: {
+                            id: this.recorrido_viaje.unidad_solicitante_id,
+                        },
+                    }
+                )
                 .then((response) => {
                     this.listUnidadSolicitantes =
                         response.data.unidad_solicitantes;

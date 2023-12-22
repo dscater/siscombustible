@@ -150,7 +150,7 @@
     @inject('configuracion', 'App\Models\Configuracion')
     <div class="encabezado">
         <div class="logo">
-            <img src="{{ asset('imgs/' . $configuracion->first()->logo) }}">
+            <img src="{{ $configuracion->first()->img64 }}">
         </div>
         <h2 class="titulo">
             {{ $configuracion->first()->nombre_sistema }}
@@ -182,7 +182,9 @@
             @foreach ($usuarios as $user)
                 <tr>
                     <td class="centreado">{{ $cont++ }}</td>
-                    <td class="img_celda"><img src="{{ $user->path_image }}" alt="Foto"></td>
+                    <td class="img_celda">
+                        <img src="{{ $user->img64 }}">
+                    </td>
                     <td>{{ $user->usuario }}</td>
                     <td class="centreado">{{ $user->paterno }}</td>
                     <td class="centreado">{{ $user->materno }}</td>

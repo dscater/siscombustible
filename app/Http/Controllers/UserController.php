@@ -148,7 +148,7 @@ class UserController extends Controller
             'solicitud_combustibles.index',
 
             'recorrido_viajes.index',
-            
+
             "reportes.solicitud_unidad",
             "reportes.cantidad_combustible_unidad",
             "reportes.cantidad_viajes_conductor",
@@ -171,7 +171,7 @@ class UserController extends Controller
             'unidad_solicitantes.create',
             'unidad_solicitantes.edit',
             'unidad_solicitantes.destroy',
-            
+
             'solicitud_combustibles.index',
             'solicitud_combustibles.create',
             'solicitud_combustibles.edit',
@@ -181,7 +181,7 @@ class UserController extends Controller
             'recorrido_viajes.create',
             'recorrido_viajes.edit',
             'recorrido_viajes.destroy',
-            
+
             "reportes.solicitud_unidad",
             "reportes.cantidad_combustible_unidad",
             "reportes.cantidad_viajes_conductor",
@@ -191,9 +191,6 @@ class UserController extends Controller
         ],
         "CONDUCTOR" => [
             'solicitud_combustibles.index',
-            'solicitud_combustibles.create',
-            'solicitud_combustibles.edit',
-            'solicitud_combustibles.destroy',
 
             'recorrido_viajes.index',
             'recorrido_viajes.create',
@@ -443,7 +440,7 @@ class UserController extends Controller
             $array_infos[] = [
                 'label' => 'Vehículos',
                 'cantidad' => count(Vehiculo::all()),
-                'color' => 'bg-dark',
+                'color' => 'bg-info-box',
                 'icon' => asset("imgs/cars.png"),
                 "url" => "vehiculos.index"
             ];
@@ -454,7 +451,7 @@ class UserController extends Controller
                 $array_infos[] = [
                     'label' => 'Conductores',
                     'cantidad' => count(User::where("tipo", "CONDUCTOR")->where('id', '!=', 1)->get()),
-                    'color' => 'bg-dark',
+                    'color' => 'bg-info-box',
                     'icon' => asset("imgs/users.png"),
                     "url" => "conductors.index"
                 ];
@@ -465,27 +462,41 @@ class UserController extends Controller
             $array_infos[] = [
                 'label' => 'Unidad Solicitante',
                 'cantidad' => count(UnidadSolicitante::all()),
-                'color' => 'bg-dark',
+                'color' => 'bg-info-box',
                 'icon' => asset("imgs/icon_solicitud.png"),
                 "url" => "unidad_solicitantes.index"
             ];
         }
 
         if (in_array('solicitud_combustibles.index', $this->permisos[$tipo])) {
+            if (Auth::user()->tipo == 'CONDUCTOR') {
+                $solicitud_combustibles = SolicitudCombustible::where("user_id", Auth::user()->id)->orderBy("id", "desc")->get();
+            } else {
+                $solicitud_combustibles = SolicitudCombustible::orderBy("id", "desc")->get();
+            }
             $array_infos[] = [
                 'label' => 'Solicitud Combustible',
-                'cantidad' => count(SolicitudCombustible::all()),
-                'color' => 'bg-dark',
+                'cantidad' => count($solicitud_combustibles),
+                'color' => 'bg-info-box',
                 'icon' => asset("imgs/icon_inscripcion.png"),
                 "url" => "solicitud_combustibles.index"
             ];
         }
 
         if (in_array('recorrido_viajes.index', $this->permisos[$tipo])) {
+            if (Auth::user()->tipo == 'CONDUCTOR') {
+                $recorrido_viajes = RecorridoViaje::select("recorrido_viajes.*")
+                    ->join("unidad_solicitantes", "unidad_solicitantes.id", "=", "recorrido_viajes.unidad_solicitante_id")
+                    ->join("solicitud_combustibles", "solicitud_combustibles.unidad_solicitante_id", "=", "unidad_solicitantes.id")
+                    ->where("solicitud_combustibles.user_id", Auth::user()->id)
+                    ->orderBy("id", "desc")->get();
+            } else {
+                $recorrido_viajes = RecorridoViaje::orderBy("id", "desc")->get();
+            }
             $array_infos[] = [
                 'label' => 'Recorrido de Viajes',
-                'cantidad' => count(RecorridoViaje::all()),
-                'color' => 'bg-dark',
+                'cantidad' => count($recorrido_viajes),
+                'color' => 'bg-info-box',
                 'icon' => asset("imgs/renewal.png"),
                 "url" => "recorrido_viajes.index"
             ];
@@ -495,7 +506,7 @@ class UserController extends Controller
             $array_infos[] = [
                 'label' => 'Unidades',
                 'cantidad' => count(Unidad::all()),
-                'color' => 'bg-dark',
+                'color' => 'bg-info-box',
                 'icon' => asset("imgs/list.png"),
                 "url" => "unidads.index"
             ];
@@ -506,7 +517,7 @@ class UserController extends Controller
                 $array_infos[] = [
                     'label' => 'Usuarios',
                     'cantidad' => count(User::whereNotIn("tipo", ["CONDUCTOR"])->where('id', '!=', 1)->get()),
-                    'color' => 'bg-dark',
+                    'color' => 'bg-info-box',
                     'icon' => asset("imgs/icon_users.png"),
                     "url" => "usuarios.index"
                 ];

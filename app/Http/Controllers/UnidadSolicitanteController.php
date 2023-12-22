@@ -42,6 +42,66 @@ class UnidadSolicitanteController extends Controller
         return response()->JSON(['unidad_solicitantes' => $unidad_solicitantes, 'total' => count($unidad_solicitantes)], 200);
     }
 
+    public function sinSolicitudCombustible(Request $request)
+    {
+        $unidad_solicitantes = [];
+        if (Auth::user()->tipo == 'CONDUCTOR') {
+            $unidad_solicitantes = UnidadSolicitante::select("unidad_solicitantes.*")
+                ->with(["unidad"])
+                ->join("solicitud_combustibles", "solicitud_combustibles.unidad_solicitante_id", "=", "unidad_solicitantes.id")
+                ->where("solicitud_combustibles.user_id", Auth::user()->id);
+        } else {
+            $unidad_solicitantes = UnidadSolicitante::with(["unidad"]);
+        }
+        if (isset($request->id) && $request->id != "" && $request->id != 0) {
+            $unidad_solicitantes->where(function ($query) use ($request) {
+                $query->whereNotIn('unidad_solicitantes.id', function ($subquery) {
+                    $subquery->select('unidad_solicitante_id')->from('solicitud_combustibles');
+                })->orWhere('unidad_solicitantes.id', $request->id); // Incluye registros que estás editando (con id nulo)
+            });
+        } else {
+            $unidad_solicitantes->whereNotIn('unidad_solicitantes.id', function ($query) {
+                $query->select('unidad_solicitante_id')->from('solicitud_combustibles');
+            });
+        }
+
+        $unidad_solicitantes = $unidad_solicitantes->orderBy("id", "desc")->get();
+
+        return response()->JSON([
+            "sw" => true,
+            "unidad_solicitantes" => $unidad_solicitantes
+        ]);
+    }
+    public function sinRecorridoViaje(Request $request)
+    {
+        $unidad_solicitantes = [];
+        if (Auth::user()->tipo == 'CONDUCTOR') {
+            $unidad_solicitantes = UnidadSolicitante::select("unidad_solicitantes.*")
+                ->with(["unidad"])
+                ->join("solicitud_combustibles", "solicitud_combustibles.unidad_solicitante_id", "=", "unidad_solicitantes.id")
+                ->where("solicitud_combustibles.user_id", Auth::user()->id);
+        } else {
+            $unidad_solicitantes = UnidadSolicitante::with(["unidad"]);
+        }
+        if (isset($request->id) && $request->id != "" && $request->id != 0) {
+            $unidad_solicitantes->where(function ($query) use ($request) {
+                $query->whereNotIn('unidad_solicitantes.id', function ($subquery) {
+                    $subquery->select('unidad_solicitante_id')->from('recorrido_viajes');
+                })->orWhere('unidad_solicitantes.id', $request->id); // Incluye registros que estás editando (con id nulo)
+            });
+        } else {
+            $unidad_solicitantes->whereNotIn('unidad_solicitantes.id', function ($query) {
+                $query->select('unidad_solicitante_id')->from('recorrido_viajes');
+            });
+        }
+
+        $unidad_solicitantes = $unidad_solicitantes->orderBy("id", "desc")->get();
+        return response()->JSON([
+            "sw" => true,
+            "unidad_solicitantes" => $unidad_solicitantes
+        ]);
+    }
+
     public function store(Request $request)
     {
         $request->validate($this->validacion, $this->mensajes);
@@ -117,7 +177,7 @@ class UnidadSolicitanteController extends Controller
     {
         return response()->JSON([
             'sw' => true,
-            'unidad_solicitante' => $unidad_solicitante->load(["unidad", "solicitud_combustibles.user", "solicitud_combustibles.vehiculo"])
+            'unidad_solicitante' => $unidad_solicitante->load(["unidad", "solicitud_combustible.user", "solicitud_combustible.vehiculo"])
         ], 200);
     }
     public function destroy(UnidadSolicitante $unidad_solicitante)

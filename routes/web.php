@@ -66,6 +66,8 @@ Route::middleware(['auth'])->group(function () {
         ]);
 
         // UNIDAD SOLICITANTE
+        Route::get("unidad_solicitantes/sinSolicitudCombustible", [UnidadSolicitanteController::class, 'sinSolicitudCombustible']);
+        Route::get("unidad_solicitantes/sinRecorridoViaje", [UnidadSolicitanteController::class, 'sinRecorridoViaje']);
         Route::resource('unidad_solicitantes', UnidadSolicitanteController::class)->only([
             'index', 'store', 'update', 'destroy', 'show'
         ]);

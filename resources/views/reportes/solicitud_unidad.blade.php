@@ -150,7 +150,7 @@
     @inject('configuracion', 'App\Models\Configuracion')
     <div class="encabezado">
         <div class="logo">
-            <img src="{{ asset('imgs/' . $configuracion->first()->logo) }}">
+            <img src="{{ $configuracion->first()->img64 }}">
         </div>
         <h2 class="titulo">
             {{ $configuracion->first()->nombre_sistema }}
@@ -185,33 +185,24 @@
                     <td class="centreado">{{ $value->fecha_solicitud_t }}</td>
                     <td class="centreado">{{ $value->nro_hoja_ruta }}</td>
                     <td class="centreado">
-                        @if (count($value->solicitud_combustibles) > 0 && $value->conductor == 1)
-                            <ul style="padding-left:10px; list-style:none;">
-                                @foreach ($value->solicitud_combustibles as $sc)
-                                    <li>{{ $sc->user->full_name }}</li>
-                                @endforeach
+                        @if ($value->solicitud_combustible && $value->conductor == 1)
+                            {{ $value->solicitud_combustible->user->full_name }}
                             </ul>
                         @else
                             S/A
                         @endif
                     </td>
                     <td class="centreado">
-                        @if (count($value->solicitud_combustibles) > 0 && $value->vehiculo == 1)
-                            <ul style="padding-left:10px; list-style:none;">
-                                @foreach ($value->solicitud_combustibles as $sc)
-                                    <li>{{ $sc->vehiculo->full_name }}</li>
-                                @endforeach
+                        @if ($value->solicitud_combustible && $value->vehiculo == 1)
+                            {{ $value->solicitud_combustible->vehiculo->full_name }}
                             </ul>
                         @else
                             S/A
                         @endif
                     </td>
                     <td class="centreado">
-                        @if (count($value->solicitud_combustibles) > 0 && $value->combustible == 1)
-                            <ul style="padding-left:10px; list-style:none;">
-                                @foreach ($value->solicitud_combustibles as $sc)
-                                    <li>{{ $sc->combustible }}</li>
-                                @endforeach
+                        @if ($value->solicitud_combustible && $value->combustible == 1)
+                            {{ $value->solicitud_combustible->combustible }}
                             </ul>
                         @else
                             S/A

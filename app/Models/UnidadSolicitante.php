@@ -70,8 +70,13 @@ class UnidadSolicitante extends Model
         return $this->belongsTo(Unidad::class, 'unidad_id');
     }
 
-    public function solicitud_combustibles()
+    public function solicitud_combustible()
     {
-        return $this->hasMany(SolicitudCombustible::class, 'unidad_solicitante_id');
+        return $this->hasOne(SolicitudCombustible::class, 'unidad_solicitante_id');
+    }
+
+    public function recorrido_viaje()
+    {
+        return $this->hasOne(RecorridoViaje::class, 'unidad_solicitante_id');
     }
 }

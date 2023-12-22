@@ -309,6 +309,7 @@ export default {
     watch: {
         solicitud_combustible(newVal) {
             this.getUnidadSolicitante();
+            this.getUnidadSolicitantes();
         },
     },
     computed: {
@@ -345,7 +346,16 @@ export default {
     methods: {
         getUnidadSolicitantes() {
             axios
-                .get(main_url + "/admin/unidad_solicitantes")
+                .get(
+                    main_url +
+                        "/admin/unidad_solicitantes/sinSolicitudCombustible",
+                    {
+                        params: {
+                            id: this.solicitud_combustible
+                                .unidad_solicitante_id,
+                        },
+                    }
+                )
                 .then((response) => {
                     this.listUnidadSolicitantes =
                         response.data.unidad_solicitantes;
